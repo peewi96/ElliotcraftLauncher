@@ -361,7 +361,7 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 
 			JEditorPane ep = new JEditorPane("text/html", "<html><body style=\"" + style + "\">"
 					+ "TechniCraft Launcher requires Java 6 or greater to run, Download"
-					+ "<br>java updates from http://spout.in/javaupdates</body></html>");
+					+ "<br />java updates from http://spout.in/javaupdates</body></html>");
 
 			ep.setEditable(false);
 			ep.setBackground(label.getBackground());

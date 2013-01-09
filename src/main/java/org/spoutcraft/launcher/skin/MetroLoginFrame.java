@@ -288,6 +288,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		options.setBounds(exit.getX()-30, FRAME_TOP_SPACING, 16, 16);
 		options.setActionCommand(OPTIONS_ACTION);
 		options.addActionListener(this);
+		options.setBorder(BorderFactory.createEmptyBorder());
+		options.setContentAreaFilled(false);
 		options.addKeyListener(this);
 
 		// Console Button
@@ -349,6 +351,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			setIcon(userButton.getRemoveIcon(), "remove.png", 16);
 			userButton.getRemoveIcon().addActionListener(this);
 			userButton.getRemoveIcon().setActionCommand(REMOVE_USER);
+			userButton.getRemoveIcon().setBorder(BorderFactory.createEmptyBorder());
+			userButton.getRemoveIcon().setContentAreaFilled(false);
 			removeButtons.put(userButton.getRemoveIcon(), userButton);
 			userButtons.put(userName, userButton);
 		}
@@ -421,7 +425,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 	public static void setIcon(JLabel label, String iconName, int w, int h) {
 		try {
-			System.out.print(iconName);
+		//	System.out.print(iconName);
 			label.setIcon(new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
 		} catch (IOException e) {
 			e.printStackTrace();

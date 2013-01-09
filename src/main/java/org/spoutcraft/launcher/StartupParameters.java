@@ -104,13 +104,13 @@ public final class StartupParameters {
 	public void logParameters(Logger log) {
 		log.info("------------ Startup Parameters ------------");
 		if (user != null) {
-			log.info("Minecraft Username: " + user);
+			log.info("Minecraft username: " + user);
 		}
 		if (pass != null) {
-			log.info("Minecraft Password exists");
+			log.info("Minecraft password exists");
 		}
 		if (server != null) {
-			log.info("Minecraft Server: " + server);
+			log.info("Minecraft server: " + server);
 		}
 		if (portable) {
 			log.info("Portable mode activated");
@@ -119,19 +119,19 @@ public final class StartupParameters {
 			log.info("Debug mode activated");
 		}
 		if (proxyHost != null) {
-			log.info("Proxy Host: " + proxyHost);
+			log.info("Proxy host: " + proxyHost);
 		}
 		if (proxyPort != null) {
-			log.info("Proxy Port: " + proxyPort);
+			log.info("Proxy port: " + proxyPort);
 		}
 		if (proxyUser != null) {
-			log.info("Proxy User exists");
+			log.info("Proxy user exists");
 		}
 		if (proxyPassword != null) {
-			log.info("Proxy Password exists");
+			log.info("Proxy password exists");
 		}
 		if (ignoreMD5) {
-			log.info("No MD5 Mode activated");
+			log.info("No MD5 mode activated");
 		}
 		if (build != -1) {
 			log.info("Mod pack build selected: " + build);
@@ -143,7 +143,7 @@ public final class StartupParameters {
 			log.info("Old Launcher detected");
 		}
 		if (console) {
-			log.info("Console frame enabled");
+			log.info("Debug console enabled");
 		}
 		if (custompack) {
 			log.info("Custom packs enabled");
