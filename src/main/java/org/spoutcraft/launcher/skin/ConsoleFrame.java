@@ -128,7 +128,7 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 	 * @param killProcess true to kill the process on console close
 	 */
 	public ConsoleFrame(int numLines, boolean colorEnabled, final Process trackProc, final boolean killProcess) {
-		super("Technic Launcher Console");
+		super("TechniCraft Launcher Console");
 		this.numLines = numLines;
 		this.colorEnabled = colorEnabled;
 		this.trackProc = trackProc;
@@ -144,7 +144,7 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 		this.debugAttributes = new SimpleAttributeSet();
 		StyleConstants.setForeground(debugAttributes, Color.DARK_GRAY);
 
-		setSize(new Dimension(650, 400));
+		setSize(new Dimension(750, 400));
 		buildUI();
 
 		Compatibility.setIconImage(this, Toolkit.getDefaultToolkit().getImage(LoginFrame.spoutcraftIcon));

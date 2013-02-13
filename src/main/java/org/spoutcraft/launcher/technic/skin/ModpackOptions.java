@@ -112,9 +112,9 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		optionsTitle.setForeground(Color.white);
 		optionsTitle.setFont(minecraft.deriveFont(14F));
 		
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("quit.png", 28, 28), MetroLoginFrame.getIcon("quit.png", 28, 28));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("quitHover.png", 28, 28));
-		optionsQuit.setBounds(FRAME_WIDTH - 38, 10, 28, 28);
+		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 26, 26), MetroLoginFrame.getIcon("exit.png", 26, 26));
+		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 26, 26));
+		optionsQuit.setBounds(FRAME_WIDTH - 32, 4, 26, 26);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
 		

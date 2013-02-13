@@ -91,6 +91,9 @@ public final class StartupParameters {
 	@Parameter(names = {"-console"}, description = "Shows the console window")
 	private boolean console = false;
 
+	@Parameter(names = {"-custompack", "-cp"}, description = "Enables Custom Packs")
+	private boolean custompack = false;
+
 	public List<String> getParameters() {
 		return parameters;
 	}
@@ -139,6 +142,9 @@ public final class StartupParameters {
 		if (console) {
 			log.info("Console frame enabled");
 		}
+		if (custompack) {
+			log.info("Custom packs enabled");
+		}
 		log.info("--------- End of Startup Parameters ---------");
 	}
 
@@ -180,7 +186,7 @@ public final class StartupParameters {
 				commands.add("javaw");
 			} else if (OperatingSystem.getOS().isMac()) {
 				commands.add("java");
-				commands.add("-Xdock:name=Spoutcraft");
+				commands.add("-Xdock:name=TechniCraft");
 			} else {
 				commands.add("java");
 			}
@@ -250,6 +256,9 @@ public final class StartupParameters {
 		}
 		if (console) {
 			params.add("-console");
+		}
+		if (custompack) {
+			params.add("-custompack");
 		}
 		return params;
 	}
@@ -329,5 +338,8 @@ public final class StartupParameters {
 
 	public String getProxyPassword() {
 		return proxyPassword;
+	}
+	public boolean isCustompackEnabled() {
+		return custompack;
 	}
 }

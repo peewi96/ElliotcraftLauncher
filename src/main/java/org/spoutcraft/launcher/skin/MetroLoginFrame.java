@@ -49,6 +49,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.spoutcraft.launcher.Settings;
+import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.skin.components.BackgroundImage;
 import org.spoutcraft.launcher.skin.components.DynamicButton;
 import org.spoutcraft.launcher.skin.components.HyperlinkJLabel;
@@ -75,6 +76,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private static final int FRAME_WIDTH = 880;
 	private static final int FRAME_HEIGHT = 520;
 	private static final String OPTIONS_ACTION = "options";
+  private static final String CONSOLE_ACTION = "console";
 	private static final String PACK_OPTIONS_ACTION = "packoptions";
 	private static final String PACK_REMOVE_ACTION = "packremove";
 	private static final String EXIT_ACTION = "exit";
@@ -205,16 +207,18 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		home.setHoverTransparency(1F);
 
 		// Forums link
-		JButton forums = new ImageHyperlinkButton("http://forums.technicpack.net/");
+		JButton forums = new ImageHyperlinkButton("http://forum.majncraft.cz/");
 		forums.setToolTipText("Visit the forums");
 		forums.setBounds(10, loginStrip.getY() + 7, 90, 90);
+    forums.setBorderPainted(false);
 		setIcon(forums, "forums.png", forums.getWidth(), forums.getHeight());
 		
 		// Donate link
 		JButton donate = new ImageHyperlinkButton("http://www.technicpack.net/donate/");
 		donate.setToolTipText("Donate to the modders");
 		donate.setBounds(forums.getX() + 100,  forums.getY(), 90, 90);
-		setIcon(donate, "donate.png", forums.getWidth(), forums.getHeight());
+    donate.setBorderPainted(false);
+    setIcon(donate, "donate.png", forums.getWidth(), forums.getHeight());
 
 		// Issues link
 		HyperlinkJLabel issues = new HyperlinkJLabel("Issues", "http://forums.technicpack.net/forums/bug-reports.81/");
@@ -226,15 +230,15 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		issues.setHoverTransparency(1F);
 
 		// Options Button
-		ImageButton options = new ImageButton(getIcon("gear.png", 28 ,28), getIcon("gearInverted.png", 28, 28));
-		options.setBounds(FRAME_WIDTH - 34 * 2, 6, 28, 28);
+		ImageButton options = new ImageButton(getIcon("settings.png", 26 ,26), getIcon("settings_hover.png", 26, 26));
+		options.setBounds(FRAME_WIDTH - 32 * 2, 6, 26, 26);
 		options.setActionCommand(OPTIONS_ACTION);
 		options.addActionListener(this);
 		options.addKeyListener(this);
 
 		// Pack Options Button
-		packOptionsBtn = new ImageButton(getIcon("packOptions.png", 20, 21), getIcon("packOptionsInverted.png", 20, 21));
-		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - 90, FRAME_HEIGHT / 2 + 59, 20, 21);
+		packOptionsBtn = new ImageButton(getIcon("options.png", 26, 26), getIcon("options_hover.png", 26, 26));
+		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - 122, FRAME_HEIGHT / 2 + 58, 26, 26);
 		packOptionsBtn.setActionCommand(PACK_OPTIONS_ACTION);
 		packOptionsBtn.addActionListener(this);
 
@@ -244,8 +248,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		platform.setBounds(FRAME_WIDTH / 2 - 65, FRAME_HEIGHT / 2 + 59, 20, 20);
 
 		// Pack Remove Button
-		packRemoveBtn = new ImageButton(getIcon("packDelete.png", 20, 21), getIcon("packDeleteInverted.png", 20, 21));
-		packRemoveBtn.setBounds(FRAME_WIDTH / 2 + 70, FRAME_HEIGHT / 2 + 59, 20, 21);
+		packRemoveBtn = new ImageButton(getIcon("delete.png", 26, 26), getIcon("delete_hover.png", 26, 26));
+		packRemoveBtn.setBounds(FRAME_WIDTH / 2 + 94, FRAME_HEIGHT / 2 + 56, 26, 26);
 		packRemoveBtn.setActionCommand(PACK_REMOVE_ACTION);
 		packRemoveBtn.addActionListener(this);
 
@@ -258,10 +262,16 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		login.addKeyListener(this);
 
 		// Exit Button
-		ImageButton exit = new ImageButton(getIcon("quit.png", 28, 28), getIcon("quitHover.png", 28, 28));
-		exit.setBounds(FRAME_WIDTH - 34, 6, 28, 28);
+		ImageButton exit = new ImageButton(getIcon("exit.png", 26, 26), getIcon("exit_hover.png", 26, 26));
+		exit.setBounds(FRAME_WIDTH - 32, 6, 26, 26);
 		exit.setActionCommand(EXIT_ACTION);
 		exit.addActionListener(this);
+
+    // Console Button
+    ImageButton console = new ImageButton(getIcon("console.png", 26, 26), getIcon("console_hover.png", 26, 26));
+    console.setBounds(FRAME_WIDTH - 32 * 3, 6, 26, 26);
+    console.setActionCommand(CONSOLE_ACTION);
+    console.addActionListener(this);
 
 		// Steam button
 		JButton steam = new ImageHyperlinkButton("http://steamcommunity.com/groups/technic-pack");
@@ -271,26 +281,26 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		setIcon(steam, "steam.png", 28);
 
 		// Twitter button
-		JButton twitter = new ImageHyperlinkButton("https://twitter.com/TechnicPack");
+		JButton twitter = new ImageHyperlinkButton("https://twitter.com/TechniCraftCZ");
 		twitter.setRolloverIcon(getIcon("twitterInverted.png", 28, 28));
 		twitter.setToolTipText("Follow us on Twitter");
-		twitter.setBounds(6 + 34 * 3, 6, 28, 28);
+		twitter.setBounds(6 + 34 * 1, 6, 28, 28);
 		setIcon(twitter, "twitter.png", 28);
 
 		// Facebook button
-		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechnicPack");
+		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechniCraftcz");
 		facebook.setRolloverIcon(getIcon("facebookInverted.png", 28, 28));
 		facebook.setToolTipText("Like us on Facebook");
-		facebook.setBounds(6 + 34 * 2, 6, 28, 28);
+		facebook.setBounds(6 + 34 * 0, 6, 28, 28);
 		setIcon(facebook, "facebook.png", 28);
 
-		// YouTube button
+		/*/ YouTube button
 		JButton youtube = new ImageHyperlinkButton("http://www.youtube.com/user/kakermix");
 		youtube.setRolloverIcon(getIcon("youtubeInverted.png", 28, 28));
 		youtube.setToolTipText("Subscribe to our videos");
 		youtube.setBounds(6 + 34, 6, 28, 28);
 		setIcon(youtube, "youtube.png", 28);
-
+    */
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 
@@ -326,33 +336,40 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			removeButtons.put(userButton.getRemoveIcon(), userButton);
 			userButtons.put(userName, userButton);
 		}
+    JLabel trans; // launcher screen dim
+    trans = new JLabel();
+    trans.setBackground(new Color(0, 0, 0, 140));
+    trans.setOpaque(true);
+    trans.setBounds(0, 0, 880, 520);
 
 		contentPane.add(switchLeft);
 		contentPane.add(switchRight);
 		contentPane.add(customName);
 		contentPane.add(packOptionsBtn);
 		contentPane.add(packRemoveBtn);
-		contentPane.add(platform);
+		//contentPane.add(platform);
 		contentPane.add(packSelector);
-		//contentPane.add(packShadow);
+		contentPane.add(packShadow);
 		contentPane.add(selectorBackground);
 		contentPane.add(name);
 		contentPane.add(pass);
 		contentPane.add(remember);
 		contentPane.add(login);
-		contentPane.add(steam);
+		//contentPane.add(steam);
 		contentPane.add(twitter);
 		contentPane.add(facebook);
 		//contentPane.add(gplus);
-		contentPane.add(youtube);
+		//contentPane.add(youtube);
 		//contentPane.add(home);
 		contentPane.add(forums);
 		//contentPane.add(donate);
 		//contentPane.add(issues);
-		contentPane.add(logo);
+		//contentPane.add(logo);
 		contentPane.add(loginStrip);
-		contentPane.add(options);
+    contentPane.add(options);
+    contentPane.add(console);
 		contentPane.add(exit);
+    //contentPane.add(trans);
 		contentPane.add(progressBar);
 		
 		setFocusTraversalPolicy(new LoginFocusTraversalPolicy());
@@ -495,7 +512,9 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			getContentPane().remove(c);
 			removeButtons.remove(c);
 			writeUsernameList();
-		}
+		} else if (action.equals(CONSOLE_ACTION)) {
+      SpoutcraftLauncher.setupConsole();
+    }
 	}
 
 	@Override

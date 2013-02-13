@@ -88,6 +88,14 @@ public class Settings {
 		yaml.setProperty("launcher.launcher.debug", b ? 1 : 0);
 	}
 
+	public static synchronized boolean isCustomPack() {
+		return yaml.getInt("launcher.launcher.custompack", 0) == 1;
+	}
+
+	public static synchronized void setCustomPack(boolean b) {
+		yaml.setProperty("launcher.launcher.custompack", b ? 1 : 0);
+	}
+
 	public static synchronized String getSpoutcraftSelectedBuild() {
 		return yaml.getString("launcher.client.buildNumber", "-1");
 	}

@@ -87,7 +87,7 @@ public class BackgroundImage extends JLabel implements MouseListener, MouseMotio
 				if (images.size() > 0) {
 					io.printStackTrace();
 				}
-				stream = ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/background.jpg");
+				stream = ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/background.png");
 			}
 			image = ImageIO.read(stream);
 			image = BlurUtils.applyGaussianBlur(image, 10, 1, true);

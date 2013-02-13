@@ -85,7 +85,7 @@ public class RestAPI {
 
 	public static RestAPI getDefault() {
 		if (TECHNIC == null) {
-			TECHNIC = new RestAPI("http://www.sctgaming.com/Technic/API/");
+			TECHNIC = new RestAPI("http://api.technicraft.cz/");
 		}
 
 		return TECHNIC;
@@ -116,7 +116,7 @@ public class RestAPI {
 	}
 
 	public String getModpackBackgroundURL(String modpack) {
-		return getMirrorURL() + modpack + "/resources/background.jpg";
+		return getMirrorURL() + modpack + "/resources/background.png";
 	}
 
 	public String getModpackIconURL(String modpack) {
@@ -247,7 +247,7 @@ public class RestAPI {
 	
 	public static int getLatestLauncherBuild() throws RestfulAPIException {
 		InputStream stream = null;
-		String url = "http://beta.technicpack.net/api/launcher/version/latest";
+		String url = "http://api.technicraft.cz/launcher/version/latest";
 		try {
 			URL conn = new URL(url);
 			stream = conn.openConnection().getInputStream();
@@ -269,7 +269,7 @@ public class RestAPI {
 		}
 		
 		InputStream stream = null;
-		String url = "http://beta.technicpack.net/api/launcher/url/" + version + "/" + ext;
+		String url = "http://api.technicraft.cz/launcher/url/" + version + "/" + ext;
 		try {
 			URL conn = new URL(url);
 			stream = conn.openConnection().getInputStream();

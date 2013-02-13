@@ -228,7 +228,7 @@ public abstract class PackInfo {
 	}
 	
 	private Image buildBackground() throws IOException {
-		return buildImage("background.jpg", "/org/spoutcraft/launcher/resources/background.jpg", getBackgroundURL(), getBackgroundMD5());
+		return buildImage("background.png", "/org/spoutcraft/launcher/resources/background.png", getBackgroundURL(), getBackgroundMD5());
 	}
 
 	private Image buildIcon() throws IOException { 

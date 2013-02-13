@@ -42,7 +42,7 @@
     <key>Properties</key>
     <dict>
       <key>com.apple.mrj.application.apple.menu.about.name</key>
-      <string>Spoutcraft</string>
+      <string>TechniCraft Launcher</string>
       <key>sun.java2d.noddraw</key>
       <string>true</string>
       <key>sun.java2d.d3d</key>

@@ -94,7 +94,7 @@ public class SpoutcraftLauncher {
 
 		int launcherBuild = parseInt(getLauncherBuild(), -1);
 		logger.info("------------------------------------------");
-		logger.info("Technic Launcher is starting....");
+		logger.info("TechniCraft Launcher is starting....");
 		logger.info("Launcher Build: " + launcherBuild);
 
 		params.logParameters(logger);
@@ -115,6 +115,10 @@ public class SpoutcraftLauncher {
 
 		if (params.isDebugMode()) {
 			Settings.setDebugMode(true);
+		}
+
+		if (params.isCustompackEnabled()) {
+			Settings.setCustomPack(true);
 		}
 
 		if (Settings.isDebugMode()) {
@@ -223,7 +227,7 @@ public class SpoutcraftLauncher {
 		OperatingSystem os = OperatingSystem.getOS();
 		if (os.isMac()) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
-			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Technic Launcher");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TechniCraft Launcher");
 		}
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

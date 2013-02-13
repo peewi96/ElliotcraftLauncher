@@ -30,6 +30,7 @@ import java.util.logging.Level;
 
 import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.api.Launcher;
+import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
 import org.spoutcraft.launcher.technic.rest.RestAPI;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
@@ -60,7 +61,10 @@ public class PackManager {
 		}
 
 		// Add in the add pack button
-		packs.put("addpack", new AddPack());
+
+		if (Settings.isCustomPack()) {
+			packs.put("addpack", new AddPack());
+		}
 	}
 
 	public static void initPack(PackMap packs, String pack) {

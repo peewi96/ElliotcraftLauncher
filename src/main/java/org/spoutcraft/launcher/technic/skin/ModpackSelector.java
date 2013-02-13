@@ -52,7 +52,7 @@ import org.spoutcraft.launcher.util.Utils;
 public class ModpackSelector extends JComponent implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private static final String PACK_SELECT_ACTION = "packselect";
-	public static final String DEFAULT_PACK = "tekkitlite";
+	public static final String DEFAULT_PACK = "technicraft";
 	private ImportOptions importOptions = null;
 
 	private final MetroLoginFrame frame;
@@ -61,10 +61,10 @@ public class ModpackSelector extends JComponent implements ActionListener {
 
 	private final int height = 170;
 	private final int width = 880;
-	private final int bigWidth = 180;
-	private final int bigHeight = 110;
-	private final float smallScale = 0.7F;
-	private final int spacing = 15;
+	private final int bigWidth = 250;
+	private final int bigHeight = 145;
+	private final float smallScale = 1.0F;
+	private final int spacing = 0;
 	private final int smallWidth = (int) (bigWidth * smallScale);
 	private final int smallHeight = (int) (bigHeight * smallScale);
 	private final int bigX = (width / 2) - (bigWidth / 2);
@@ -165,7 +165,7 @@ public class ModpackSelector extends JComponent implements ActionListener {
 		buttons.get(3).getJLabel().setVisible(selected.isLoading());
 
 		// Set the URL for the platform button
-		String url = "http://beta.technicpack.net/modpack/details/" + selected.getName();
+		String url = "http://api.technicraft.cz/modpack/details/" + selected.getName();
 		if (selected instanceof RestInfo && !custom) {
 			String newUrl = ((RestInfo) selected).getWebURL();
 			if (newUrl != null && !newUrl.isEmpty()) {

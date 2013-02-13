@@ -27,6 +27,8 @@
 
 package org.spoutcraft.launcher.util;
 
+import org.spoutcraft.launcher.Settings;
+
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
@@ -128,8 +130,8 @@ public class ImageUtils {
 			URLConnection conn = (new URL(url)).openConnection();
 			conn.setDoInput(true);
 			conn.setDoOutput(false);
-			System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
-			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+			System.setProperty("http.agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+			conn.setRequestProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 			HttpURLConnection.setFollowRedirects(true);
 			conn.setUseCaches(false);
 			((HttpURLConnection)conn).setInstanceFollowRedirects(true);

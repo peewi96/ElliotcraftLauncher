@@ -68,7 +68,7 @@ public class Utils {
 
 	public static File getLauncherDirectory() {
 		if (workDir == null) {
-			workDir = getWorkingDirectory("technic");
+			workDir = getWorkingDirectory("technicraft");
 			workDir.mkdirs();
 		}
 		return workDir;
