@@ -211,16 +211,26 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Forums link
 		JButton forums = new ImageHyperlinkButton("http://forum.majncraft.cz/");
 		forums.setToolTipText("Visit the forums");
-		forums.setBounds(10, loginStrip.getY() + 10, 90, 90);
+		forums.setBounds(9, loginStrip.getY() + 9, 90, 90);
 		forums.setBorderPainted(false);
-		forums.setIcon(getIcon("forums.png"));
+		ImageIcon forumIcon = getIcon("forumsButton.gif");
+		forums.setIcon(forumIcon);
+		forums.setRolloverIcon(forumIcon);
+		forums.setPressedIcon(forumIcon);
+		forums.setSelectedIcon(forumIcon);
+		forums.setRolloverSelectedIcon(forumIcon);
 
 		// Donate link
 		JButton donate = new ImageHyperlinkButton("http://www.technicpack.net/donate/");
 		donate.setToolTipText("Donate to the modders");
-		donate.setBounds(forums.getX() + 100,  forums.getY()+5, 90, 90);
+		donate.setBounds(9 + forums.getWidth() + 9, loginStrip.getY() + 9, 90, 90);
 		donate.setBorderPainted(false);
-		donate.setIcon(getIcon("donate.png"));
+		ImageIcon donateIcon = getIcon("donateButton.gif");
+		donate.setIcon(donateIcon);
+		donate.setRolloverIcon(donateIcon);
+		donate.setPressedIcon(donateIcon);
+		donate.setSelectedIcon(donateIcon);
+		donate.setRolloverSelectedIcon(donateIcon);
 
 		// Issues link
 		HyperlinkJLabel issues = new HyperlinkJLabel("Issues", "http://forums.technicpack.net/forums/bug-reports.81/");
@@ -411,7 +421,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void setIcon(JLabel label, String iconName, int w, int h) {
 		try {
 			label.setIcon(new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
