@@ -28,6 +28,7 @@
 package org.spoutcraft.launcher;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ import com.beust.jcommander.internal.Lists;
 
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.util.OperatingSystem;
+import org.spoutcraft.launcher.util.ResourceUtils;
+import org.spoutcraft.launcher.util.Utils;
 
 public final class StartupParameters {
 	@SuppressWarnings("unused")
@@ -186,7 +189,13 @@ public final class StartupParameters {
 				commands.add("javaw");
 			} else if (OperatingSystem.getOS().isMac()) {
 				commands.add("java");
-				commands.add("-Xdock:name=TechniCraft");
+				commands.add("-Xdock:name=TechniCraft Launcher");
+				try {
+					File icon = new File(Utils.getLauncherDirectory(), "icon.icns");
+					Utils.copy(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/app/icon.icns"), new FileOutputStream(icon));
+					commands.add("-Xdock:icon=" + icon.getCanonicalPath());
+				} catch (Exception e) {
+				}
 			} else {
 				commands.add("java");
 			}

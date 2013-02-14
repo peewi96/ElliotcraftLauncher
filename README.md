@@ -1,54 +1,6 @@
-Technic Launcher
-===================
+![TechniCraft](https://a248.e.akamai.net/camo.github.com/cd9588e2c7cd0e386db1b8f0bdd2f87cd69ade91/687474703a2f2f662e636c2e6c792f6974656d732f305132643174324b31683371317530313170304f2f6d616a6e63726166745f6c6f676f5f746563686e6963726166745f6461726b2e706e67)
 
-## What is The Technic Launcher?
-The Technic Launcher is a modified version of the Spoutcraft Launcher, which has been modified for the distribution of Technic mod packs.  It features automated minecraft.jar version patching, automated updates, and more!  
-The launcher in it's current form is maintained by [Olloth](https://github.com/Olloth)
+Modified Technic Launcher for TechniCraft & Majncraft
+==================================================================
 
-[![Technic][Logo]][Homepage]  
-[Homepage] | [Forums] | [Twitter] | [Facebook] | [Steam]
-
-## The License
-The Technic Launcher is licensed under the same license as the Spoutcraft Launcher it is derived from. The [GNU Lesser General Public License Version 3][License], but with a provision that files are released under the MIT license 180 days after they are published. Please see the `LICENSE.txt` file for details.
-
-Copyright (c) 2012, Technic <<http://www.technicpack.net/>>  
-Upstream Copyright (c) 2011-2012, Spout LLC <<http://www.spout.org/>>
-
-## Getting the Source
-The latest and greatest source can be found here on [GitHub][Source].  
-Download the latest builds from our [build server][Builds]. [![Build Status](http://build.technicpack.net/job/TechnicLauncher/badge/icon)](http://build.technicpack.net/job/TechnicLauncher/)
-
-## Compiling the Source
-Technic Launcher uses Maven to handle its dependencies.
-
-* Install [Maven 2 or 3](http://maven.apache.org/download.html)
-* Checkout this repo and run: `mvn clean package`
-* To compile an `exe` on a non-Windows platform, add: `-P package-win` to the previous goals.
-
-## Contributing to the Project
-Track and submit issues and bugs on our [GitHub issues page][Issues].  
-
-## Code and Pull Request Formatting
-* Generally follow the Oracle coding standards.
-* No spaces, only tabs for indentation.
-* No trailing whitespaces on new lines.
-* 200 column limit for readability.
-* Pull requests must compile, work, and be formatted properly.
-* Sign-off on ALL your commits - this indicates you agree to the terms of our license.
-* No merges should be included in pull requests unless the pull request's purpose is a merge.
-* Number of commits in a pull request should be kept to *one commit* and all additional commits must be *squashed*.
-* You may have more than one commit in a pull request if the commits are separate changes, otherwise squash them.
-* For clarification, follow the Spout pull request guidelines [here](http://spout.in/prguide).
-
-**Please follow the above conventions if you want your pull request(s) accepted.**
-
-[Logo]: http://i.imgur.com/H23l53N.png
-[Homepage]: http://www.technicpack.net
-[Forums]: http://forums.technicpack.net
-[License]: http://cdn.spout.org/license/spoutv1.txt
-[Source]: https://github.com/TechnicPack/Spoutcraft-Launcher/tree/dev
-[Builds]: http://build.technicpack.net/job/TechnicLauncher/
-[Issues]: https://github.com/TechnicPack/Spoutcraft-Launcher/issues
-[Twitter]: https://twitter.com/TechnicPack
-[Facebook]: https://www.facebook.com/TechnicPack
-[Steam]: http://steamcommunity.com/groups/technic-pack
+- List of mods in this technic modpack: http://forum.majncraft.cz/threads/4072/

@@ -89,11 +89,11 @@ public class Settings {
 	}
 
 	public static synchronized boolean isCustomPack() {
-		return yaml.getInt("launcher.launcher.custompack", 0) == 1;
+		return yaml.getBoolean("launcher.launcher.custompack", false);
 	}
 
 	public static synchronized void setCustomPack(boolean b) {
-		yaml.setProperty("launcher.launcher.custompack", b ? 1 : 0);
+		yaml.setProperty("launcher.launcher.custompack", true);
 	}
 
 	public static synchronized String getSpoutcraftSelectedBuild() {
