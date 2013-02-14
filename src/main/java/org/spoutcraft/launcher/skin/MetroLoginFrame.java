@@ -372,9 +372,9 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		//contentPane.add(youtube);
 		//contentPane.add(home);
 		contentPane.add(forums);
-		contentPane.add(donate);
+		//contentPane.add(donate);
 		//contentPane.add(issues);
-		//contentPane.add(logo);
+		contentPane.add(logo);
 		contentPane.add(loginStrip);
 		contentPane.add(options);
 		contentPane.add(console);
