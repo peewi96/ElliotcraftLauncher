@@ -34,6 +34,7 @@ import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
 import org.spoutcraft.launcher.technic.rest.RestAPI;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
+import org.spoutcraft.launcher.util.Utils;
 
 public class PackManager {
 	public static void initPacks(ModpackSelector selector) {
@@ -96,7 +97,11 @@ public class PackManager {
 			return info;
 
 		} catch (RestfulAPIException e) {
-			Launcher.getLogger().log(Level.SEVERE, "Unable to load modpack " + pack + " from Technic Rest API", e);
+			if (Utils.getStartupParameters().isDebugMode()) {
+				Launcher.getLogger().log(Level.SEVERE, "Unable to load modpack " + pack + " from Technic Rest API", e);
+			} else {
+				Launcher.getLogger().log(Level.SEVERE, "Unable to load modpack " + pack + " from Technic Rest API");
+			}
 			PackInfo info = packs.get(pack);
 			if (info instanceof OfflineInfo) {
 				((OfflineInfo) info).setLoading(false);
