@@ -67,6 +67,8 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private JLabel background;
 	private JLabel build;
 	private LiteButton logs;
+	private LiteButton save;
+	private LiteButton console;
 	private JComboBox memory;
 	private JCheckBox permgen;
 	private int mouseX = 0, mouseY = 0;
@@ -88,9 +90,9 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
 		MetroLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
 
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 26, 26), MetroLoginFrame.getIcon("exit.png", 26, 26));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 26, 26));
-		optionsQuit.setBounds(FRAME_WIDTH - 32, 4, 26, 26);
+		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
+		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
+		optionsQuit.setBounds(FRAME_WIDTH - 10 - 16, 10, 16, 16);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
 
@@ -118,20 +120,23 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		permgen.setContentAreaFilled(false);
 		permgen.setForeground(Color.WHITE);
 
-		LiteButton save = new LiteButton("Save");
+		save = new LiteButton("Save", MetroLoginFrame.getIcon("button_launch.png"), MetroLoginFrame.getIcon("button_launch_hover.png"));
+		save.setHorizontalTextPosition(SwingConstants.CENTER);
 		save.setFont(minecraft.deriveFont(14F));
 		save.setBounds(FRAME_WIDTH - 90 - 10, FRAME_HEIGHT - 60, 90, 30);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		logs = new LiteButton("Logs");
+		logs = new LiteButton("Logs", MetroLoginFrame.getIcon("button_launch.png"), MetroLoginFrame.getIcon("button_launch_hover.png"));
 		logs.setFont(minecraft.deriveFont(14F));
 		logs.setBounds(FRAME_WIDTH / 2 - 45, FRAME_HEIGHT - 60, 90, 30);
 		logs.setForeground(Color.WHITE);
 		logs.setActionCommand(LOGS_ACTION);
 		logs.addActionListener(this);
-		
-		LiteButton console = new LiteButton("Console");
+
+
+		console = new LiteButton("Console", MetroLoginFrame.getIcon("button_launch.png"), MetroLoginFrame.getIcon("button_launch_hover.png"));
+		console.setHorizontalTextPosition(SwingConstants.CENTER);
 		console.setFont(minecraft.deriveFont(14F));
 		console.setBounds(10, FRAME_HEIGHT - 60, 90, 30);
 		console.setForeground(Color.WHITE);

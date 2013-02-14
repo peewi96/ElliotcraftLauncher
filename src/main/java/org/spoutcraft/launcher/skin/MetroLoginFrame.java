@@ -77,6 +77,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private static final long serialVersionUID = 1L;
 	private static final int FRAME_WIDTH = 880;
 	private static final int FRAME_HEIGHT = 520;
+	public static final int FRAME_SIDE_SPACING = 22;
+	public static final int FRAME_TOP_SPACING = 15;
 	private static final String OPTIONS_ACTION = "options";
 	private static final String CONSOLE_ACTION = "console";
 	private static final String PACK_OPTIONS_ACTION = "packoptions";
@@ -125,10 +127,11 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Login Strip
 		TransparentJLabel loginStrip = new TransparentJLabel();
 		// 379 is the center of the bottom
-		loginStrip.setBounds(0, 379, FRAME_WIDTH, 108);
+		loginStrip.setBounds(FRAME_WIDTH-260, FRAME_HEIGHT-190, 260-FRAME_SIDE_SPACING, 170);
 		loginStrip.setTransparency(0.95F);
 		loginStrip.setHoverTransparency(0.95F);
-		setIcon(loginStrip, "loginstrip.png", loginStrip.getWidth(), loginStrip.getHeight());
+		loginStrip.setBackground(new Color(181, 225, 17));
+		//setIcon(loginStrip, "xx.png", loginStrip.getWidth(), loginStrip.getHeight());
 
 		packShadow = new JLabel();
 		packShadow.setBounds(FRAME_WIDTH / 2 - (176 / 2), FRAME_HEIGHT / 2 + 45, 176, 38);
@@ -136,19 +139,21 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Setup username box
 		name = new LiteTextBox(this, "Username...");
-		name.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 40, 115, 24);
+		name.setBounds(loginStrip.getX()+1, loginStrip.getY()+24, 115, 24);
 		name.setFont(minecraft);
 		name.addKeyListener(this);
 
 		// Setup password box
 		pass = new LitePasswordBox(this, "Password...");
-		pass.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
+		//orig- pass.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
+		pass.setBounds(name.getX()+120, loginStrip.getY()+24, 115, 24);
 		pass.setFont(minecraft);
 		pass.addKeyListener(this);
 
 		// Setup remember checkbox
 		remember = new JCheckBox("Remember");
-		remember.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
+		//orig- remember.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
+		remember.setBounds(loginStrip.getX()+135, loginStrip.getY(), 115, 24);
 		remember.setFont(minecraft);
 		remember.setOpaque(false);
 		remember.setBorderPainted(false);
@@ -156,29 +161,41 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		remember.setContentAreaFilled(false);
 		remember.setBorder(null);
 		remember.setForeground(Color.WHITE);
-		remember.setHorizontalTextPosition(SwingConstants.RIGHT);
+		remember.setHorizontalTextPosition(SwingConstants.LEFT);
 		remember.setIconTextGap(10);
 		remember.addKeyListener(this);
 
+		// Setup login button
+		login = new LiteButton("Launch", getIcon("button_launch.png"), getIcon("button_launch_hover.png"));
+		login.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		//orig- login.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 40, 115, 24);
+		login.setBounds(pass.getX(), pass.getY() + 29, 115, 24);
+
+		login.setFont(minecraft);
+		login.setActionCommand(LOGIN_ACTION);
+		login.addActionListener(this);
+		login.addKeyListener(this);
+
 		// Technic logo
 		JLabel logo = new JLabel();
-		logo.setBounds(FRAME_WIDTH / 2 - 200, 15, 400, 109);
-		setIcon(logo, "techniclauncher.png", logo.getWidth(), logo.getHeight());
+		logo.setBounds(FRAME_WIDTH / 2 - 200, FRAME_TOP_SPACING, 400, 109);
+		setIcon(logo, "splash.png", logo.getWidth(), logo.getHeight());
 
 		// Pack Selector Background
 		JLabel selectorBackground = new JLabel();
-		selectorBackground.setBounds(0, FRAME_HEIGHT / 2 - 84, FRAME_WIDTH, 168);
-		setIcon(selectorBackground, "selectorBackground.png", selectorBackground.getWidth(), selectorBackground.getHeight());
+		selectorBackground.setBounds(FRAME_SIDE_SPACING, FRAME_HEIGHT / 2 - 100, FRAME_WIDTH - (2*FRAME_SIDE_SPACING), 1);
+		setIcon(selectorBackground, "colored_strip.png", selectorBackground.getWidth(), selectorBackground.getHeight());
 
 		// Pack Select Left
-		ImageButton switchLeft = new ImageButton(getIcon("selectLeft.png", 22, 168), getIcon("selectLeftInverted.png", 22, 168));
-		switchLeft.setBounds(0, FRAME_HEIGHT / 2 - 83, 22, 167);
+		ImageButton switchLeft = new ImageButton(getIcon("arrow_left.png"), getIcon("arrow_left_hover.png"));
+		switchLeft.setBounds(FRAME_SIDE_SPACING, selectorBackground.getY(), 26, 146);
 		switchLeft.setActionCommand(PACK_LEFT_ACTION);
 		switchLeft.addActionListener(this);
 
 		// Pack Select Right
-		ImageButton switchRight = new ImageButton(getIcon("selectRight.png", 22, 168), getIcon("selectRightInverted.png", 22, 168));
-		switchRight.setBounds(FRAME_WIDTH - 22, FRAME_HEIGHT / 2 - 83, 22, 167);
+		ImageButton switchRight = new ImageButton(getIcon("arrow_right.png"), getIcon("arrow_right_hover.png"));
+		switchRight.setBounds(FRAME_WIDTH - (26+FRAME_SIDE_SPACING), selectorBackground.getY(), 26, 146);
 		switchRight.setActionCommand(PACK_RIGHT_ACTION);
 		switchRight.addActionListener(this);
 
@@ -241,23 +258,17 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		issues.setTransparency(0.70F);
 		issues.setHoverTransparency(1F);
 
-		// Options Button
-		ImageButton options = new ImageButton(getIcon("settings.png", 26 ,26), getIcon("settings_hover.png", 26, 26));
-		options.setBounds(FRAME_WIDTH - 32 * 2, 6, 26, 26);
-		options.setActionCommand(OPTIONS_ACTION);
-		options.addActionListener(this);
-		options.addKeyListener(this);
-
 		// Pack Options Button
 		packOptionsBtn = new ImageButton(getIcon("options.png", 26, 26), getIcon("options_hover.png", 26, 26));
-		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - 122, FRAME_HEIGHT / 2 + 58, 26, 26);
+		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 26, 26);
 		packOptionsBtn.setActionCommand(PACK_OPTIONS_ACTION);
 		packOptionsBtn.addActionListener(this);
+
 
 		// Platform website button
 		platform = new ImageHyperlinkButton("http://www.beta.technicpack.net/");
 		platform.setIcon(getIcon("openPlatformPage.png", 20, 20));
-		platform.setBounds(FRAME_WIDTH / 2 - 65, FRAME_HEIGHT / 2 + 59, 20, 20);
+		platform.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 35, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 20, 20);
 		platform.setVisible(false); // hide it by default
 
 		// Pack Remove Button
@@ -266,53 +277,52 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		packRemoveBtn.setActionCommand(PACK_REMOVE_ACTION);
 		packRemoveBtn.addActionListener(this);
 
-		// Setup login button
-		login = new LiteButton("Launch");
-		login.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 40, 115, 24);
-		login.setFont(minecraft);
-		login.setActionCommand(LOGIN_ACTION);
-		login.addActionListener(this);
-		login.addKeyListener(this);
-
 		// Exit Button
-		ImageButton exit = new ImageButton(getIcon("exit.png", 26, 26), getIcon("exit_hover.png", 26, 26));
-		exit.setBounds(FRAME_WIDTH - 32, 6, 26, 26);
+		ImageButton exit = new ImageButton(getIcon("exit.png"), getIcon("exit_hover.png"));
+		exit.setBounds(FRAME_WIDTH - FRAME_SIDE_SPACING - 16, FRAME_TOP_SPACING, 16, 16);
 		exit.setActionCommand(EXIT_ACTION);
 		exit.addActionListener(this);
 
+		// Options Button
+		ImageButton options = new ImageButton(getIcon("settings.png"), getIcon("settings_hover.png"));
+		options.setBounds(exit.getX()-30, FRAME_TOP_SPACING, 16, 16);
+		options.setActionCommand(OPTIONS_ACTION);
+		options.addActionListener(this);
+		options.addKeyListener(this);
+
 		// Console Button
-		ImageButton console = new ImageButton(getIcon("console.png", 26, 26), getIcon("console_hover.png", 26, 26));
-		console.setBounds(FRAME_WIDTH - 32 * 3, 6, 26, 26);
+		ImageButton console = new ImageButton(getIcon("console.png"), getIcon("console_hover.png"));
+		console.setBounds(options.getX()-30, FRAME_TOP_SPACING, 16, 16);
 		console.setActionCommand(CONSOLE_ACTION);
 		console.addActionListener(this);
 
-		// Steam button
-		JButton steam = new ImageHyperlinkButton("http://steamcommunity.com/groups/technic-pack");
-		steam.setRolloverIcon(getIcon("steamInverted.png", 28, 28));
-		steam.setToolTipText("Game with us on Steam");
-		steam.setBounds(6, 6, 28, 28);
-		setIcon(steam, "steam.png", 28);
+		// Facebook button
+		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechniCraftcz");
+		facebook.setRolloverIcon(getIcon("social_face_hover.png"));
+		facebook.setToolTipText("Like us on Facebook");
+		facebook.setBounds(FRAME_SIDE_SPACING, FRAME_TOP_SPACING, 32, 32);
+		setIcon(facebook, "social_face.png", 32);
 
 		// Twitter button
 		JButton twitter = new ImageHyperlinkButton("https://twitter.com/TechniCraftCZ");
-		twitter.setRolloverIcon(getIcon("twitterInverted.png", 28, 28));
+		twitter.setRolloverIcon(getIcon("social_twitter_hover.png"));
 		twitter.setToolTipText("Follow us on Twitter");
-		twitter.setBounds(6 + 34 * 1, 6, 28, 28);
-		setIcon(twitter, "twitter.png", 28);
+		twitter.setBounds(FRAME_SIDE_SPACING, facebook.getY() + 42, 32, 32);
+		setIcon(twitter, "social_twitter.png", 32);
 
-		// Facebook button
-		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechniCraftcz");
-		facebook.setRolloverIcon(getIcon("facebookInverted.png", 28, 28));
-		facebook.setToolTipText("Like us on Facebook");
-		facebook.setBounds(6 + 34 * 0, 6, 28, 28);
-		setIcon(facebook, "facebook.png", 28);
+		// Google+ button
+		JButton gplus = new ImageHyperlinkButton("https://gplus.to/majncraft");
+		gplus.setRolloverIcon(getIcon("social_gplus_hover.png"));
+		gplus.setToolTipText("Game with us on Steam");
+		gplus.setBounds(FRAME_SIDE_SPACING, twitter.getY() + 42, 32, 32);
+		setIcon(gplus, "social_gplus.png", 32);
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 
 		// Pack Selector
 		packSelector = new ModpackSelector(this);
-		packSelector.setBounds(0, (FRAME_HEIGHT / 2) - 85, FRAME_WIDTH, 170);
+		packSelector.setBounds(FRAME_SIDE_SPACING, selectorBackground.getY()+1, FRAME_WIDTH - (2*FRAME_SIDE_SPACING), 145);
 		
 		// Custom Pack Name Label
 		customName = new JLabel("", JLabel.CENTER);
@@ -332,7 +342,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			DynamicButton userButton = new DynamicButton(this, getImage(userName), 1, accountName, userName);
 			userButton.setFont(minecraft.deriveFont(12F));
 
-			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 57, 45, 45);
+			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 87, 45, 45);
 			contentPane.add(userButton);
 			userButton.setActionCommand(IMAGE_LOGIN_ACTION);
 			userButton.addActionListener(this);
@@ -342,11 +352,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			removeButtons.put(userButton.getRemoveIcon(), userButton);
 			userButtons.put(userName, userButton);
 		}
-		JLabel trans; // launcher screen dim
-		trans = new JLabel();
-		trans.setBackground(new Color(0, 0, 0, 140));
-		trans.setOpaque(true);
-		trans.setBounds(0, 0, 880, 520);
 
 		contentPane.add(switchLeft);
 		contentPane.add(switchRight);
@@ -360,7 +365,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		contentPane.add(pass);
 		contentPane.add(remember);
 		contentPane.add(login);
-		//contentPane.add(steam);
+		contentPane.add(gplus);
 		contentPane.add(twitter);
 		contentPane.add(facebook);
 		//contentPane.add(home);
@@ -372,7 +377,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);
-		contentPane.add(trans);
 		contentPane.add(progressBar);
 		
 		setFocusTraversalPolicy(new LoginFocusTraversalPolicy());
@@ -417,6 +421,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 	public static void setIcon(JLabel label, String iconName, int w, int h) {
 		try {
+			System.out.print(iconName);
 			label.setIcon(new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
 		} catch (IOException e) {
 			e.printStackTrace();

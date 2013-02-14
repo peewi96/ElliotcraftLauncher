@@ -103,9 +103,9 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 		
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 26, 26), MetroLoginFrame.getIcon("exit.png", 26, 26));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 28, 28));
-		optionsQuit.setBounds(FRAME_WIDTH - 32, 4, 26, 26);
+		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
+		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
+		optionsQuit.setBounds(FRAME_WIDTH - 10 - 16, 10, 16, 16);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
 		
