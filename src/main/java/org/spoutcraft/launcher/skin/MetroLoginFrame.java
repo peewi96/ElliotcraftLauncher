@@ -213,7 +213,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		forums.setToolTipText("Visit the forums");
 		forums.setBounds(9, loginStrip.getY() + 9, 90, 90);
 		forums.setBorderPainted(false);
-		ImageIcon forumIcon = getIcon("forumsButton.gif");
+		ImageIcon forumIcon = getIcon("forums.png");
 		forums.setIcon(forumIcon);
 		forums.setRolloverIcon(forumIcon);
 		forums.setPressedIcon(forumIcon);
@@ -225,7 +225,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		donate.setToolTipText("Donate to the modders");
 		donate.setBounds(9 + forums.getWidth() + 9, loginStrip.getY() + 9, 90, 90);
 		donate.setBorderPainted(false);
-		ImageIcon donateIcon = getIcon("donateButton.gif");
+		ImageIcon donateIcon = getIcon("donate.png");
 		donate.setIcon(donateIcon);
 		donate.setRolloverIcon(donateIcon);
 		donate.setPressedIcon(donateIcon);
@@ -258,6 +258,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		platform = new ImageHyperlinkButton("http://www.beta.technicpack.net/");
 		platform.setIcon(getIcon("openPlatformPage.png", 20, 20));
 		platform.setBounds(FRAME_WIDTH / 2 - 65, FRAME_HEIGHT / 2 + 59, 20, 20);
+		platform.setVisible(false); // hide it by default
 
 		// Pack Remove Button
 		packRemoveBtn = new ImageButton(getIcon("delete.png", 26, 26), getIcon("delete_hover.png", 26, 26));
@@ -305,13 +306,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		facebook.setToolTipText("Like us on Facebook");
 		facebook.setBounds(6 + 34 * 0, 6, 28, 28);
 		setIcon(facebook, "facebook.png", 28);
-
-		// YouTube button
-//		JButton youtube = new ImageHyperlinkButton("http://www.youtube.com/user/kakermix");
-//		youtube.setRolloverIcon(getIcon("youtubeInverted.png", 28, 28));
-//		youtube.setToolTipText("Subscribe to our videos");
-//		youtube.setBounds(6 + 34, 6, 28, 28);
-//		setIcon(youtube, "youtube.png", 28);
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
@@ -369,17 +363,16 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		//contentPane.add(steam);
 		contentPane.add(twitter);
 		contentPane.add(facebook);
-		//contentPane.add(youtube);
 		//contentPane.add(home);
 		contentPane.add(forums);
 		//contentPane.add(donate);
 		//contentPane.add(issues);
-		contentPane.add(logo);
+		//contentPane.add(logo);
 		contentPane.add(loginStrip);
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);
-//		contentPane.add(trans);
+		contentPane.add(trans);
 		contentPane.add(progressBar);
 		
 		setFocusTraversalPolicy(new LoginFocusTraversalPolicy());

@@ -5,17 +5,17 @@
 	<!-- Project information -->
 	<name>TechniCraft Launcher</name>
 	<groupId>org.spoutcraft</groupId>
-	<artifactId>launcher</artifactId>
+	<artifactId>TechniCraft</artifactId>
 	<version>2.0</version>
-	<url>http://www.technicpack.net</url>
+	<url>http://www.technicraft.cz</url>
 	<inceptionYear>2013</inceptionYear>
-	<description>Custom launcher for installing and updating Modpacks with built-in byte patching for easy upgrading/downgrading of Minecraft versions.</description>
+	<description>Custom launcher for installing and updating Majncraft and Technicraft related modpacks.</description>
 
 	<!-- Build properties -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<currentYear>2013</currentYear>
-		<mainClass>${project.groupId}.${project.artifactId}.entrypoint.Start</mainClass>
+		<mainClass>${project.groupId}.launcher.entrypoint.Start</mainClass>
 		<buildNumber>0</buildNumber>
 		<keystore.path>${project.basedir}/src/main/resources/keystore.jks</keystore.path>
 		<keystore.alias>spoutdev</keystore.alias>
@@ -373,7 +373,7 @@
 					<plugin>
 						<groupId>org.spout</groupId>
 						<artifactId>osxapp-maven-plugin</artifactId>
-						<version>1.2-SNAPSHOT</version>
+						<version>1.1-SNAPSHOT</version>
 						<executions>
 							<execution>
 								<configuration>
@@ -394,6 +394,7 @@
 										<excludeArtifactId>jackson-mapper-asl</excludeArtifactId>
 										<excludeArtifactId>jcommander</excludeArtifactId>
 										<excludeArtifactId>jdom</excludeArtifactId>
+										<excludeArtifactId>lingala-zip4j</excludeArtifactId>
 										<excludeArtifactId>rome</excludeArtifactId>
 										<excludeArtifactId>snakeyaml</excludeArtifactId>
 										<excludeArtifactId>swing-layout</excludeArtifactId>
