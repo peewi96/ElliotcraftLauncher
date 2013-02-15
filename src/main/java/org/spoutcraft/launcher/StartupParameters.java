@@ -39,6 +39,7 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.internal.Lists;
 
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
+import org.spoutcraft.launcher.entrypoint.Start;
 import org.spoutcraft.launcher.util.OperatingSystem;
 import org.spoutcraft.launcher.util.ResourceUtils;
 import org.spoutcraft.launcher.util.Utils;
@@ -205,7 +206,7 @@ public final class StartupParameters {
 			}
 			commands.add("-cp");
 			commands.add(pathToJar);
-			commands.add(SpoutcraftLauncher.class.getName());
+			commands.add(Start.class.getName());
 			commands.addAll(getRelaunchParameters());
 			commands.add("-relaunched");
 			processBuilder.command(commands);
