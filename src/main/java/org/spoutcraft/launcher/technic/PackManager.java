@@ -63,7 +63,7 @@ public class PackManager {
 
 		// Add in the add pack button
 
-		if (Settings.isCustomPack()) {
+		if (Utils.getStartupParameters().isCustomPack()) {
 			packs.put("addpack", new AddPack());
 		}
 	}

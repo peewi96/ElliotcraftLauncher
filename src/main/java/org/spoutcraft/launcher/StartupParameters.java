@@ -348,7 +348,7 @@ public final class StartupParameters {
 	public String getProxyPassword() {
 		return proxyPassword;
 	}
-	public boolean isCustompackEnabled() {
+	public boolean isCustomPack() {
 		return custompack;
 	}
 }
