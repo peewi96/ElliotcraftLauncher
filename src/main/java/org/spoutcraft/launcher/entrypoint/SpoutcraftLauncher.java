@@ -120,7 +120,7 @@ public class SpoutcraftLauncher {
 
 		relaunch(false);
 
-		if (params.isConsole() || params.isDebugMode()) {
+		if (params.isConsole()) {
 			setupConsole();
 			logger.info("Console Mode Activated");
 		}
@@ -247,10 +247,12 @@ public class SpoutcraftLauncher {
 
 		SpoutcraftLauncher.handler = fileHandler;
 
-		logger.setUseParentHandlers(false);
+		if (!params.isDebugMode()) {
+			logger.setUseParentHandlers(false);
 
-		System.setOut(new PrintStream(new LoggerOutputStream(Level.INFO, logger), true));
-		System.setErr(new PrintStream(new LoggerOutputStream(Level.SEVERE, logger), true));
+			System.setOut(new PrintStream(new LoggerOutputStream(Level.INFO, logger), true));
+			System.setErr(new PrintStream(new LoggerOutputStream(Level.SEVERE, logger), true));
+		}
 
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 			@Override
