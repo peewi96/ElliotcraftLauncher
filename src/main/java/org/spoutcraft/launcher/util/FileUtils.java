@@ -95,6 +95,17 @@ public class FileUtils {
 	 * @throws IOException in case cleaning is unsuccessful
 	 */
 	public static void cleanDirectory(File directory) throws IOException {
+		cleanDirectory(directory, true);
+	}
+
+	/**
+	 * Cleans a directory without deleting it.
+	 *
+	 * @param directory directory to clean
+	 * @param directories true to delete sub directories as well
+	 * @throws IOException in case cleaning is unsuccessful
+	 */
+	public static void cleanDirectory(File directory, boolean directories) throws IOException {
 		if (!directory.exists()) {
 			String message = directory + " does not exist";
 			throw new IllegalArgumentException(message);
@@ -113,8 +124,10 @@ public class FileUtils {
 		IOException exception = null;
 		for (File file : files) {
 			try {
-				if(!(file.getName().equalsIgnoreCase("rei_minimap") || file.getParentFile().getName().equalsIgnoreCase("rei_minimap")))
-					forceDelete(file);
+				if (file.isDirectory() && !directories) {
+					continue;
+				}
+				forceDelete(file);
 			} catch (IOException ioe) {
 				exception = ioe;
 			}
