@@ -162,7 +162,8 @@
                     <include>app/icon.icns</include>
 				</includes>
 				<excludes>
-                    <exclude>app/*</exclude>
+                    <exclude>app/Info.plist.template</exclude>
+                    <exclude>app/JavaApplicationStub</exclude>
 					<exclude>exe/*</exclude>
 					<exclude>keystore.jks</exclude>
 					<exclude>jalopy.xml</exclude>
