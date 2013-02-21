@@ -27,6 +27,8 @@
 
 package org.spoutcraft.launcher.yml;
 
+import org.spoutcraft.launcher.Settings;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -76,8 +78,8 @@ public class BaseYAMLResource implements YAMLResource {
 				//Setup url
 				URL url = new URL(this.url);
 				HttpURLConnection conn = (HttpURLConnection) (url.openConnection());
-				System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
-				conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+				System.setProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+				conn.setRequestProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 
 				//Copy file
 				stream = conn.getInputStream();
