@@ -394,11 +394,11 @@ public class UpdateThread extends Thread {
 		cleanupModsFolders(pack);
 		File workingDir = pack.getPackDirectory();
 
-		pack.getTempDir().mkdirs();
+		Utils.getCacheDirectory().mkdirs();
 		pack.getCacheDir().mkdirs();
 		pack.getConfigDir().mkdirs();
 
-		File temp = pack.getTempDir();
+		File temp = Utils.getCacheDirectory();
 
 		File mcCache = new File(pack.getCacheDir(), "minecraft_" + build.getMinecraftVersion() + ".jar");
 		File updateMC = new File(pack.getTempDir().getPath() + File.separator + "minecraft.jar");
