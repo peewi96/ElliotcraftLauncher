@@ -72,6 +72,19 @@ public class ImageUtils {
 		return newImage;
 	}
 
+	public static BufferedImage resizeImage(BufferedImage img, int width, int height) {
+		BufferedImage resized = new BufferedImage(width, height, img.getType());
+		Graphics2D g = resized.createGraphics();
+		try {
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(img, 0, 0, width, height, 0, 0, img.getWidth(), img.getHeight(), null);
+		g.dispose();
+		} finally {
+			g.dispose();
+		}
+		return resized;
+	}
+
 	public static void drawCharacter(JPanel contentPane, ActionListener listener, String url, int x, int y, List<JButton> buttons) {
 		BufferedImage image = getSkinImage(url);
 		int type = BufferedImage.TYPE_INT_ARGB;

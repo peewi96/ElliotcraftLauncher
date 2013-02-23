@@ -27,13 +27,19 @@
 
 package org.spoutcraft.launcher.skin.components;
 
+import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.util.ImageUtils;
+
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
+import static org.spoutcraft.launcher.util.ResourceUtils.getResourceAsStream;
 
 public class LiteButton extends JButton{
 	private static final long serialVersionUID = 1L;
@@ -41,14 +47,16 @@ public class LiteButton extends JButton{
 
 	public LiteButton(String label) {
 		this.setText(label);
-		this.setBackground(new Color(220, 220, 220));
+		this.setBackground(new Color(207, 84, 16));
 		this.setBorder(new LiteBorder(5, getBackground()));
 	}
 
-	public LiteButton(String label, ImageIcon image, ImageIcon rollover) {
+	public LiteButton(String label, int x, int y, int w, int h) {
 		this.setText(label);
-		this.setIcon(image);
-		this.setRolloverIcon(rollover);
+		this.setBounds(x, y, w, h);
+		this.setHorizontalTextPosition(SwingConstants.CENTER);
+		this.setIcon(MetroLoginFrame.getResizedIcon("button.png", w, h));
+		this.setRolloverIcon(MetroLoginFrame.getResizedIcon("button_hover.png", w, h));
 	}
 
 }

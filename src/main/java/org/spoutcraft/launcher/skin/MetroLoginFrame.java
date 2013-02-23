@@ -165,12 +165,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		remember.addKeyListener(this);
 
 		// Setup login button
-		login = new LiteButton("Launch", getIcon("button_launch.png"), getIcon("button_launch_hover.png"));
-		login.setHorizontalTextPosition(SwingConstants.CENTER);
-
-		//orig- login.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 40, 115, 24);
-		login.setBounds(pass.getX(), pass.getY() + 29, 115, 24);
-
+		login = new LiteButton("Launch", pass.getX(), pass.getY() + 29, 115, 24);
 		login.setFont(minecraft);
 		login.setActionCommand(LOGIN_ACTION);
 		login.addActionListener(this);
@@ -259,7 +254,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Pack Options Button
 		packOptionsBtn = new ImageButton(getIcon("settings.png"), getIcon("settings_hover.png"));
-		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 16, 16);
+		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 35, 16, 16);
 		packOptionsBtn.setActionCommand(PACK_OPTIONS_ACTION);
 		packOptionsBtn.addActionListener(this);
 
@@ -267,7 +262,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Platform website button
 		platform = new ImageHyperlinkButton("http://www.beta.technicpack.net/");
 		platform.setIcon(getIcon("openPlatformPage.png", 20, 20));
-		platform.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 35, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 20, 20);
+		platform.setRolloverIcon(getIcon("openPlatformPageInverted.png"));
+		platform.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 25, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 35, 20, 20);
 		platform.setVisible(false); // hide it by default
 
 		// Pack Remove Button
@@ -415,6 +411,14 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	public static ImageIcon getIcon(String iconName, int w, int h) {
 		try {
 			return new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static ImageIcon getResizedIcon(String iconName, int w, int h) {
+		try {
+			return new ImageIcon(ImageUtils.resizeImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -604,7 +608,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		if (unlock) {
 			login.setText("Login");
 		} else {
-			login.setText("Launching...");
+			login.setText("<html><font color=332D49>Launching...</font></html>");
 		}
 		login.setEnabled(unlock);
 		packRemoveBtn.setEnabled(unlock);

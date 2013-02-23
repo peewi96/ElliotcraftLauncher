@@ -136,9 +136,8 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 		folder.setActionCommand(CHANGE_FOLDER);
 		folder.addActionListener(this);
 		
-		paste = new LiteButton("Paste");
+		paste = new LiteButton("Paste", FRAME_WIDTH - 95, msgLabel.getY() + msgLabel.getHeight() + 5, 85, 30);
 		paste.setFont(minecraft.deriveFont(14F));
-		paste.setBounds(FRAME_WIDTH - 95, msgLabel.getY() + msgLabel.getHeight() + 5, 85, 30);
 		paste.setActionCommand(PASTE_URL);
 		paste.addActionListener(this);
 		paste.setVisible(true);

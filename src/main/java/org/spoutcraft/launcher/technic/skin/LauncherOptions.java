@@ -184,29 +184,25 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
-		LiteButton changeFolder = new LiteButton("Change Folder");
-		changeFolder.setBounds(FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		LiteButton changeFolder = new LiteButton("Change Folder", FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		changeFolder.setFont(minecraft);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		changeFolder.setEnabled(!Utils.getStartupParameters().isPortable());
 
-		logs = new LiteButton("Logs");
+		logs = new LiteButton("Logs", 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		logs.setFont(minecraft.deriveFont(14F));
-		logs.setBounds(10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		logs.setForeground(Color.WHITE);
 		logs.setActionCommand(LOGS_ACTION);
 		logs.addActionListener(this);
 
-		LiteButton save = new LiteButton("Save");
+		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		save.setFont(minecraft.deriveFont(14F));
-		save.setBounds(FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		LiteButton console = new LiteButton("Console");
+		LiteButton console = new LiteButton("Console", 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		console.setFont(minecraft.deriveFont(14F));
-		console.setBounds(10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		console.setForeground(Color.WHITE);
 		console.setActionCommand(CONSOLE_ACTION);
 		console.addActionListener(this);

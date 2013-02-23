@@ -45,6 +45,8 @@ public class ImageHyperlinkButton extends JButton{
 		setBorder(null);
 		setOpaque(false);
 		setFocusable(false);
+		setBorderPainted(false);
+		setFocusPainted(false);
 		setContentAreaFilled(false);
 	}
 
