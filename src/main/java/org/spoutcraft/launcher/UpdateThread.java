@@ -436,7 +436,8 @@ public class UpdateThread extends Thread {
 				ProgressMonitor monitor = zipFile.getProgressMonitor();
 				while (monitor.getState() == ProgressMonitor.STATE_BUSY) {
 					long totalProgress = monitor.getWorkCompleted() / (monitor.getTotalWork() + 1);
-					stateChanged("Extracting " + monitor.getFileName() + "...", totalProgress);
+					String modname = (monitor.getFileName() == null)?name:monitor.getFileName();
+					stateChanged("Extracting " + modname + "...", totalProgress);
 				}
 			} catch (ZipException e) {
 				Launcher.getLogger().log(Level.SEVERE, "An error occurred while extracting file: " + modFile.getAbsolutePath());
