@@ -206,7 +206,7 @@ public class RestAPI {
 	}
 
 	public static int getLatestLauncherBuild(String stream) throws RestfulAPIException {
-		LauncherBuild result = getRestObject(LauncherBuild.class, getPlatformURL() + "launcher/version/" + stream);
+		LauncherBuild result = getRestObject(LauncherBuild.class, "http://api.technicraft.cz/api/launcher/version/" + stream);
 		return result.getLatestBuild();
 	}
 	
@@ -218,7 +218,7 @@ public class RestAPI {
 			ext = "exe";
 		}
 		
-		String url = getPlatformURL() + "launcher/url/" + version + "/" + ext;
+		String url = "http://api.technicraft.cz/api/launcher/url/" + version + "/" + ext;
 		LauncherURL result = getRestObject(LauncherURL.class, url);
 		return result.getLauncherURL();
 	}
