@@ -258,8 +258,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		issues.setHoverTransparency(1F);
 
 		// Pack Options Button
-		packOptionsBtn = new ImageButton(getIcon("options.png", 26, 26), getIcon("options_hover.png", 26, 26));
-		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 26, 26);
+		packOptionsBtn = new ImageButton(getIcon("settings.png"), getIcon("settings_hover.png"));
+		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 10, 16, 16);
 		packOptionsBtn.setActionCommand(PACK_OPTIONS_ACTION);
 		packOptionsBtn.addActionListener(this);
 
