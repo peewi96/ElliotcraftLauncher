@@ -181,6 +181,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		packLocation = new LiteTextBox(this, "");
 		packLocation.setBounds(10, permgen.getY() + permgen.getHeight() + 10, FRAME_WIDTH - 20, 25);
 		packLocation.setFont(minecraft.deriveFont(10F));
+		packLocation.setForeground(Color.WHITE);
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
@@ -198,6 +199,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		save.setFont(minecraft.deriveFont(14F));
+		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 

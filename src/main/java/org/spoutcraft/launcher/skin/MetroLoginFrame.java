@@ -167,6 +167,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Setup login button
 		login = new LiteButton("Launch", pass.getX(), pass.getY() + 29, 115, 24);
 		login.setFont(minecraft);
+		login.setForeground(Color.WHITE);
 		login.setActionCommand(LOGIN_ACTION);
 		login.addActionListener(this);
 		login.addKeyListener(this);
@@ -607,8 +608,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	public void lockLoginButton(boolean unlock) {
 		if (unlock) {
 			login.setText("Login");
+			login.setForeground(Color.WHITE);
 		} else {
-			login.setText("<html><font color=332D49>Launching...</font></html>");
+			login.setText("Launching...");
+			login.setForeground(new Color(51, 45, 73));
 		}
 		login.setEnabled(unlock);
 		packRemoveBtn.setEnabled(unlock);
