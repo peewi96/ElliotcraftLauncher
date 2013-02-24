@@ -108,7 +108,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		contentPane.setLayout(null);
 		
 		JLabel optionsTitle = new JLabel();
-		optionsTitle.setBounds(10, 10, FRAME_WIDTH, 25);
+		optionsTitle.setBounds(10, 7, FRAME_WIDTH, 25);
 		optionsTitle.setText(installedPack.getDisplayName() + " Options");
 		optionsTitle.setForeground(Color.white);
 		optionsTitle.setFont(fontbold.deriveFont(16F));
@@ -120,13 +120,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		optionsQuit.addActionListener(this);
 		
 		buildLabel = new JLabel();
-		buildLabel.setBounds(10, 50, 140, 25);
+		buildLabel.setBounds(10, 50, 100, 25);
 		buildLabel.setText("Select Build");
 		buildLabel.setForeground(Color.white);
-		buildLabel.setFont(fontregular);
+		buildLabel.setFont(fontregular.deriveFont(14F));
 		
 		buildSelector = new JComboBox();
-		buildSelector.setBounds(FRAME_WIDTH / 2, 50, 140, 25);
+		buildSelector.setBounds((FRAME_WIDTH/2)-50, 50, 195, 25);
 		buildSelector.setActionCommand(BUILD_ACTION);
 		buildSelector.addActionListener(this);
 		populateBuilds(buildSelector);
