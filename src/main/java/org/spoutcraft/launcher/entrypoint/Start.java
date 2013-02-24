@@ -51,6 +51,10 @@ public class Start {
 	}
 
 	private static void launch(String[] args) throws Exception {
+		// enable anti-aliased text:
+		System.setProperty("awt.useSystemAAFontSettings","on");
+		System.setProperty("swing.aatext", "true");
+
 		// Text for local build (not official build)
 		if (SpoutcraftLauncher.getLauncherBuild().equals("0")) {
 			SpoutcraftLauncher.main(args);
