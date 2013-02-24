@@ -6,8 +6,8 @@
 	<name>TechniCraft Launcher</name>
 	<groupId>org.spoutcraft</groupId>
 	<artifactId>TechniCraft</artifactId>
-	<version>2.0</version>
-	<url>http://www.technicraft.cz</url>
+    <version>2.0.0-${buildNumber}</version>
+    <url>http://technicraft.cz</url>
 	<description>Custom launcher for installing and updating Majncraft and Technicraft related modpacks.</description>
 
 	<!-- Build properties -->
@@ -327,10 +327,10 @@
 									</jre>
 									<icon>${project.basedir}/src/main/resources/exe/icon.ico</icon>
 									<versionInfo>
-										<fileVersion>3.0.0.${buildNumber}</fileVersion>
-										<txtFileVersion>3.0.0.${buildNumber}</txtFileVersion>
-										<productVersion>3.0.0.${buildNumber}</productVersion>
-										<txtProductVersion>3.0.0.${buildNumber}</txtProductVersion>
+										<fileVersion>2.0.0.${buildNumber}</fileVersion>
+										<txtFileVersion>2.0.0.${buildNumber}</txtFileVersion>
+										<productVersion>2.0.0.${buildNumber}</productVersion>
+										<txtProductVersion>2.0.0.${buildNumber}</txtProductVersion>
 										<fileDescription>${project.name}</fileDescription>
 										<productName>${project.name}</productName>
 										<copyright>${project.organization.name}, ${project.organization.url}</copyright>
