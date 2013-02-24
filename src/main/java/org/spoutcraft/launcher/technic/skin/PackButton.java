@@ -43,7 +43,7 @@ public class PackButton extends ImageButton {
 	public PackButton() {
 		super();
 		label = new JLabel("Loading...");
-		label.setFont(MetroLoginFrame.getMinecraftFont(12));
+		label.setFont(MetroLoginFrame.getClassicBoldFont(12));
 		label.setForeground(Color.WHITE);
 		label.setBackground(new Color(35, 35, 35));
 		label.setOpaque(true);

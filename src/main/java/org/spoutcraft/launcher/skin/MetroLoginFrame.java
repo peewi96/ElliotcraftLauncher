@@ -121,7 +121,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	}
 
 	private void initComponents() {
-		Font minecraft = getMinecraftFont(12);
+		Font minecraft = MetroLoginFrame.getMinecraftFont(12);
+		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
 
 		// Login Strip
 		TransparentJLabel loginStrip = new TransparentJLabel();
@@ -153,7 +154,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		remember = new JCheckBox("Remember");
 		//orig- remember.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
 		remember.setBounds(loginStrip.getX()+135, loginStrip.getY(), 115, 24);
-		remember.setFont(minecraft);
+		remember.setFont(fontbold);
 		remember.setOpaque(false);
 		remember.setBorderPainted(false);
 		remember.setFocusPainted(false);
@@ -166,7 +167,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Setup login button
 		login = new LiteButton("Launch", pass.getX(), pass.getY() + 29, 115, 24);
-		login.setFont(minecraft);
+		login.setFont(fontbold);
 		login.setForeground(Color.WHITE);
 		login.setActionCommand(LOGIN_ACTION);
 		login.addActionListener(this);
@@ -207,12 +208,12 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Home Link
 		Font largerMinecraft;
 		if (OperatingSystem.getOS().isUnix()) {
-			largerMinecraft = minecraft.deriveFont((float)18);
+			largerMinecraft = fontbold.deriveFont((float)18);
 		} else {
-			largerMinecraft = minecraft.deriveFont((float)20);
+			largerMinecraft = fontbold.deriveFont((float)20);
 		}
 
-		HyperlinkJLabel home = new HyperlinkJLabel("Home", "http://www.technicpack.net");
+		HyperlinkJLabel home = new HyperlinkJLabel("Home", "http://www.technicraft.cz");
 		home.setFont(largerMinecraft);
 		home.setBounds(545, 35, 65, 20);
 		home.setForeground(Color.WHITE);
@@ -245,7 +246,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		donate.setRolloverSelectedIcon(donateIcon);
 
 		// Issues link
-		HyperlinkJLabel issues = new HyperlinkJLabel("Issues", "http://forums.technicpack.net/forums/bug-reports.81/");
+		HyperlinkJLabel issues = new HyperlinkJLabel("Issues", "http://forum.majncraft.cz/forums/bugy.179//");
 		issues.setFont(largerMinecraft);
 		issues.setBounds(733, 35, 85, 20);
 		issues.setForeground(Color.WHITE);
@@ -325,7 +326,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Custom Pack Name Label
 		customName = new JLabel("", JLabel.CENTER);
 		customName.setBounds(FRAME_WIDTH / 2 - (192 /2), FRAME_HEIGHT / 2 + (110 / 2) - 30, 192, 30);
-		customName.setFont(minecraft.deriveFont(14F));
+		customName.setFont(fontbold.deriveFont(14F));
 		customName.setVisible(false);
 		customName.setForeground(Color.white);
 
@@ -344,7 +345,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			}
 			
 			DynamicButton userButton = new DynamicButton(this, image, 1, accountName, userName);
-			userButton.setFont(minecraft.deriveFont(12F));
+			userButton.setFont(fontbold.deriveFont(12F));
 
 			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 87, 45, 45);
 			contentPane.add(userButton);
@@ -374,10 +375,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		contentPane.add(gplus);
 		contentPane.add(twitter);
 		contentPane.add(facebook);
-		//contentPane.add(home);
+		contentPane.add(home);
 		contentPane.add(forums);
 		//contentPane.add(donate);
-		//contentPane.add(issues);
+		contentPane.add(issues);
 		//contentPane.add(logo);
 		contentPane.add(loginStrip);
 		contentPane.add(options);

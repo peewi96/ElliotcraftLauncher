@@ -97,7 +97,8 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	}
 	
 	private void initComponents() {
-		Font minecraft = MetroLoginFrame.getMinecraftFont(12);
+		Font fontregular = MetroLoginFrame.getClassicFont(13);
+		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
 		
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
@@ -110,7 +111,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		optionsTitle.setBounds(10, 10, FRAME_WIDTH, 25);
 		optionsTitle.setText(installedPack.getDisplayName() + " Options");
 		optionsTitle.setForeground(Color.white);
-		optionsTitle.setFont(minecraft.deriveFont(14F));
+		optionsTitle.setFont(fontbold.deriveFont(16F));
 		
 		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
 		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
@@ -122,7 +123,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		buildLabel.setBounds(10, 50, 140, 25);
 		buildLabel.setText("Select Build");
 		buildLabel.setForeground(Color.white);
-		buildLabel.setFont(minecraft);
+		buildLabel.setFont(fontregular);
 		
 		buildSelector = new JComboBox();
 		buildSelector.setBounds(FRAME_WIDTH / 2, 50, 140, 25);
@@ -139,7 +140,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		JRadioButton versionRec = new JRadioButton("Always use recommended builds");
 		versionRec.setBounds(10, buildLabel.getY() + buildLabel.getHeight() + 10, FRAME_WIDTH - 20, 30);
-		versionRec.setFont(minecraft);
+		versionRec.setFont(fontregular);
 		versionRec.setForeground(Color.white);
 		versionRec.setContentAreaFilled(false);
 		versionRec.setActionCommand(REC_ACTION);
@@ -148,7 +149,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		JRadioButton versionLatest = new JRadioButton("Always use latest builds");
 		versionLatest.setBounds(10, versionRec.getY() + versionRec.getHeight(), FRAME_WIDTH - 20, 30);
-		versionLatest.setFont(minecraft);
+		versionLatest.setFont(fontregular);
 		versionLatest.setForeground(Color.white);
 		versionLatest.setContentAreaFilled(false);
 		versionLatest.setActionCommand(LATEST_ACTION);
@@ -157,7 +158,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		JRadioButton versionManual = new JRadioButton("Manually select a build");
 		versionManual.setBounds(10, versionLatest.getY() + versionLatest.getHeight(), FRAME_WIDTH - 20, 30);
-		versionManual.setFont(minecraft);
+		versionManual.setFont(fontregular);
 		versionManual.setForeground(Color.white);
 		versionManual.setContentAreaFilled(false);
 		versionManual.setActionCommand(MANUAL_ACTION);
@@ -183,22 +184,22 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		packLocation = new LiteTextBox(this, "");
 		packLocation.setBounds(10, versionManual.getY() + versionManual.getHeight() + 10, FRAME_WIDTH - 20, 25);
-		packLocation.setFont(minecraft.deriveFont(10F));
+		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setText(installedDirectory.getPath());
 		packLocation.setEnabled(false);
 		
 		fileChooser = new JFileChooser(Utils.getLauncherDirectory());
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
-		LiteButton changeFolder = new LiteButton("Change Folder");
-		changeFolder.setBounds(FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		changeFolder.setFont(minecraft);
+		LiteButton changeFolder = new LiteButton("Change Folder", FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
+		changeFolder.setFont(fontbold);
+		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		
-		openFolder = new LiteButton("Open Folder");
-		openFolder.setBounds(10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		openFolder.setFont(minecraft);
+		openFolder = new LiteButton("Open Folder", 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
+		openFolder.setFont(fontbold);
+		openFolder.setForeground(Color.WHITE);
 		openFolder.setActionCommand(OPENFOLDER_ACTION);
 		openFolder.addActionListener(this);
 		
@@ -206,15 +207,15 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			openFolder.setVisible(false);
 		}
 
-		LiteButton save = new LiteButton("Save");
-		save.setFont(minecraft.deriveFont(14F));
-		save.setBounds(FRAME_WIDTH / 2 + 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		save.setFont(fontbold.deriveFont(14F));
+		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		cleanBin = new LiteButton("Reset Pack");
-		cleanBin.setFont(minecraft.deriveFont(14F));
-		cleanBin.setBounds(10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		cleanBin = new LiteButton("Reset Pack", 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		cleanBin.setFont(fontbold.deriveFont(14F));
+		cleanBin.setForeground(Color.WHITE);
 		cleanBin.setActionCommand(CLEAN_BIN_ACTION);
 		cleanBin.addActionListener(this);
 		

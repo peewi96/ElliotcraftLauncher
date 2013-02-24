@@ -101,7 +101,8 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	}
 
 	private void initComponents() {
-		Font minecraft = MetroLoginFrame.getMinecraftFont(12);
+		Font fontregular = MetroLoginFrame.getClassicFont(13);
+		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
 		
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
@@ -114,21 +115,21 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		optionsQuit.addActionListener(this);
 
 		JLabel title = new JLabel("Launcher Options");
-		title.setFont(minecraft.deriveFont(14F));
+		title.setFont(fontbold.deriveFont(16F));
 		title.setBounds(50, 10, 200, 20);
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 
 		build = new JLabel(LAUNCHER_PREPEND + Settings.getLauncherBuild());
 		build.setBounds(15, title.getY() + title.getHeight() + 10, FRAME_WIDTH - 20, 20);
-		build.setFont(minecraft);
+		build.setFont(fontregular);
 		build.setForeground(Color.WHITE);
 		
 		ButtonGroup group = new ButtonGroup();
 		
 		stable = new JRadioButton("Always use Stable Launcher Builds");
 		stable.setBounds(10, build.getY() + build.getHeight() + 10, FRAME_WIDTH - 20, 20);
-		stable.setFont(minecraft);
+		stable.setFont(fontregular);
 		stable.setForeground(Color.WHITE);
 		stable.setContentAreaFilled(false);
 		stable.setFocusPainted(false);
@@ -140,7 +141,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		beta = new JRadioButton("Always use Beta Launcher Builds");
 		beta.setBounds(10, stable.getY() + stable.getHeight() + 10, FRAME_WIDTH - 20, 20);
-		beta.setFont(minecraft);
+		beta.setFont(fontregular);
 		beta.setForeground(Color.WHITE);
 		beta.setContentAreaFilled(false);
 		beta.setFocusPainted(false);
@@ -157,7 +158,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		}
 
 		JLabel memoryLabel = new JLabel("Memory: ");
-		memoryLabel.setFont(minecraft);
+		memoryLabel.setFont(fontregular);
 		memoryLabel.setBounds(10, beta.getY() + beta.getHeight() + 10, 65, 20);
 		memoryLabel.setForeground(Color.WHITE);
 		memoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -167,7 +168,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		populateMemory(memory);
 
 		permgen = new JCheckBox("Increase PermGen Size");
-		permgen.setFont(minecraft);
+		permgen.setFont(fontregular);
 		permgen.setBounds(10, memoryLabel.getY() + memoryLabel.getHeight() + 10, FRAME_WIDTH - 20, 25);
 		permgen.setSelected(Settings.getPermGen());
 		permgen.setBorderPainted(false);
@@ -180,31 +181,32 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		packLocation = new LiteTextBox(this, "");
 		packLocation.setBounds(10, permgen.getY() + permgen.getHeight() + 10, FRAME_WIDTH - 20, 25);
-		packLocation.setFont(minecraft.deriveFont(10F));
+		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setForeground(Color.WHITE);
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
 		LiteButton changeFolder = new LiteButton("Change Folder", FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
-		changeFolder.setFont(minecraft);
+		changeFolder.setFont(fontbold);
+		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		changeFolder.setEnabled(!Utils.getStartupParameters().isPortable());
 
 		logs = new LiteButton("Logs", 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
-		logs.setFont(minecraft.deriveFont(14F));
+		logs.setFont(fontbold.deriveFont(14F));
 		logs.setForeground(Color.WHITE);
 		logs.setActionCommand(LOGS_ACTION);
 		logs.addActionListener(this);
 
 		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
-		save.setFont(minecraft.deriveFont(14F));
+		save.setFont(fontbold.deriveFont(14F));
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
 		LiteButton console = new LiteButton("Console", 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
-		console.setFont(minecraft.deriveFont(14F));
+		console.setFont(fontbold.deriveFont(14F));
 		console.setForeground(Color.WHITE);
 		console.setActionCommand(CONSOLE_ACTION);
 		console.addActionListener(this);
