@@ -313,7 +313,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		setIcon(twitter, "social_twitter.png", 32);
 
 		// Google+ button
-		JButton gplus = new ImageHyperlinkButton("https://gplus.to/majncraft");
+		JButton gplus = new ImageHyperlinkButton("http://gplus.to/majncraft");
 		gplus.setRolloverIcon(getIcon("social_gplus_hover.png"));
 		gplus.setToolTipText(lang("gui.social.gplus.tooltip"));
 		gplus.setBounds(FRAME_SIDE_SPACING, twitter.getY() + 42, 32, 32);
