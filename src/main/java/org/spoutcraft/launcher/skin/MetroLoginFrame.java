@@ -251,7 +251,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Issues link
 		HyperlinkJLabel issues = new HyperlinkJLabel(lang("gui.link.issues"), "http://forum.majncraft.cz/forums/bugy.179//");
 		issues.setFont(largerMinecraft);
-		issues.setBounds(733, 35, 85, 20);
+		issues.setBounds(723, 35, 100, 20);
 		issues.setForeground(Color.WHITE);
 		issues.setOpaque(false);
 		issues.setTransparency(0.70F);

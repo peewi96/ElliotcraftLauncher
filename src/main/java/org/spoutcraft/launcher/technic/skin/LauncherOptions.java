@@ -182,13 +182,13 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		installedDirectory = Settings.getLauncherDir();
 
 		packLocation = new LiteTextBox(this, "");
-		packLocation.setBounds(10, permgen.getY() + permgen.getHeight() + 10, FRAME_WIDTH - 20, 25);
+		packLocation.setBounds(10, FRAME_WIDTH-105, FRAME_WIDTH - 20, 25);
 		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setForeground(Color.WHITE);
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
-		LiteButton changeFolder = new LiteButton(lang("options.folder"), FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);

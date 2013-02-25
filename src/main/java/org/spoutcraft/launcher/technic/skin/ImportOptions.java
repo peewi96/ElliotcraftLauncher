@@ -187,7 +187,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 					install.setText(lang("platform.selectdir")+" " + Utils.getSettingsDirectory().getAbsolutePath());
 				} else {
 					install.setText(lang("platform.location")+" " + installDir.getPath());
-					folder.setText(lang("platform.changefolder"));
+					folder.setText(lang("options.changefolder"));
 					folder.setLocation(FRAME_WIDTH - 290, FRAME_HEIGHT - 40);
 					enableComponent(save, true);
 				}

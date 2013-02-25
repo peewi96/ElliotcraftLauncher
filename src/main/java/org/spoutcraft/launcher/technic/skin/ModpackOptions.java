@@ -185,7 +185,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		installedDirectory = installedPack.getPackDirectory();
 		
 		packLocation = new LiteTextBox(this, "");
-		packLocation.setBounds(10, versionManual.getY() + versionManual.getHeight() + 10, FRAME_WIDTH - 20, 25);
+		packLocation.setBounds(10, FRAME_WIDTH-105, FRAME_WIDTH - 20, 25);
 		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setText(installedDirectory.getPath());
 		packLocation.setEnabled(false);
@@ -193,7 +193,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		fileChooser = new JFileChooser(Utils.getLauncherDirectory());
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
-		LiteButton changeFolder = new LiteButton(lang("options.folder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
+		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
 		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
@@ -209,13 +209,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			openFolder.setVisible(false);
 		}
 
-		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 10, openFolder.getY() + openFolder.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
 		save.setFont(fontbold.deriveFont(14F));
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		cleanBin = new LiteButton(lang("modpackoptions.resetpack"), 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		cleanBin = new LiteButton(lang("modpackoptions.resetpack"), 10, openFolder.getY() + openFolder.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
 		cleanBin.setFont(fontbold.deriveFont(14F));
 		cleanBin.setForeground(Color.WHITE);
 		cleanBin.setActionCommand(CLEAN_BIN_ACTION);
