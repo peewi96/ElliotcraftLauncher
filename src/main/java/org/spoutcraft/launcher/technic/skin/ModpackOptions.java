@@ -55,6 +55,8 @@ import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.util.Compatibility;
 import org.spoutcraft.launcher.util.Utils;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class ModpackOptions extends JDialog implements ActionListener, MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
 	private static final int FRAME_WIDTH = 300;
@@ -87,7 +89,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	
 	public ModpackOptions(PackInfo installedPack) {
 		this.installedPack = installedPack;
-		setTitle("Modpack Options");
+		setTitle(lang("modpackoptions.title"));
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -109,7 +111,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		JLabel optionsTitle = new JLabel();
 		optionsTitle.setBounds(10, 7, FRAME_WIDTH, 25);
-		optionsTitle.setText(installedPack.getDisplayName() + " Options");
+		optionsTitle.setText(installedPack.getDisplayName() + " "+lang("modpackoptions.options.suffix"));
 		optionsTitle.setForeground(Color.white);
 		optionsTitle.setFont(fontbold.deriveFont(16F));
 		
@@ -121,7 +123,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		buildLabel = new JLabel();
 		buildLabel.setBounds(10, 50, 100, 25);
-		buildLabel.setText("Select Build");
+		buildLabel.setText(lang("modpackoptions.build"));
 		buildLabel.setForeground(Color.white);
 		buildLabel.setFont(fontregular.deriveFont(14F));
 		
@@ -138,7 +140,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		JRadioButton versionRec = new JRadioButton("Always use recommended builds");
+		JRadioButton versionRec = new JRadioButton(lang("modpackoptions.recommneded"));
 		versionRec.setBounds(10, buildLabel.getY() + buildLabel.getHeight() + 10, FRAME_WIDTH - 20, 30);
 		versionRec.setFont(fontregular);
 		versionRec.setForeground(Color.white);
@@ -147,7 +149,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		versionRec.addActionListener(this);
 		group.add(versionRec);
 		
-		JRadioButton versionLatest = new JRadioButton("Always use latest builds");
+		JRadioButton versionLatest = new JRadioButton(lang("modpackoptions.latest"));
 		versionLatest.setBounds(10, versionRec.getY() + versionRec.getHeight(), FRAME_WIDTH - 20, 30);
 		versionLatest.setFont(fontregular);
 		versionLatest.setForeground(Color.white);
@@ -156,7 +158,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		versionLatest.addActionListener(this);
 		group.add(versionLatest);
 		
-		JRadioButton versionManual = new JRadioButton("Manually select a build");
+		JRadioButton versionManual = new JRadioButton(lang("modpackoptions.manual"));
 		versionManual.setBounds(10, versionLatest.getY() + versionLatest.getHeight(), FRAME_WIDTH - 20, 30);
 		versionManual.setFont(fontregular);
 		versionManual.setForeground(Color.white);
@@ -191,13 +193,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		fileChooser = new JFileChooser(Utils.getLauncherDirectory());
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
-		LiteButton changeFolder = new LiteButton("Change Folder", FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
+		LiteButton changeFolder = new LiteButton(lang("options.folder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
 		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		
-		openFolder = new LiteButton("Open Folder", 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
+		openFolder = new LiteButton(lang("modpackoptions.openfolder"), 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
 		openFolder.setFont(fontbold);
 		openFolder.setForeground(Color.WHITE);
 		openFolder.setActionCommand(OPENFOLDER_ACTION);
@@ -207,13 +209,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			openFolder.setVisible(false);
 		}
 
-		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
 		save.setFont(fontbold.deriveFont(14F));
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		cleanBin = new LiteButton("Reset Pack", 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
+		cleanBin = new LiteButton(lang("modpackoptions.resetpack"), 10, FRAME_HEIGHT - 40, FRAME_WIDTH / 2 - 20, 25);
 		cleanBin.setFont(fontbold.deriveFont(14F));
 		cleanBin.setForeground(Color.WHITE);
 		cleanBin.setActionCommand(CLEAN_BIN_ACTION);
@@ -283,7 +285,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 				}
 			}
 		} else if (action.equals(CLEAN_BIN_ACTION)) {
-			int result = JOptionPane.showConfirmDialog(c, "Are you sure you want to reset this pack?", "Remove Pack", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			int result = JOptionPane.showConfirmDialog(c, lang("modpackoptions.reset.question"), lang("modpackoptions.reset.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
 				cleanBin();
 				dispose();
@@ -300,9 +302,9 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		for (String build : installedPack.getBuilds()) {
 			String display = build;
 			if (build.equals(installedPack.getLatest())) {
-				display += " - Latest";
+				display += " - "+lang("modpackoptions.build.latest");
 			} else if (build.equals(installedPack.getRecommended())) {
-				display += " - Recommended";
+				display += " - "+lang("modpackoptions.build.recommended");
 			}
 			BuildLabel label = new BuildLabel(build, display);
 			buildSelector.addItem(label);

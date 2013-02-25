@@ -69,6 +69,8 @@ import org.spoutcraft.launcher.exceptions.MinecraftUserNotPremiumException;
 import org.spoutcraft.launcher.exceptions.OutdatedMCLauncherException;
 import org.spoutcraft.launcher.exceptions.PermissionDeniedException;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class Utils {
 	private static File workDir = null;
 	private static StartupParameters params = null;
@@ -80,7 +82,7 @@ public class Utils {
 			workDir = getWorkingDirectory("technicraft");
 			boolean exists = workDir.exists();
 			if (!exists && !workDir.mkdirs()) {
-				throw new RuntimeException("The working directory could not be created: " + workDir);
+				throw new RuntimeException(lang("utils.cantcreateworkdir")+" " + workDir);
 			}
 
 			settingsDir = workDir;
@@ -99,7 +101,7 @@ public class Utils {
 			}
 
 			if (!exists) {
-				int result = JOptionPane.showConfirmDialog(splash, "No installation of technic found. Technic Launcher will install at: " + workDir.getAbsolutePath() + " Would you like to change the install directory?", "Install Technic Launcher", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				int result = JOptionPane.showConfirmDialog(splash, lang("utils.install.firstrun")+" " + workDir.getAbsolutePath() + " "+lang("utils.install.question"), lang("utils.install.title"), JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					JFileChooser fileChooser = new JFileChooser(workDir);
 					fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -234,7 +236,7 @@ public class Utils {
 				throw new PermissionDeniedException("Permission to login was denied");
 			}
 		} catch (Exception e) {
-			String message = "Login failed...";
+			String message = lang("utils.loginfailed");
 			progress.setString(message);
 		} finally {
 			if (connection != null) {
@@ -321,7 +323,7 @@ public class Utils {
 			dest.mkdirs();
 		} else {
 			if (!dest.isDirectory()) {
-				throw new IllegalArgumentException("The destination was not a directory");
+				throw new IllegalArgumentException(lang("utils.install.notdir"));
 			}
 			FileUtils.cleanDirectory(dest);
 		}

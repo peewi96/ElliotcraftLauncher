@@ -60,12 +60,14 @@ import org.spoutcraft.launcher.technic.rest.RestAPI;
 import org.spoutcraft.launcher.util.Compatibility;
 import org.spoutcraft.launcher.util.Utils;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class LauncherOptions extends JDialog implements ActionListener, MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
 
 	private static final int FRAME_WIDTH = 300;
-	private static final int FRAME_HEIGHT = 300;
-	private static final String LAUNCHER_PREPEND = "Launcher Build:    ";
+	private static final int FRAME_HEIGHT = 300;      
+	private static final String LAUNCHER_PREPEND = lang("options.build");
 	private static final String QUIT_ACTION = "quit";
 	private static final String SAVE_ACTION = "save";
 	private static final String LOGS_ACTION = "logs";
@@ -91,7 +93,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private String buildStream = "stable";
 
 	public LauncherOptions() {
-		setTitle("Launcher Options");
+		setTitle(lang("options.title"));
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -114,20 +116,20 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
 
-		JLabel title = new JLabel("Launcher Options");
+		JLabel title = new JLabel(lang("options.title"));
 		title.setFont(fontbold.deriveFont(16F));
 		title.setBounds(50, 10, 200, 20);
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 
-		build = new JLabel(LAUNCHER_PREPEND + Settings.getLauncherBuild());
+		build = new JLabel(LAUNCHER_PREPEND + " " + Settings.getLauncherBuild());
 		build.setBounds(15, title.getY() + title.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		build.setFont(fontregular);
 		build.setForeground(Color.WHITE);
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		stable = new JRadioButton("Always use Stable Launcher Builds");
+		stable = new JRadioButton(lang("options.stable"));
 		stable.setBounds(10, build.getY() + build.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		stable.setFont(fontregular);
 		stable.setForeground(Color.WHITE);
@@ -139,7 +141,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		stable.addActionListener(this);
 		group.add(stable);
 
-		beta = new JRadioButton("Always use Beta Launcher Builds");
+		beta = new JRadioButton(lang("options.beta"));
 		beta.setBounds(10, stable.getY() + stable.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		beta.setFont(fontregular);
 		beta.setForeground(Color.WHITE);
@@ -157,7 +159,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			beta.setSelected(true);
 		}
 
-		JLabel memoryLabel = new JLabel("Memory: ");
+		JLabel memoryLabel = new JLabel(lang("options.mem")+" ");
 		memoryLabel.setFont(fontregular);
 		memoryLabel.setBounds(10, beta.getY() + beta.getHeight() + 10, 65, 20);
 		memoryLabel.setForeground(Color.WHITE);
@@ -167,7 +169,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		memory.setBounds(memoryLabel.getX() + memoryLabel.getWidth() + 10, memoryLabel.getY(), 100, 20);
 		populateMemory(memory);
 
-		permgen = new JCheckBox("Increase PermGen Size");
+		permgen = new JCheckBox(lang("options.permgen"));
 		permgen.setFont(fontregular);
 		permgen.setBounds(10, memoryLabel.getY() + memoryLabel.getHeight() + 10, FRAME_WIDTH - 20, 25);
 		permgen.setSelected(Settings.getPermGen());
@@ -186,26 +188,26 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
-		LiteButton changeFolder = new LiteButton("Change Folder", FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		LiteButton changeFolder = new LiteButton(lang("options.folder"), FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		changeFolder.setEnabled(!Utils.getStartupParameters().isPortable());
 
-		logs = new LiteButton("Logs", 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		logs = new LiteButton(lang("options.logs"), 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		logs.setFont(fontbold.deriveFont(14F));
 		logs.setForeground(Color.WHITE);
 		logs.setActionCommand(LOGS_ACTION);
 		logs.addActionListener(this);
 
-		LiteButton save = new LiteButton("Save", FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		save.setFont(fontbold.deriveFont(14F));
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		LiteButton console = new LiteButton("Console", 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		LiteButton console = new LiteButton(lang("options.console"), 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		console.setFont(fontbold.deriveFont(14F));
 		console.setForeground(Color.WHITE);
 		console.setActionCommand(CONSOLE_ACTION);
@@ -258,7 +260,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			Settings.getYAML().save();
 			
 			if (mem != oldMem || oldperm != perm || directoryChanged) {
-				int result = JOptionPane.showConfirmDialog(c, "Restart required for settings to take effect. Would you like to restart?", "Restart Required", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question"), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					SpoutcraftLauncher.relaunch(true);
 				}
@@ -317,17 +319,15 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		maxMemory = Math.max(512, maxMemory);
 
 		if (maxMemory >= Memory.MAX_32_BIT_MEMORY && !bit64) {
-			memory.setToolTipText("<html>Sets the amount of memory assigned to Minecraft<br/>" + "You have more than 1.5GB of memory available, but<br/>"
-					+ "you must have 64bit java installed to use it.</html>");
+			memory.setToolTipText(lang("options.memtooltip.no64"));
 		} else {
-			memory.setToolTipText("<html>Sets the amount of memory assigned to Minecraft<br/>" + "More memory is not always better.<br/>"
-					+ "More memory will also cause your CPU to work more.</html>");
+			memory.setToolTipText(lang("options.memtooltip.setram"));
 		}
 
 		if (!bit64) {
 			maxMemory = Math.min(Memory.MAX_32_BIT_MEMORY, maxMemory);
 		}
-		System.out.println("Maximum usable memory detected: " + maxMemory + " mb");
+		System.out.println(lang("options.maxmem")+" " + maxMemory + " mb");
 
 		for (Memory mem : Memory.memoryOptions) {
 			if (maxMemory >= mem.getMemoryMB()) {

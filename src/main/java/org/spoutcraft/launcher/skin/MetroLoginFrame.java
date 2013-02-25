@@ -73,6 +73,8 @@ import org.spoutcraft.launcher.util.OperatingSystem;
 import org.spoutcraft.launcher.util.ResourceUtils;
 import org.spoutcraft.launcher.util.Utils;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyListener, MouseWheelListener {
 	private static final long serialVersionUID = 1L;
 	private static final int FRAME_WIDTH = 880;
@@ -138,22 +140,21 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		setIcon(packShadow, "packShadow.png", packShadow.getWidth(), packShadow.getHeight());
 
 		// Setup username box
-		name = new LiteTextBox(this, "Username...");
+		name = new LiteTextBox(this, lang("gui.username"));
 		name.setBounds(loginStrip.getX()+1, loginStrip.getY()+24, 115, 24);
 		name.setFont(minecraft);
 		name.addKeyListener(this);
 
 		// Setup password box
-		pass = new LitePasswordBox(this, "Password...");
+		pass = new LitePasswordBox(this, lang("gui.password"));
 		//orig- pass.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
 		pass.setBounds(name.getX()+120, loginStrip.getY()+24, 115, 24);
 		pass.setFont(minecraft);
 		pass.addKeyListener(this);
 
 		// Setup remember checkbox
-		remember = new JCheckBox("Remember");
-		//orig- remember.setBounds(745, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
-		remember.setBounds(loginStrip.getX()+135, loginStrip.getY(), 115, 24);
+		remember = new JCheckBox(lang("gui.remember"));
+		remember.setBounds(pass.getX(), loginStrip.getY(), 117, 24);
 		remember.setFont(fontbold);
 		remember.setOpaque(false);
 		remember.setBorderPainted(false);
@@ -161,12 +162,14 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		remember.setContentAreaFilled(false);
 		remember.setBorder(null);
 		remember.setForeground(Color.WHITE);
+		remember.setBackground(Color.RED);
+		remember.setHorizontalAlignment(SwingConstants.RIGHT);
 		remember.setHorizontalTextPosition(SwingConstants.LEFT);
 		remember.setIconTextGap(10);
 		remember.addKeyListener(this);
 
 		// Setup login button
-		login = new LiteButton("Launch", pass.getX(), pass.getY() + 29, 115, 24);
+		login = new LiteButton(lang("gui.launch"), pass.getX(), pass.getY() + 29, 115, 24);
 		login.setFont(fontbold);
 		login.setForeground(Color.WHITE);
 		login.setActionCommand(LOGIN_ACTION);
@@ -213,7 +216,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			largerMinecraft = fontbold.deriveFont((float)20);
 		}
 
-		HyperlinkJLabel home = new HyperlinkJLabel("Home", "http://www.technicraft.cz");
+		HyperlinkJLabel home = new HyperlinkJLabel(lang("gui.link.home"), "http://www.technicraft.cz");
 		home.setFont(largerMinecraft);
 		home.setBounds(545, 35, 65, 20);
 		home.setForeground(Color.WHITE);
@@ -223,7 +226,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Forums link
 		JButton forums = new ImageHyperlinkButton("http://forum.majncraft.cz/");
-		forums.setToolTipText("Visit the forums");
+		forums.setToolTipText(lang("gui.tooltip.forum"));
 		forums.setBounds(9, loginStrip.getY() + 9, 90, 90);
 		forums.setBorderPainted(false);
 		ImageIcon forumIcon = getIcon("forums.png");
@@ -235,7 +238,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Donate link
 		JButton donate = new ImageHyperlinkButton("http://www.technicpack.net/donate/");
-		donate.setToolTipText("Donate to the modders");
+		donate.setToolTipText(lang("gui.tooltip.donate"));
 		donate.setBounds(9 + forums.getWidth() + 9, loginStrip.getY() + 9, 90, 90);
 		donate.setBorderPainted(false);
 		ImageIcon donateIcon = getIcon("donate.png");
@@ -246,7 +249,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		donate.setRolloverSelectedIcon(donateIcon);
 
 		// Issues link
-		HyperlinkJLabel issues = new HyperlinkJLabel("Issues", "http://forum.majncraft.cz/forums/bugy.179//");
+		HyperlinkJLabel issues = new HyperlinkJLabel(lang("gui.link.issues"), "http://forum.majncraft.cz/forums/bugy.179//");
 		issues.setFont(largerMinecraft);
 		issues.setBounds(733, 35, 85, 20);
 		issues.setForeground(Color.WHITE);
@@ -298,21 +301,21 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		// Facebook button
 		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechniCraftcz");
 		facebook.setRolloverIcon(getIcon("social_face_hover.png"));
-		facebook.setToolTipText("Like us on Facebook");
+		facebook.setToolTipText(lang("gui.social.facebook.tooltip"));
 		facebook.setBounds(FRAME_SIDE_SPACING, FRAME_TOP_SPACING, 32, 32);
 		setIcon(facebook, "social_face.png", 32);
 
 		// Twitter button
 		JButton twitter = new ImageHyperlinkButton("https://twitter.com/TechniCraftCZ");
 		twitter.setRolloverIcon(getIcon("social_twitter_hover.png"));
-		twitter.setToolTipText("Follow us on Twitter");
+		twitter.setToolTipText(lang("gui.social.twitter.tooltip"));
 		twitter.setBounds(FRAME_SIDE_SPACING, facebook.getY() + 42, 32, 32);
 		setIcon(twitter, "social_twitter.png", 32);
 
 		// Google+ button
 		JButton gplus = new ImageHyperlinkButton("https://gplus.to/majncraft");
 		gplus.setRolloverIcon(getIcon("social_gplus_hover.png"));
-		gplus.setToolTipText("Game with us on Steam");
+		gplus.setToolTipText(lang("gui.social.gplus.tooltip"));
 		gplus.setBounds(FRAME_SIDE_SPACING, twitter.getY() + 42, 32, 32);
 		setIcon(gplus, "social_gplus.png", 32);
 
@@ -484,7 +487,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				launcherOptions.setVisible(true);
 			}
 		} else if(action.equals(PACK_REMOVE_ACTION)) {
-			int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove this pack?", "Remove Pack", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question"), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
 				getSelector().removePack();
 			}
@@ -608,10 +611,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	
 	public void lockLoginButton(boolean unlock) {
 		if (unlock) {
-			login.setText("Login");
+			login.setText(lang("gui.login"));
 			login.setForeground(Color.WHITE);
 		} else {
-			login.setText("Launching...");
+			login.setText(lang("gui.launching"));
 			login.setForeground(new Color(51, 45, 73));
 		}
 		login.setEnabled(unlock);

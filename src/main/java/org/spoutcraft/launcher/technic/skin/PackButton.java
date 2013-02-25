@@ -35,6 +35,8 @@ import javax.swing.SwingConstants;
 
 import org.spoutcraft.launcher.skin.MetroLoginFrame;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class PackButton extends ImageButton {
 	private static final long serialVersionUID = 1L;
 	private int index;
@@ -42,7 +44,7 @@ public class PackButton extends ImageButton {
 
 	public PackButton() {
 		super();
-		label = new JLabel("Loading...");
+		label = new JLabel(lang("modpackbuttton.loading"));
 		label.setFont(MetroLoginFrame.getClassicBoldFont(12));
 		label.setForeground(Color.WHITE);
 		label.setBackground(new Color(35, 35, 35));
