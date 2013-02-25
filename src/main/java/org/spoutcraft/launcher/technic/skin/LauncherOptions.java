@@ -67,7 +67,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 	private static final int FRAME_WIDTH = 300;
 	private static final int FRAME_HEIGHT = 300;      
-	private static final String LAUNCHER_PREPEND = lang("options.build");
+	private static final String LAUNCHER_PREPEND = lang("options.build")+" ";
 	private static final String QUIT_ACTION = "quit";
 	private static final String SAVE_ACTION = "save";
 	private static final String LOGS_ACTION = "logs";
@@ -122,7 +122,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		title.setForeground(Color.WHITE);
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 
-		build = new JLabel(LAUNCHER_PREPEND + " " + Settings.getLauncherBuild());
+		build = new JLabel(LAUNCHER_PREPEND + Settings.getLauncherBuild());
 		build.setBounds(15, title.getY() + title.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		build.setFont(fontregular);
 		build.setForeground(Color.WHITE);
