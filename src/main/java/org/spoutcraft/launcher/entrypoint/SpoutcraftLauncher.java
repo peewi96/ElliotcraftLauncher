@@ -216,6 +216,9 @@ public class SpoutcraftLauncher {
 		if (os.isMac()) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TechniCraft Launcher");
+			System.setProperty("apple.awt.antialiasing","on");
+			System.setProperty("apple.awt.graphics.EnableQ2DX","true");
+			System.setProperty("apple.awt.textantialiasing","on");
 		}
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
