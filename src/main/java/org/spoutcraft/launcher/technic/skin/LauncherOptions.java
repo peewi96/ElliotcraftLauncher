@@ -29,25 +29,12 @@ package org.spoutcraft.launcher.technic.skin;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import org.spoutcraft.launcher.Memory;
 import org.spoutcraft.launcher.Language;
@@ -109,7 +96,18 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private void initComponents() {
 		Font fontregular = MetroLoginFrame.getClassicFont(13);
 		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
-		
+
+		//  Handle escape key to close the dialog
+		KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
+		Action escapeAction = new AbstractAction()
+		{ public void actionPerformed(ActionEvent e)
+			{
+				dispose();
+			}
+		};
+		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, "ESCAPE");
+		getRootPane().getActionMap().put("ESCAPE", escapeAction);
+
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
 		MetroLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
@@ -185,7 +183,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		permgen = new JCheckBox(lang("options.permgen"));
 		permgen.setFont(fontregular);
-		permgen.setBounds(10, memoryLabel.getY() + memoryLabel.getHeight() + 10, FRAME_WIDTH - 20, 25);
+		permgen.setBounds(10, memoryLabel.getY() + memoryLabel.getHeight() + 2, FRAME_WIDTH - 20, 25);
 		permgen.setSelected(Settings.getPermGen());
 		permgen.setBorderPainted(false);
 		permgen.setFocusPainted(false);
