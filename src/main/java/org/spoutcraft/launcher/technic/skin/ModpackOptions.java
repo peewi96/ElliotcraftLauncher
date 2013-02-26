@@ -194,13 +194,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
 		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		changeFolder.setFont(fontbold);
+		changeFolder.setFont(fontbold.deriveFont(14F));
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		
 		openFolder = new LiteButton(lang("modpackoptions.openfolder"), 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		openFolder.setFont(fontbold);
+		openFolder.setFont(fontbold.deriveFont(14F));
 		openFolder.setForeground(Color.WHITE);
 		openFolder.setActionCommand(OPENFOLDER_ACTION);
 		openFolder.addActionListener(this);
