@@ -194,13 +194,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
 		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		changeFolder.setFont(fontbold.deriveFont(14F));
+		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		
 		openFolder = new LiteButton(lang("modpackoptions.openfolder"), 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		openFolder.setFont(fontbold.deriveFont(14F));
+		openFolder.setFont(fontbold);
 		openFolder.setForeground(Color.WHITE);
 		openFolder.setActionCommand(OPENFOLDER_ACTION);
 		openFolder.addActionListener(this);
@@ -210,13 +210,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		}
 
 		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 10, openFolder.getY() + openFolder.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		save.setFont(fontbold.deriveFont(14F));
+		save.setFont(fontbold);
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
 		cleanBin = new LiteButton(lang("modpackoptions.resetpack"), 10, openFolder.getY() + openFolder.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		cleanBin.setFont(fontbold.deriveFont(14F));
+		cleanBin.setFont(fontbold);
 		cleanBin.setForeground(Color.WHITE);
 		cleanBin.setActionCommand(CLEAN_BIN_ACTION);
 		cleanBin.addActionListener(this);
