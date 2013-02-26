@@ -141,14 +141,14 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 		// Setup username box
 		name = new LiteTextBox(this, lang("gui.username"));
-		name.setBounds(loginStrip.getX()+1, loginStrip.getY()+24, 115, 24);
+		name.setBounds(loginStrip.getX() + 1, loginStrip.getY() + 24, 115, 24);
 		name.setFont(minecraft);
 		name.addKeyListener(this);
 
 		// Setup password box
 		pass = new LitePasswordBox(this, lang("gui.password"));
 		//orig- pass.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
-		pass.setBounds(name.getX()+120, loginStrip.getY()+24, 115, 24);
+		pass.setBounds(name.getX() + 120, loginStrip.getY() + 24, 115, 24);
 		pass.setFont(minecraft);
 		pass.addKeyListener(this);
 

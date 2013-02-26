@@ -286,7 +286,7 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Fallback
-			minecraft = new Font("Arial", Font.PLAIN, 12);
+			minecraft = new Font("Verdana", Font.PLAIN, 13);
 		}
 		return minecraft;
 	}
@@ -298,18 +298,18 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Fallback
-			minecraft = new Font("Arial", Font.PLAIN, 12);
+			minecraft = new Font("Verdana", Font.PLAIN, 13);
 		}
 		return minecraft;
 	}
 	public static final Font getClassicBoldFont(int size) {
 		Font minecraft;
 		try {
-			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("/org/spoutcraft/launcher/resources/avalonbold.ttf")).deriveFont((float)size);
+			minecraft = Font.createFont(Font.BOLD, getResourceAsStream("/org/spoutcraft/launcher/resources/avalonbold.ttf")).deriveFont((float)size);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Fallback
-			minecraft = new Font("Arial", Font.PLAIN, 12);
+			minecraft = new Font("Arial", Font.BOLD, 13);
 		}
 		return minecraft;
 	}
