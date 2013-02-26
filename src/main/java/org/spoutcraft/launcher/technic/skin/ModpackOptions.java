@@ -185,7 +185,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		installedDirectory = installedPack.getPackDirectory();
 		
 		packLocation = new LiteTextBox(this, "");
-		packLocation.setBounds(10, FRAME_WIDTH-105, FRAME_WIDTH - 20, 25);
+		packLocation.setBounds(10, FRAME_HEIGHT-105, FRAME_WIDTH - 20, 25);
 		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setText(installedDirectory.getPath());
 		packLocation.setEnabled(false);

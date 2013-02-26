@@ -439,8 +439,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 	public static void setIcon(JLabel label, String iconName, int w, int h) {
 		try {
-		//	System.out.print(iconName);
-			label.setIcon(new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
+			label.setIcon(new ImageIcon(ImageUtils.resizeImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

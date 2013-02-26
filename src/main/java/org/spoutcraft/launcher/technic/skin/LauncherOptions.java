@@ -50,6 +50,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import org.spoutcraft.launcher.Memory;
+import org.spoutcraft.launcher.Language;
 import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
@@ -66,7 +67,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private static final long serialVersionUID = 1L;
 
 	private static final int FRAME_WIDTH = 300;
-	private static final int FRAME_HEIGHT = 300;      
+	private static final int FRAME_HEIGHT = 350;
 	private static final String LAUNCHER_PREPEND = lang("options.build")+" ";
 	private static final String QUIT_ACTION = "quit";
 	private static final String SAVE_ACTION = "save";
@@ -78,10 +79,9 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 	private JLabel background;
 	private JLabel build;
-	private LiteButton logs;
-	private LiteButton save;
-	private LiteButton console;
+
 	private JComboBox memory;
+	private JComboBox language;
 	private JCheckBox permgen;
 	private JRadioButton beta;
 	private JRadioButton stable;
@@ -91,6 +91,10 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private LiteTextBox packLocation;
 	private boolean directoryChanged = false;
 	private String buildStream = "stable";
+	private LiteButton changeFolder;
+	private LiteButton logs;
+	private LiteButton save;
+	private LiteButton console;
 
 	public LauncherOptions() {
 		setTitle(lang("options.title"));
@@ -130,7 +134,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		ButtonGroup group = new ButtonGroup();
 		
 		stable = new JRadioButton(lang("options.stable"));
-		stable.setBounds(10, build.getY() + build.getHeight() + 10, FRAME_WIDTH - 20, 20);
+		stable.setBounds(10, build.getY() + build.getHeight() + 5, FRAME_WIDTH - 20, 20);
 		stable.setFont(fontregular);
 		stable.setForeground(Color.WHITE);
 		stable.setContentAreaFilled(false);
@@ -142,7 +146,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		group.add(stable);
 
 		beta = new JRadioButton(lang("options.beta"));
-		beta.setBounds(10, stable.getY() + stable.getHeight() + 10, FRAME_WIDTH - 20, 20);
+		beta.setBounds(10, stable.getY() + stable.getHeight() + 5, FRAME_WIDTH - 20, 20);
 		beta.setFont(fontregular);
 		beta.setForeground(Color.WHITE);
 		beta.setContentAreaFilled(false);
@@ -159,14 +163,24 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			beta.setSelected(true);
 		}
 
+		JLabel languageLabel = new JLabel(lang("options.lang")+" ");
+		languageLabel.setFont(fontregular);
+		languageLabel.setBounds(15, beta.getY() + beta.getHeight() + 10, 74, 20);
+		languageLabel.setForeground(Color.WHITE);
+		languageLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+		language = new JComboBox();
+		language.setBounds(languageLabel.getX() + languageLabel.getWidth() + 10, languageLabel.getY(), 130, 20);
+		populateLanguages(language);
+
 		JLabel memoryLabel = new JLabel(lang("options.mem")+" ");
 		memoryLabel.setFont(fontregular);
-		memoryLabel.setBounds(10, beta.getY() + beta.getHeight() + 10, 65, 20);
+		memoryLabel.setBounds(15, languageLabel.getY() + languageLabel.getHeight() + 10, 74, 20);
 		memoryLabel.setForeground(Color.WHITE);
-		memoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		memoryLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
 		memory = new JComboBox();
-		memory.setBounds(memoryLabel.getX() + memoryLabel.getWidth() + 10, memoryLabel.getY(), 100, 20);
+		memory.setBounds(memoryLabel.getX() + memoryLabel.getWidth() + 10, memoryLabel.getY(), 130, 20);
 		populateMemory(memory);
 
 		permgen = new JCheckBox(lang("options.permgen"));
@@ -182,13 +196,13 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		installedDirectory = Settings.getLauncherDir();
 
 		packLocation = new LiteTextBox(this, "");
-		packLocation.setBounds(10, FRAME_WIDTH-105, FRAME_WIDTH - 20, 25);
+		packLocation.setBounds(10, FRAME_HEIGHT-105, FRAME_WIDTH - 20, 25);
 		packLocation.setFont(fontregular.deriveFont(10F));
 		packLocation.setForeground(Color.WHITE);
 		packLocation.setText(installedDirectory);
 		packLocation.setEnabled(false);
 
-		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 5, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		changeFolder.setFont(fontbold);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
@@ -201,13 +215,13 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		logs.setActionCommand(LOGS_ACTION);
 		logs.addActionListener(this);
 
-		LiteButton save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		save = new LiteButton(lang("options.save"), FRAME_WIDTH / 2 + 5, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		save.setFont(fontbold.deriveFont(14F));
 		save.setForeground(Color.WHITE);
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		LiteButton console = new LiteButton(lang("options.console"), 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		console = new LiteButton(lang("options.console"), 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		console.setFont(fontbold.deriveFont(14F));
 		console.setForeground(Color.WHITE);
 		console.setActionCommand(CONSOLE_ACTION);
@@ -227,6 +241,8 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		contentPane.add(console);
 		contentPane.add(optionsQuit);
 		contentPane.add(title);
+		contentPane.add(language);
+		contentPane.add(languageLabel);
 		contentPane.add(memory);
 		contentPane.add(memoryLabel);
 		contentPane.add(save);
@@ -257,9 +273,12 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				Settings.setMigrate(true);
 				Settings.setMigrateDir(installedDirectory);
 			}
+			String oldLang = Settings.getLanguage();
+			String lang = Language.languageOptions[language.getSelectedIndex()].getLanguage();
+			Settings.setLanguage(lang);
 			Settings.getYAML().save();
 			
-			if (mem != oldMem || oldperm != perm || directoryChanged) {
+			if (mem != oldMem || oldperm != perm || directoryChanged || oldLang != lang) {
 				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question"), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					SpoutcraftLauncher.relaunch(true);
@@ -347,6 +366,39 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		}
 	}
 
+	@SuppressWarnings("restriction")
+	private void populateLanguages(JComboBox language) {
+		/* LOAD LANGS FROM resources/
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		final String bundlepackage = "org.spoutcraft.launcher.resources.lang";
+		final String bundlename = "Main";
+
+		File root = new File(loader.getResource(bundlepackage.replace('.', '/')).getFile());
+		File[] files = root.listFiles(new FilenameFilter() {
+			public boolean accept(File dir, String name) {
+				return name.matches("^" + bundlename + "(_\\w{2}(_\\w{2})?)?\\.properties$");
+			}
+		});
+
+		for (File file : files) {
+			language.addItem(file.getName().replaceAll("^" + bundlename + "(_)?|\\.properties$", ""));
+		}
+        */
+		for (Language lang : Language.languageOptions) {
+				language.addItem(lang.getDescription());
+		}
+
+		String languageOption = Settings.getLanguage();
+		try {
+			Settings.setLanguage(languageOption);
+			language.setSelectedItem(Language.getLanguageName(languageOption));
+		} catch (IllegalArgumentException e) {
+			language.removeAllItems();
+			language.addItem(Language.languageOptions[0].getDescription());
+			Settings.setLanguage("en_US");
+			language.setSelectedIndex(0);
+		}
+	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		this.setLocation(e.getXOnScreen() - mouseX, e.getYOnScreen() - mouseY);

@@ -12,8 +12,6 @@ import org.spoutcraft.launcher.Settings;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
-
 
 public class TextSource {
 	public static final ResourceBundle MAIN =
