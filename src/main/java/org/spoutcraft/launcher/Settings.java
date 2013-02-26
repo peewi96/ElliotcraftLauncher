@@ -32,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.spoutcraft.launcher.yml.YAMLNode;
 import org.spoutcraft.launcher.yml.YAMLProcessor;
@@ -55,6 +56,14 @@ public class Settings {
 
 	public static synchronized YAMLProcessor getYAML() {
 		return yaml;
+	}
+
+	public static synchronized String getLanguage() {
+		return yaml.getString("launcher.language", Locale.getDefault().toString());
+	}
+
+	public static synchronized void setLanguage(String lang) {
+		yaml.setProperty("launcher.language", lang);
 	}
 
 	public static synchronized int getLauncherBuild() {
