@@ -63,6 +63,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private static final String CHANGEFOLDER_ACTION = "changefolder";
 	private static final String BETA_ACTION = "beta";
 	private static final String STABLE_ACTION = "stable";
+	private static final String CLOSEDIALOG_KEY = "ESCAPE";
 
 	private JLabel background;
 	private JLabel build;
@@ -105,8 +106,8 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				dispose();
 			}
 		};
-		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, "ESCAPE");
-		getRootPane().getActionMap().put("ESCAPE", escapeAction);
+		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, CLOSEDIALOG_KEY);
+		getRootPane().getActionMap().put(CLOSEDIALOG_KEY, escapeAction);
 
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);

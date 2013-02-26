@@ -65,6 +65,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 	private static final String PASTE_URL = "paste";
 	private static final int FRAME_WIDTH = 520;
 	private static final int FRAME_HEIGHT = 222;
+	private static final String CLOSEDIALOG_KEY = "ESCAPE";
 	private JLabel msgLabel;
 	private JLabel background;
 	private LiteButton save;
@@ -100,8 +101,8 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 				dispose();
 			}
 		};
-		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, "ESCAPE");
-		getRootPane().getActionMap().put("ESCAPE", escapeAction);
+		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, CLOSEDIALOG_KEY);
+		getRootPane().getActionMap().put(CLOSEDIALOG_KEY, escapeAction);
 
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);

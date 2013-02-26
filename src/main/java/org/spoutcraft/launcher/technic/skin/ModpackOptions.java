@@ -59,6 +59,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	private static final String CHANGEFOLDER_ACTION = "changefolder";
 	private static final String OPENFOLDER_ACTION = "openfolder";
 	private static final String CLEAN_BIN_ACTION = "cleanbin";
+	private static final String CLOSEDIALOG_KEY = "ESCAPE";
 
 	public static final String RECOMMENDED = "recommended";
 	public static final String LATEST = "latest";
@@ -99,8 +100,8 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 				dispose();
 			}
 		};
-		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, "ESCAPE");
-		getRootPane().getActionMap().put("ESCAPE", escapeAction);
+		getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, CLOSEDIALOG_KEY);
+		getRootPane().getActionMap().put(CLOSEDIALOG_KEY, escapeAction);
 
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
