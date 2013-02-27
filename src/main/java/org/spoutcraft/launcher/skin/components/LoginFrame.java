@@ -304,7 +304,7 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 	public static final Font getClassicBoldFont(int size) {
 		Font minecraft;
 		try {
-			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("/org/spoutcraft/launcher/resources/avalonbold.ttf"));
+			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("/org/spoutcraft/launcher/resources/avalonbold.ttf")).deriveFont((float)size);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// Fallback
