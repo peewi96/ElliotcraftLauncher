@@ -295,7 +295,7 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 		try {
 			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("x/org/spoutcraft/launcher/resources/avalon.ttf"));
 		} catch (Exception e) {
-			//fuue.printStackTrace();
+			//e.printStackTrace();
 			// Fallback
 			minecraft = new Font("Trebuchet MS", Font.PLAIN, 13);
 		}
