@@ -114,6 +114,10 @@ public class Start {
 			download.setListener(new LauncherDownloadListener(splash));
 			download.run();
 
+			if(temp.length() == 0) {
+				SpoutcraftLauncher.main(args);
+			}
+
 			ProcessBuilder processBuilder = new ProcessBuilder();
 			ArrayList<String> commands = new ArrayList<String>();
 			if (!codeSource.getName().endsWith(".exe")) {
