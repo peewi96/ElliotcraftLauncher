@@ -381,7 +381,7 @@
 										<excludeArtifactId>jackson-core-asl</excludeArtifactId>
 										<excludeArtifactId>jackson-mapper-asl</excludeArtifactId>
 										<excludeArtifactId>jcommander</excludeArtifactId>
-										<excludeArtifactId>lingala-zip4j</excludeArtifactId>
+										<excludeArtifactId>zip4j</excludeArtifactId>
 										<excludeArtifactId>snakeyaml</excludeArtifactId>
 										<excludeArtifactId>swing-layout</excludeArtifactId>
 										<excludeArtifactId>swing-worker</excludeArtifactId>
