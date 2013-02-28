@@ -123,8 +123,10 @@ public class Start {
 			if (!codeSource.getName().endsWith(".exe")) {
 				if (OperatingSystem.getOS().isWindows()) {
 					commands.add("javaw");
-				} else {
+				} else if (OperatingSystem.getOS().isMac()) {
 					commands.add("/Library/Java/Home/bin/java");
+				} else {
+					commands.add("java");
 				}
 				commands.add("-Xmx256m");
 				commands.add("-cp");
