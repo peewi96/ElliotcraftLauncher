@@ -201,7 +201,7 @@ public final class StartupParameters {
 			if (OperatingSystem.getOS().isWindows()) {
 				commands.add("javaw");
 			} else if (OperatingSystem.getOS().isMac()) {
-				commands.add("java");
+				commands.add("/Library/Java/Home/bin/java");
 				commands.add("-Xdock:name=TechniCraft Launcher");
 				try {
 					File icon = new File(Utils.getLauncherDirectory(), "icon.icns");
