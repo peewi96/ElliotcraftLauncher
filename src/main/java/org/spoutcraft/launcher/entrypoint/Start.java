@@ -124,7 +124,7 @@ public class Start {
 				if (OperatingSystem.getOS().isWindows()) {
 					commands.add("javaw");
 				} else {
-					commands.add("java");
+					commands.add("/Library/Java/Home/bin/java");
 				}
 				commands.add("-Xmx256m");
 				commands.add("-cp");
