@@ -149,7 +149,7 @@ public class UpdateThread extends Thread {
 
 		MinecraftClassLoader loader;
 		loader = MinecraftLauncher.getClassLoader(pack);
-		
+
 		Utils.pingURL(RestAPI.getRunCountURL(build.getName()));
 
 		int loaded = 0;

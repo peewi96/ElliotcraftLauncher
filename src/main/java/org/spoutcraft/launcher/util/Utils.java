@@ -134,7 +134,7 @@ public class Utils {
 	public static File getCacheDirectory() {
 		return new File(getLauncherDirectory(), "cache");
 	}
-	
+
 	public static File getAssetsDirectory() {
 		return new File(getLauncherDirectory(), "assets");
 	}
@@ -170,9 +170,9 @@ public class Utils {
 				workingDirectory = new File(userHome, '.' + applicationName + '/');
 			}
 		} else if (os.isMac()) {
-				workingDirectory = new File(userHome, "Library/Application Support/" + applicationName);
+			workingDirectory = new File(userHome, "Library/Application Support/" + applicationName);
 		} else {
-				workingDirectory = new File(userHome, applicationName + '/');
+			workingDirectory = new File(userHome, applicationName + '/');
 		}
 
 		return workingDirectory;
@@ -300,7 +300,7 @@ public class Utils {
 				throw new MinecraftUserNotPremiumException();
 			} else if (result.trim().contains("Old version")) {
 				throw new OutdatedMCLauncherException();
-			} else if (result.trim().contains("Account migrated, use e-mail as username.")) {
+			} else if (result.trim().contains("Mojang account, use e-mail as username.")) {
 				throw new AccountMigratedException();
 			} else {
 				System.err.print("Unknown login result: " + result);

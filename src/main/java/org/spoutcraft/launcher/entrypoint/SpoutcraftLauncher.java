@@ -263,7 +263,7 @@ public class SpoutcraftLauncher {
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 			@Override
 			public void uncaughtException(Thread t, Throwable e) {
-		    	logger.log(Level.SEVERE, "Unhandled Exception in " + t, e);
+				logger.log(Level.SEVERE, "Unhandled Exception in " + t, e);
 			}
 		});
 

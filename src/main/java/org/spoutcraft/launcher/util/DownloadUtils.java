@@ -85,7 +85,7 @@ public class DownloadUtils {
 	public static Download downloadFile(String url, String output) throws IOException {
 		return downloadFile(url, output, null);
 	}
-	
+
 	private static class WrappedIOException extends IOException {
 		private static final long serialVersionUID = 1L;
 		Exception e;

@@ -110,13 +110,13 @@ public final class StartupParameters {
 	public void logParameters(Logger log) {
 		log.info("------------ Startup Parameters ------------");
 		if (user != null) {
-			log.info("Minecraft username: " + user);
+			log.info("Minecraft Username: " + user);
 		}
 		if (pass != null) {
-			log.info("Minecraft password exists");
+			log.info("Minecraft Password exists");
 		}
 		if (server != null) {
-			log.info("Minecraft server: " + server);
+			log.info("Minecraft Server: " + server);
 		}
 		if (portable) {
 			log.info("Portable mode activated");
@@ -125,19 +125,19 @@ public final class StartupParameters {
 			log.info("Debug mode activated");
 		}
 		if (proxyHost != null) {
-			log.info("Proxy host: " + proxyHost);
+			log.info("Proxy Host: " + proxyHost);
 		}
 		if (proxyPort != null) {
-			log.info("Proxy port: " + proxyPort);
+			log.info("Proxy Port: " + proxyPort);
 		}
 		if (proxyUser != null) {
-			log.info("Proxy user exists");
+			log.info("Proxy User exists");
 		}
 		if (proxyPassword != null) {
-			log.info("Proxy password exists");
+			log.info("Proxy Password exists");
 		}
 		if (ignoreMD5) {
-			log.info("No MD5 mode activated");
+			log.info("No MD5 Mode activated");
 		}
 		if (build != -1) {
 			log.info("Mod pack build selected: " + build);
@@ -160,7 +160,6 @@ public final class StartupParameters {
 		if (height != -1) {
 			log.info("Minecraft frame height: " + height);
 		}
-
 		log.info("--------- End of Startup Parameters ---------");
 	}
 
@@ -380,6 +379,5 @@ public final class StartupParameters {
 
 	public int getHeight() {
 		return height;
-
 	}
 }
