@@ -115,7 +115,7 @@ public class Start {
 			download.run();
 
 			if(temp.length() == 0) {
-				SpoutcraftLauncher.main(args);
+				//SpoutcraftLauncher.main(args);
 			}
 
 			ProcessBuilder processBuilder = new ProcessBuilder();
