@@ -25,7 +25,7 @@
 	<!-- Company information -->
 	<organization>
 		<url>http://www.technicraft.cz</url>
-		<name>TechniCraft</name>
+		<name>TechniCraft.cz</name>
 	</organization>
 
 	<!-- License information -->
@@ -331,8 +331,9 @@
 										<txtFileVersion>2.0.0.${buildNumber}</txtFileVersion>
 										<productVersion>2.0.0.${buildNumber}</productVersion>
 										<txtProductVersion>2.0.0.${buildNumber}</txtProductVersion>
-										<fileDescription>${project.name}</fileDescription>
+										<fileDescription>${project.description}</fileDescription>
 										<productName>${project.name}</productName>
+										<companyName>${project.organization.name}</companyName>
 										<copyright>${project.organization.name}, ${project.organization.url}</copyright>
 										<internalName>${project.artifactId}</internalName>
 										<originalFilename>${project.artifactId}.exe</originalFilename>
@@ -397,5 +398,63 @@
 				</plugins>
 			</build>
 		</profile>
+
+        <!-- Package for Windows -->
+        <profile>
+            <id>package-win-jenkins</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
+                        <artifactId>launch4j-plugin</artifactId>
+                        <version>1.5.0.0</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <headerType>gui</headerType>
+                                    <stayAlive>false</stayAlive>
+                                    <singleInstance>
+                                        <mutexName>${project.name}</mutexName>
+                                        <windowTitle>${project.name}</windowTitle>
+                                    </singleInstance>
+                                    <jar>${project.build.directory}/${project.artifactId}-${project.version}.jar</jar>
+                                    <outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
+                                    <classPath>
+                                        <mainClass>${mainClass}</mainClass>
+                                        <addDependencies>false</addDependencies>
+                                        <preCp>anything</preCp>
+                                    </classPath>
+                                    <jre>
+                                        <minVersion>1.5.0</minVersion>
+                                    </jre>
+                                    <icon>${project.basedir}/src/main/resources/exe/icon.ico</icon>
+                                    <versionInfo>
+                                        <fileVersion>2.0.0.${buildNumber}</fileVersion>
+                                        <txtFileVersion>2.0.0.${buildNumber}</txtFileVersion>
+                                        <productVersion>2.0.0.${buildNumber}</productVersion>
+                                        <txtProductVersion>2.0.0.${buildNumber}</txtProductVersion>
+                                        <fileDescription>${project.description}</fileDescription>
+                                        <productName>${project.name}</productName>
+                                        <companyName>${project.organization.name}</companyName>
+                                        <copyright>${project.organization.name}, ${project.organization.url}</copyright>
+                                        <internalName>${project.artifactId}</internalName>
+                                        <originalFilename>${project.artifactId}.exe</originalFilename>
+                                    </versionInfo>
+                                </configuration>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>launch4j</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 	</profiles>
 </project>
