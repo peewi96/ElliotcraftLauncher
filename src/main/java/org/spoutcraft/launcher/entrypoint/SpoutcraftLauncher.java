@@ -244,7 +244,7 @@ public class SpoutcraftLauncher {
 		File logs = new File(logDirectory, "techniclauncher_%D.log");
 		RotatingFileHandler fileHandler = new RotatingFileHandler(logs.getPath());
 
-		fileHandler.setFormatter(new DateOutputFormatter(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")));
+		fileHandler.setFormatter(new DateOutputFormatter(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")));
 
 		for (Handler h : logger.getHandlers()) {
 			logger.removeHandler(h);
