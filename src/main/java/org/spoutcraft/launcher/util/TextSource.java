@@ -14,15 +14,14 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 public class TextSource {
-	private static final String BUNDLE = "org.spoutcraft.launcher.resources.lang.Main";
-	public static final ResourceBundle MAIN = PropertyResourceBundle.getBundle(BUNDLE, getLocaleFromString(Settings.getLanguage()) );
+	public static final ResourceBundle MAIN = PropertyResourceBundle.getBundle(Settings.LANGUAGE_BUNDLE, getLocaleFromString(Settings.getLanguage()) );
 
 	public static String lang(String s) {
 		return MAIN.getString(s);
 	}
 
 	public static String lang(String s, String l) {
-	 	ResourceBundle MAIN = PropertyResourceBundle.getBundle(BUNDLE, getLocaleFromString(l));
+	 	ResourceBundle MAIN = PropertyResourceBundle.getBundle(Settings.LANGUAGE_BUNDLE, getLocaleFromString(l));
 		return MAIN.getString(s);
 	}
 

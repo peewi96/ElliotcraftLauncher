@@ -34,7 +34,7 @@ public final class Language {
 		(new Language("sk_SK", "Slovensky")),
 	};
 
-	public static final Language DEFAULT_LANG = languageOptions[0];
+	public static final Language DEFAULT_LANG = languageOptions[1];
 
 	String language;
 	String text;
@@ -50,6 +50,15 @@ public final class Language {
 
 	public String getDescription() {
 		return text;
+	}
+
+	public static String getLanguage(String lang) {
+		for (Language m : languageOptions) {
+			if (m.getLanguage().equals(lang)) {
+				return m.getLanguage();
+			}
+		}
+		return DEFAULT_LANG.getLanguage();
 	}
 
 	public static String getLanguageName(String id) {

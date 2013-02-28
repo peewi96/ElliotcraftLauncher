@@ -40,6 +40,8 @@ import org.spoutcraft.launcher.yml.YAMLProcessor;
 
 public class Settings {
 	public static final String DEFAULT_MINECRAFT_VERSION = "Latest";
+	public static final String LANGUAGE_BUNDLE = "org.spoutcraft.launcher.resources.lang.Main";
+
 	private static YAMLProcessor yaml;
 
 	public static synchronized void setYAML(YAMLProcessor settings) {
@@ -60,7 +62,7 @@ public class Settings {
 	}
 
 	public static synchronized String getLanguage() {
-		return yaml.getString("launcher.language", Locale.getDefault().toString());
+		return yaml.getString("launcher.language", Language.getLanguage(Locale.getDefault().toString()));
 	}
 
 	public static synchronized void setLanguage(String lang) {
