@@ -39,23 +39,23 @@ public class AnalyticsRequestData {
 	private String eventAction = null;
 	private String eventLabel = null;
 	private Integer eventValue = null;
-	//	utmcsr
-	//	Identifies a search engine, newsletter name, or other source specified in the
-	//	utm_source query parameter See the Marketing Campaign Tracking
-	//	section for more information about query parameters.
-	//
-	//	utmccn
-	//	Stores the campaign name or value in the utm_campaign query parameter.
-	//
-	//	utmctr
-	//	Identifies the keywords used in an organic search or the value in the utm_term query parameter.
-	//
-	//	utmcmd
-	//	A campaign medium or value of utm_medium query parameter.
-	//
-	//	utmcct
-	//	Campaign content or the content of a particular ad (used for A/B testing)
-	//	The value from utm_content query parameter.
+//	utmcsr
+//	Identifies a search engine, newsletter name, or other source specified in the
+//	utm_source query parameter See the �Marketing Campaign Tracking�
+//	section for more information about query parameters.
+//
+//	utmccn
+//	Stores the campaign name or value in the utm_campaign query parameter.
+//
+//	utmctr
+//	Identifies the keywords used in an organic search or the value in the utm_term query parameter.
+//
+//	utmcmd
+//	A campaign medium or value of utm_medium query parameter.
+//
+//	utmcct
+//	Campaign content or the content of a particular ad (used for A/B testing)
+//	The value from utm_content query parameter.
 	// referal:
 	//utmcsr=forums.jinx.com|utmcct=/topic.asp|utmcmd=referral
 	//utmcsr=rolwheels.com|utmccn=(referral)|utmcmd=referral|utmcct=/rol_dhuez_wheels.php

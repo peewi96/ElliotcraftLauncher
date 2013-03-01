@@ -16,6 +16,8 @@
  */
 package org.spoutcraft.launcher.tracking.dispatch;
 
+import org.spoutcraft.launcher.util.Utils;
+
 import java.net.URI;
 import java.util.logging.Level;
 
@@ -39,10 +41,14 @@ public abstract class AnalyticsDispatcher {
 				analyticsString = analyticsString + "&utmqt="
 						+ (System.currentTimeMillis() - time.longValue());
 			} catch (NumberFormatException e) {
-				org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.SEVERE, "Error parsing utmht parameter: ", e);
+				if (Utils.getStartupParameters().isDebugMode()) {
+					org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.SEVERE, "Error parsing utmht parameter: ", e);
+				}
 			}
 		} else {
-			org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.WARNING, "Unable to find utmht parameter: " + analyticsString);
+			if (Utils.getStartupParameters().isDebugMode()) {
+				org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.WARNING, "Unable to find utmht parameter: " + analyticsString);
+			}
 		}
 		dispatchToNetwork(analyticsString);
 	}
