@@ -86,7 +86,7 @@ public class RestAPI {
 
 	public static RestAPI getDefault() {
 		if (TECHNIC == null) {
-			TECHNIC = new RestAPI("http://api.technicraft.cz/api/");
+			TECHNIC = new RestAPI("http://solder.technicraft.cz/api/");
 		}
 
 		return TECHNIC;
@@ -208,7 +208,7 @@ public class RestAPI {
 	}
 
 	public static int getLatestLauncherBuild(String stream) throws RestfulAPIException {
-		LauncherBuild result = getRestObject(LauncherBuild.class, "http://api.technicraft.cz/api/launcher/version/" + stream);
+		LauncherBuild result = getRestObject(LauncherBuild.class, "http://solder.technicraft.cz/launcher/version/" + stream);
 		return result.getLatestBuild();
 	}
 	
@@ -220,7 +220,7 @@ public class RestAPI {
 			ext = "exe";
 		}
 		
-		String url = "http://api.technicraft.cz/api/launcher/url/" + version + "/" + ext;
+		String url = "http://solder.technicraft.cz/launcher/url/" + version + "/" + ext;
 		LauncherURL result = getRestObject(LauncherURL.class, url);
 		return result.getLauncherURL();
 	}
