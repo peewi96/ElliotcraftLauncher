@@ -271,7 +271,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 
 		// Platform website button
-		platform = new ImageHyperlinkButton("http://www.beta.technicpack.net/");
+		platform = new ImageHyperlinkButton("http://www.technicpack.net/");
 		platform.setIcon(getIcon("openPlatformPage.png", 20, 20));
 		platform.setRolloverIcon(getIcon("openPlatformPageInverted.png"));
 		platform.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 25, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 35, 20, 20);
