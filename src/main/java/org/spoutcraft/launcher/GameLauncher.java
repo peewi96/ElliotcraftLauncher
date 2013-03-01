@@ -48,6 +48,7 @@ import org.spoutcraft.launcher.launch.MinecraftLauncher;
 import org.spoutcraft.launcher.skin.components.LoginFrame;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.util.OperatingSystem;
+import org.spoutcraft.launcher.util.TrackerUtils;
 import org.spoutcraft.launcher.util.Utils;
 
 public class GameLauncher extends JFrame implements WindowListener {
@@ -87,6 +88,7 @@ public class GameLauncher extends JFrame implements WindowListener {
 		} catch (RestfulAPIException e1) {
 			e1.printStackTrace();
 		}
+		TrackerUtils.sendPageView(pack.getDisplayName() + " Launched", pack.getDisplayName());
 
 		if (pack != null) {
 			this.setTitle(pack.getDisplayName());

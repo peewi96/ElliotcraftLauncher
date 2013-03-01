@@ -295,14 +295,19 @@ public class Utils {
 		}
 		if (!result.contains(":")) {
 			if (result.trim().contains("Bad login")) {
+				TrackerUtils.sendPageView("Login Failed", "Bad login");
 				throw new BadLoginException();
 			} else if (result.trim().contains("User not premium")) {
+				TrackerUtils.sendPageView("Login Failed", "User not premium");
 				throw new MinecraftUserNotPremiumException();
 			} else if (result.trim().contains("Old version")) {
+				TrackerUtils.sendPageView("Login Failed", "Old version");
 				throw new OutdatedMCLauncherException();
 			} else if (result.trim().contains("Mojang account, use e-mail as username.")) {
+				TrackerUtils.sendPageView("Login Failed", "Mojang account");
 				throw new AccountMigratedException();
 			} else {
+				TrackerUtils.sendPageView("Login Failed", "Unknown login result: " + result);
 				System.err.print("Unknown login result: " + result);
 			}
 			throw new MCNetworkException();

@@ -65,13 +65,12 @@ import org.spoutcraft.launcher.technic.skin.ImageButton;
 import org.spoutcraft.launcher.technic.skin.LauncherOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
-import org.spoutcraft.launcher.util.Download;
+import org.spoutcraft.launcher.util.*;
 import org.spoutcraft.launcher.util.Download.Result;
-import org.spoutcraft.launcher.util.DownloadUtils;
-import org.spoutcraft.launcher.util.ImageUtils;
-import org.spoutcraft.launcher.util.OperatingSystem;
-import org.spoutcraft.launcher.util.ResourceUtils;
-import org.spoutcraft.launcher.util.Utils;
+
+import org.spoutcraft.launcher.tracking.AnalyticsConfigData;
+import org.spoutcraft.launcher.tracking.JGoogleAnalyticsTracker;
+import org.spoutcraft.launcher.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsVersion;
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
 
@@ -108,8 +107,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private JLabel packShadow;
 	private JLabel customName;
 	private long previous = 0L;
+	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(new AnalyticsConfigData("UA-34064856-2"), GoogleAnalyticsVersion.V_4_7_2);
 
 	public MetroLoginFrame() {
+		tracker.setEnabled(true);
 		initComponents();
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
@@ -119,6 +120,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		this.addMouseMotionListener(packBackground);
 		this.addMouseWheelListener(this);
 		getContentPane().add(packBackground);
+		TrackerUtils.sendPageView("TechniCraft Launcher", "Launcher Start v" + Settings.getLauncherBuild());
 		this.setUndecorated(true);
 	}
 
@@ -484,6 +486,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				launcherOptions = new LauncherOptions();
 				launcherOptions.setModal(true);
 				launcherOptions.setVisible(true);
+				TrackerUtils.sendPageView("TechniCraft Launcher", "Unique User (Options)");
+
 			}
 		} else if(action.equals(PACK_REMOVE_ACTION)) {
 			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question"), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -495,6 +499,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				packOptions = new ModpackOptions(getSelector().getSelectedPack());
 				packOptions.setModal(true);
 				packOptions.setVisible(true);
+				TrackerUtils.sendPageView(getSelector().getSelectedPack().getDisplayName()+" Options", getSelector().getSelectedPack().getDisplayName());
 			}
 		} else if (action.equals(EXIT_ACTION)) {
 			System.exit(0);
