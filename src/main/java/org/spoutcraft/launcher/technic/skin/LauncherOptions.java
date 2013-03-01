@@ -369,22 +369,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 	@SuppressWarnings("restriction")
 	private void populateLanguages(JComboBox language) {
-		/* LOAD LANGS FROM resources/
-		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		final String bundlepackage = "org.spoutcraft.launcher.resources.lang";
-		final String bundlename = "Main";
-
-		File root = new File(loader.getResource(bundlepackage.replace('.', '/')).getFile());
-		File[] files = root.listFiles(new FilenameFilter() {
-			public boolean accept(File dir, String name) {
-				return name.matches("^" + bundlename + "(_\\w{2}(_\\w{2})?)?\\.properties$");
-			}
-		});
-
-		for (File file : files) {
-			language.addItem(file.getName().replaceAll("^" + bundlename + "(_)?|\\.properties$", ""));
-		}
-        */
 		for (Language lang : Language.languageOptions) {
 				language.addItem(lang.getDescription());
 		}

@@ -348,7 +348,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			}
 			
 			DynamicButton userButton = new DynamicButton(this, image, 1, accountName, userName);
-			userButton.setFont(fontbold.deriveFont(12F));
+			userButton.setFont(fontbold.deriveFont(13F));
 
 			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 87, 45, 45);
 			contentPane.add(userButton);
