@@ -6,8 +6,8 @@
 	<name>TechniCraft Launcher</name>
 	<groupId>org.spoutcraft</groupId>
 	<artifactId>TechniCraft</artifactId>
-    <version>2.0-${buildNumber}</version>
-    <url>http://technicraft.cz</url>
+	<version>2.0-${buildNumber}</version>
+	<url>http://technicraft.cz</url>
 	<description>Custom launcher for installing and updating Majncraft and Technicraft related modpacks.</description>
 
 	<!-- Build properties -->
@@ -331,7 +331,7 @@
 										<txtFileVersion>2.0.0.${buildNumber}</txtFileVersion>
 										<productVersion>2.0.0.${buildNumber}</productVersion>
 										<txtProductVersion>2.0.0.${buildNumber}</txtProductVersion>
-										<fileDescription>${project.description}</fileDescription>
+										<fileDescription>${project.name}</fileDescription>
 										<productName>${project.name}</productName>
 										<companyName>${project.organization.name}</companyName>
 										<copyright>${project.organization.name}, ${project.organization.url}</copyright>
@@ -438,7 +438,7 @@
                                         <txtFileVersion>2.0.0.${buildNumber}</txtFileVersion>
                                         <productVersion>2.0.0.${buildNumber}</productVersion>
                                         <txtProductVersion>2.0.0.${buildNumber}</txtProductVersion>
-                                        <fileDescription>${project.description}</fileDescription>
+                                        <fileDescription>${project.name}</fileDescription>
                                         <productName>${project.name}</productName>
                                         <companyName>${project.organization.name}</companyName>
                                         <copyright>${project.organization.name}, ${project.organization.url}</copyright>
