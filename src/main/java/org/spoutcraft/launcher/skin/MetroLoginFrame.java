@@ -65,6 +65,7 @@ import org.spoutcraft.launcher.technic.skin.ImageButton;
 import org.spoutcraft.launcher.technic.skin.LauncherOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
+import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
 import org.spoutcraft.launcher.util.*;
 import org.spoutcraft.launcher.util.Download.Result;
 
@@ -107,7 +108,9 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private JLabel packShadow;
 	private JLabel customName;
 	private long previous = 0L;
-	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(new AnalyticsConfigData("UA-34064856-2"), GoogleAnalyticsVersion.V_4_7_2);
+	static AnalyticsConfigData config = new AnalyticsConfigData("UA-34064856-2");
+	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
+
 
 	public MetroLoginFrame() {
 		tracker.setEnabled(true);
@@ -120,7 +123,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		this.addMouseMotionListener(packBackground);
 		this.addMouseWheelListener(this);
 		getContentPane().add(packBackground);
-		TrackerUtils.sendPageView("TechniCraft Launcher", "Launcher Start v" + Settings.getLauncherBuild());
+		TrackerUtils.sendPageView("skin/MetroLoginFrame.java", "Launcher Start v" + Settings.getLauncherBuild());
+		AWTSystemPopulator.populateConfigData(config);
 		this.setUndecorated(true);
 	}
 
@@ -499,7 +503,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				packOptions = new ModpackOptions(getSelector().getSelectedPack());
 				packOptions.setModal(true);
 				packOptions.setVisible(true);
-				TrackerUtils.sendPageView(getSelector().getSelectedPack().getDisplayName()+" Options", getSelector().getSelectedPack().getDisplayName());
+				TrackerUtils.sendPageView(getSelector().getSelectedPack().getDisplayName()+" Options", "Unique User ("+getSelector().getSelectedPack().getDisplayName()+" options)");
 			}
 		} else if (action.equals(EXIT_ACTION)) {
 			System.exit(0);

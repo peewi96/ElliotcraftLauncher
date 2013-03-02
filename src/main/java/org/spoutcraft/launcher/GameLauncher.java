@@ -88,7 +88,10 @@ public class GameLauncher extends JFrame implements WindowListener {
 		} catch (RestfulAPIException e1) {
 			e1.printStackTrace();
 		}
-		TrackerUtils.sendPageView(pack.getDisplayName() + " Launched", pack.getDisplayName());
+		TrackerUtils.sendPageView("Launched "+pack.getDisplayName(), pack.getDisplayName()+" v"+pack.getBuild());
+		TrackerUtils.sendPageView("Launcher configuration", "RAM: "+Settings.getMemory());
+		TrackerUtils.sendPageView("Launcher configuration", "Build stream: "+Settings.getBuildStream());
+		TrackerUtils.sendPageView("Launcher configuration", "Launcher Language: "+Settings.getLanguage());
 
 		if (pack != null) {
 			this.setTitle(pack.getDisplayName());
