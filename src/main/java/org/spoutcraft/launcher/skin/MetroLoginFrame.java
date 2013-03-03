@@ -490,8 +490,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				launcherOptions = new LauncherOptions();
 				launcherOptions.setModal(true);
 				launcherOptions.setVisible(true);
-				TrackerUtils.sendPageView("TechniCraft Launcher", "Unique User (Options)");
-
 			}
 		} else if(action.equals(PACK_REMOVE_ACTION)) {
 			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question"), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
