@@ -250,6 +250,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	
 	private void action(String action, JComponent c) {
 		if (action.equals(QUIT_ACTION)) {
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 			dispose();
 		} else if (action.equals(SAVE_ACTION)) {
 			Settings.setModpackBuild(installedPack.getName(), build);
@@ -257,20 +258,25 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 				installedPack.setPackDirectory(installedDirectory);
 			}
 			Settings.getYAML().save();
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 			dispose();
 		} else if (action.equals(BUILD_ACTION)) {
 			build = ((BuildLabel) buildSelector.getSelectedItem()).getBuild();
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 		} else if (action.equals(REC_ACTION)) {
 			buildSelector.setEnabled(false);
 			buildSelector.setSelectedItem(new BuildLabel(installedPack.getRecommended()));
 			build = RECOMMENDED;
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 		} else if (action.equals(LATEST_ACTION)) {
 			buildSelector.setEnabled(false);
 			buildSelector.setSelectedItem(new BuildLabel(installedPack.getLatest()));
 			build = LATEST;
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 		} else if (action.equals(MANUAL_ACTION)) {
 			buildSelector.setEnabled(true);
 			build = ((BuildLabel) buildSelector.getSelectedItem()).getBuild();
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action, build);
 		} else if (action.equals(OPENFOLDER_ACTION)) {
 			if (installedDirectory.exists()) {
 				Compatibility.open(installedDirectory);
@@ -287,9 +293,11 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 					openFolder.setVisible(true);
 				}
 			}
+			MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 		} else if (action.equals(CLEAN_BIN_ACTION)) {
 			int result = JOptionPane.showConfirmDialog(c, lang("modpackoptions.reset.question"), lang("modpackoptions.reset.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
+				MetroLoginFrame.tracker.trackEvent("Modpack Options ("+installedPack.getDisplayName()+")", action);
 				cleanBin();
 				dispose();
 			}

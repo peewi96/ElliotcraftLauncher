@@ -490,26 +490,30 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				launcherOptions = new LauncherOptions();
 				launcherOptions.setModal(true);
 				launcherOptions.setVisible(true);
+				tracker.trackEvent("Login Frame", action);
 			}
 		} else if(action.equals(PACK_REMOVE_ACTION)) {
 			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question"), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
 				getSelector().removePack();
+				tracker.trackEvent("Login Frame", action, getSelector().getSelectedPack().getDisplayName());
 			}
 		} else if (action.equals(PACK_OPTIONS_ACTION)) {
 			if (packOptions == null || !packOptions.isVisible()) {
 				packOptions = new ModpackOptions(getSelector().getSelectedPack());
 				packOptions.setModal(true);
 				packOptions.setVisible(true);
-				TrackerUtils.sendPageView(getSelector().getSelectedPack().getDisplayName()+" Options", "Unique User ("+getSelector().getSelectedPack().getDisplayName()+" options)");
+				tracker.trackEvent("Login Frame", action, getSelector().getSelectedPack().getDisplayName());
 			}
 		} else if (action.equals(EXIT_ACTION)) {
+			tracker.trackEvent("Login Frame", action);
 			System.exit(0);
 		} else if (action.equals(PACK_LEFT_ACTION)) {
 			getSelector().selectPreviousPack();
 		} else if (action.equals(PACK_RIGHT_ACTION)) {
 			getSelector().selectNextPack();
 		} else if (action.equals(LOGIN_ACTION)) {
+			tracker.trackEvent("Login Frame", action);
 			PackInfo pack = getSelector().getSelectedPack();
 			if (pack instanceof AddPack) {
 				return;
@@ -536,6 +540,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			this.remember.setSelected(true);
 			pass.setLabelVisible(false);
 			name.setLabelVisible(false);
+			tracker.trackEvent("Login Frame", action);
 		}  else if (action.equals(REMOVE_USER)) {
 			DynamicButton userButton = removeButtons.get((JButton)c);
 			this.removeAccount(userButton.getAccount());
@@ -547,8 +552,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			getContentPane().remove(c);
 			removeButtons.remove(c);
 			writeUsernameList();
+			tracker.trackEvent("Login Frame", action);
 		} else if (action.equals(CONSOLE_ACTION)) {
 			SpoutcraftLauncher.setupConsole();
+			tracker.trackEvent("Login Frame", action);
 		}
 	}
 

@@ -282,19 +282,25 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			if (mem != oldMem || oldperm != perm || directoryChanged || oldLang != lang) {
 				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question", lang), lang("options.restart.title", lang), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
+					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
 					SpoutcraftLauncher.relaunch(true);
+				} else {
+					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 0);
 				}
 			}
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 			dispose();
 		} else if (action.equals(LOGS_ACTION)) {
 			File logDirectory = new File(Utils.getLauncherDirectory(), "logs");
 			Compatibility.open(logDirectory);
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 		} else if (action.equals(CONSOLE_ACTION)) {
 			SpoutcraftLauncher.setupConsole();
 			dispose();
 		} else if (action.equals(CHANGEFOLDER_ACTION)) {
 			int result = fileChooser.showOpenDialog(this);
-			
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
+
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				packLocation.setText(file.getPath());
@@ -304,9 +310,11 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		} else if (action.equals(BETA_ACTION)) {
 			buildStream = "beta";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action, buildStream, getLatestLauncherBuild(buildStream));
 		} else if (action.equals(STABLE_ACTION)) {
 			buildStream = "stable";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action, buildStream, getLatestLauncherBuild(buildStream));
 		}
 		
 	}
