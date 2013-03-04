@@ -295,6 +295,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			Compatibility.open(logDirectory);
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 		} else if (action.equals(CONSOLE_ACTION)) {
+			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 			SpoutcraftLauncher.setupConsole();
 			dispose();
 		} else if (action.equals(CHANGEFOLDER_ACTION)) {
