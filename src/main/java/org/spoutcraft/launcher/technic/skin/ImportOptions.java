@@ -245,6 +245,9 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 			} else if (matchUrl(url)) {
 				try {
 					info = RestAPI.getCustomModpack(url);
+					if (!info.hasMirror() && !info.getURL().startsWith("http://") && !info.getURL().endsWith(".zip")) {
+						throw new RestfulAPIException("Invalid download url for this pack: " + info.getURL());
+					}
 					msgLabel.setText(lang("platform.modpack")+" " + info.getDisplayName());
 					this.url = url;
 					enableComponent(folder, true);
