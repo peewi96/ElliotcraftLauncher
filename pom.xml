@@ -362,13 +362,13 @@
 					<plugin>
 						<groupId>org.spout</groupId>
 						<artifactId>osxapp-maven-plugin</artifactId>
-						<version>1.2-SNAPSHOT</version>
+						<version>1.3-SNAPSHOT</version>
 						<executions>
 							<execution>
 								<configuration>
 									<bundleName>${project.name}</bundleName>
 									<version>${project.version}</version>
-                                    <mainClass>${mainClass}</mainClass>
+									<mainClass>${mainClass}</mainClass>
 									<iconFile>${project.basedir}/src/main/resources/app/icon.icns</iconFile>
 									<dictionaryFile>${project.basedir}/src/main/resources/app/Info.plist.template</dictionaryFile>
 									<javaApplicationStub>${project.basedir}/src/main/resources/app/JavaApplicationStub</javaApplicationStub>
