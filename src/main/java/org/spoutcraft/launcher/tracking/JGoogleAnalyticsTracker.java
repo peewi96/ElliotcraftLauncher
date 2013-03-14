@@ -463,11 +463,13 @@ public class JGoogleAnalyticsTracker {
             connection.setInstanceFollowRedirects(true);
             connection.connect();
             int responseCode = connection.getResponseCode();
+            /*
             if (Utils.getStartupParameters().isDebugMode() && responseCode != HttpURLConnection.HTTP_OK) {
 				org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.SEVERE, "JGoogleAnalyticsTracker: Error requesting url "+argURL+", received response code "+responseCode);
             } else {
 				org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.INFO, "JGoogleAnalyticsTracker: Tracking success for url "+argURL);
             }
+            */
         } catch (Exception e) {
 			org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.SEVERE, "Error making tracking request", e);
         }
