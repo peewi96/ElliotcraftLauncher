@@ -149,7 +149,7 @@ public class Download implements Runnable {
 		}
 
 		if (is.get() == null) {
-			throw new DownloadException("Unable to download file");
+			throw new DownloadException("Unable to download file from " + urlconnection.getURL());
 		}
 		return new BufferedInputStream(is.get());
 	}

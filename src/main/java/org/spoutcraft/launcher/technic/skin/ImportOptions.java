@@ -273,6 +273,10 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 					public void done() {
 						try {
 							info = get();
+							if (!info.hasMirror() && !(info.getURL().startsWith("http://") || info.getURL().startsWith("https://"))) {
+								msgLabel.setText("Modpack has invalid download link. Consult modpack author.");
+								return;
+							}
 							msgLabel.setText(lang("platform.modpack")+" " + info.getDisplayName());
 							ImportOptions.this.url = url;
 							enableComponent(folder, true);
