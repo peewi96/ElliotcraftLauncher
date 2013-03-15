@@ -243,7 +243,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 
 	public void urlUpdated(Document doc) {
 		try {
-			final String url = doc.getText(0, doc.getLength());
+			final String url = doc.getText(0, doc.getLength()).trim();
 			if (url.isEmpty()) {
 				msgLabel.setText(lang("platform.addpack"));
 				enableComponent(save, false);
