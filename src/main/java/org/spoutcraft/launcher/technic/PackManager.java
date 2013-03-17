@@ -48,7 +48,8 @@ public class PackManager {
 		}
 
 		if (packs.size() < 1) {
-			for (String pack : RestAPI.getDefaults()) {
+			for (PackInfo pack : RestAPI.getDefaults()) {
+				pack.setRest(RestAPI.getDefault());
 				initPack(packs, pack);
 			}
 		}
@@ -66,6 +67,10 @@ public class PackManager {
 		if (Utils.getStartupParameters().isCustomPack()) {
 			packs.put("addpack", new AddPack());
 		}
+	}
+
+	public static void initPack(PackMap packs, PackInfo pack) {
+		packs.put(pack.getName(), pack);
 	}
 
 	public static void initPack(PackMap packs, String pack) {
@@ -116,10 +121,10 @@ public class PackManager {
 		PackMap packs = selector.getPackMap();
 		int index = 0;
 
-		for (String pack : RestAPI.getDefaults()) {
-			PackInfo info = loadPack(packs, pack);
+		for (PackInfo pack : RestAPI.getDefaults()) {
+			PackInfo info = loadPack(packs, pack.getName());
 			packs.add(info);
-			packs.reorder(index, pack);
+			packs.reorder(index, pack.getName());
 			index++;
 			selector.selectPack(packs.getSelected());
 		}
