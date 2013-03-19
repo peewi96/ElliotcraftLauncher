@@ -311,7 +311,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				if (!FileUtils.checkDirectory(file)) {
-					JOptionPane.showMessageDialog(c, "Please select an empty directory, or your default install folder with settings.yml in it.", "Invalid Location", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(c, lang("options.selectemptyfolder.dialog"), lang("options.selectemptyfolder.invalid"), JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				packLocation.setText(file.getPath());
