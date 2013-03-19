@@ -79,6 +79,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private String installedDirectory;
 	private LiteTextBox packLocation;
 	private boolean directoryChanged = false;
+	private boolean streamChanged = false;
 	private String buildStream = "stable";
 	private LiteButton changeFolder;
 	private LiteButton logs;
@@ -279,9 +280,13 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			String lang = Language.languageOptions[language.getSelectedIndex()].getLanguage();
 			Settings.setLanguage(lang);
 			Settings.getYAML().save();
-			
-			if (mem != oldMem || oldperm != perm || directoryChanged || oldLang != lang) {
-				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question", lang), lang("options.restart.title", lang), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+			if (directoryChanged || streamChanged) {
+				JOptionPane.showMessageDialog(c, lang("options.manualrestart.question"), lang("options.restart.title"), JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
+			if (mem != oldMem || oldperm != perm) {
+				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question", lang), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
 					SpoutcraftLauncher.relaunch(true);
@@ -316,11 +321,11 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		} else if (action.equals(BETA_ACTION)) {
 			buildStream = "beta";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action, buildStream, getLatestLauncherBuild(buildStream));
+			streamChanged = true;
 		} else if (action.equals(STABLE_ACTION)) {
 			buildStream = "stable";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action, buildStream, getLatestLauncherBuild(buildStream));
+			streamChanged = true;
 		}
 		
 	}
