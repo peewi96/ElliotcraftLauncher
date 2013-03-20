@@ -141,10 +141,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		loginStrip.setBackground(new Color(181, 225, 17));
 		//setIcon(loginStrip, "xx.png", loginStrip.getWidth(), loginStrip.getHeight());
 
-		packShadow = new JLabel();
-		packShadow.setBounds(FRAME_WIDTH / 2 - (176 / 2), FRAME_HEIGHT / 2 + 45, 176, 38);
-		setIcon(packShadow, "packShadow.png", packShadow.getWidth(), packShadow.getHeight());
-
 		// Setup username box
 		name = new LiteTextBox(this, lang("gui.username"));
 		name.setBounds(loginStrip.getX() + 1, loginStrip.getY() + 24, 115, 24);

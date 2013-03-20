@@ -292,24 +292,24 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 
 	public static final Font getClassicFont(int size) {
 		Font minecraft;
-		try {
-			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("x/org/spoutcraft/launcher/resources/avalon.ttf"));
-		} catch (Exception e) {
+		//try {
+		//	minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("/org/spoutcraft/launcher/resources/avalon.ttf"));
+		//} catch (Exception e) {
 			//e.printStackTrace();
 			// Fallback
 			minecraft = new Font("Trebuchet MS", Font.PLAIN, 13);
-		}
+		//}
 		return minecraft.deriveFont((float)size);
 	}
 	public static final Font getClassicBoldFont(int size) {
 		Font minecraft;
-		try {
-			minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("x/org/spoutcraft/launcher/resources/avalonbold.ttf"));
-		} catch (Exception e) {
+		//try {
+		//	minecraft = Font.createFont(Font.TRUETYPE_FONT, getResourceAsStream("/org/spoutcraft/launcher/resources/avalonbold.ttf"));
+		//} catch (Exception e) {
 			//e.printStackTrace();
 			// Fallback
 			minecraft = new Font("Trebuchet MS", Font.BOLD, 13);
-		}
+		//}
 		return minecraft.deriveFont((float)size);
 	}
 	public final void handleException(Exception e) {
