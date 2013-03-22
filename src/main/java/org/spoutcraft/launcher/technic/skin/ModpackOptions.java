@@ -134,6 +134,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		buildSelector.setBounds((FRAME_WIDTH/2)-50, 50, 195, 25);
 		buildSelector.setActionCommand(BUILD_ACTION);
 		buildSelector.addActionListener(this);
+		UIManager.put("ComboBox.disabledForeground", Color.DARK_GRAY);
 		populateBuilds(buildSelector);
 		
 		build = Settings.getModpackBuild(installedPack.getName());
