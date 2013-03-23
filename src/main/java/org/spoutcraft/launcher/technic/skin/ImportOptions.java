@@ -59,6 +59,7 @@ import org.spoutcraft.launcher.skin.MetroLoginFrame;
 import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.technic.CustomInfo;
+import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.rest.RestAPI;
 import org.spoutcraft.launcher.util.Utils;
 
@@ -82,7 +83,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 	private LiteTextBox install;
 	private JFileChooser fileChooser;
 	private int mouseX = 0, mouseY = 0;
-	private CustomInfo info = null;
+	private PackInfo info = null;
 	private String url = "";
 	private Document urlDoc;
 	private File installDir;
@@ -216,7 +217,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 				Settings.setPackDirectory(info.getName(), installDir);
 				Settings.getYAML().save();
 				info.init();
-				Launcher.getFrame().getSelector().addPack(info.getPack());
+				Launcher.getFrame().getSelector().addPack(info);
 				dispose();
 			}
 		} else if (action.equals(PASTE_URL)) {
@@ -272,10 +273,12 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 					@Override
 					public void done() {
 						try {
-							info = get();
-							if (!info.hasMirror() && !(info.getURL().startsWith("http://") || info.getURL().startsWith("https://"))) {
+							CustomInfo result = get();
+							if (!result.hasMirror() && !(result.getURL().startsWith("http://") || result.getURL().startsWith("https://"))) {
 								msgLabel.setText(lang("platform.invalidurl"));
 								return;
+							} else {
+								info = result.getPack();
 							}
 							msgLabel.setText(lang("platform.modpack")+" " + info.getDisplayName());
 							ImportOptions.this.url = url;
@@ -302,6 +305,9 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 						} catch (InterruptedException e) {
 							// TODO Interrupted exception?
 							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+							msgLabel.setText(lang("platform.invalidsolder"));
 						} finally {
 							// always turn these back on
 							enableComponent(urlTextBox, true);
