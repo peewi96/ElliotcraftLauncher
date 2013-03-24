@@ -368,7 +368,7 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 		super.setVisible(visible);
 		if (visible) {
 			showJava15Warning();
-			showJava17MacWarning();
+			//showJava17MacWarning();
 		}
 	}
 
