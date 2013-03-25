@@ -210,10 +210,15 @@ public class GameLauncher extends JFrame implements WindowListener {
 
 		validate();
 		this.setVisible(true);
-		minecraft.init();
-		minecraft.setSize(getWidth(), getHeight());
-		minecraft.start();
-		Launcher.getFrame().onEvent(Event.GAME_LAUNCH);
+		try {
+			minecraft.init();
+			minecraft.setSize(getWidth(), getHeight());
+			minecraft.start();
+			Launcher.getFrame().onEvent(Event.GAME_LAUNCH);
+		} catch (Throwable t) {
+			Launcher.getLogger().log(Level.SEVERE, "Unable to launch TechniCraft", t);
+			SpoutcraftLauncher.flush();
+		}
 		return;
 	}
 

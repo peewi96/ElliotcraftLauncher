@@ -303,6 +303,10 @@ public class SpoutcraftLauncher {
 		Settings.setYAML(settings);
 	}
 
+	public static void flush() {
+		if (handler != null) handler.flush();
+	}
+
 	public static void setupConsole() {
 		if (console != null) {
 			console.dispose();
