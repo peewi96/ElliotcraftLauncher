@@ -289,7 +289,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
 				if (!FileUtils.checkEmpty(file)) {
-					JOptionPane.showMessageDialog(c, "Please select an empty directory.", "Invalid Location", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(c, lang("options.selectemptydir.dialog"), lang("options.selectemptyfolder.invalid"), JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				packLocation.setText(file.getPath());
