@@ -42,6 +42,7 @@ import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.util.Compatibility;
+import org.spoutcraft.launcher.util.FileUtils;
 import org.spoutcraft.launcher.util.Utils;
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
@@ -287,6 +288,10 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
+				if (!FileUtils.checkEmpty(file)) {
+					JOptionPane.showMessageDialog(c, "Please select an empty directory.", "Invalid Location", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
 				packLocation.setText(file.getPath());
 				installedDirectory = file;
 				directoryChanged = true;
