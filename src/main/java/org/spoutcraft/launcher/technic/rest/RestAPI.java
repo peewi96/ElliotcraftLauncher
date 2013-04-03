@@ -156,7 +156,11 @@ public class RestAPI {
 	}
 
 	public String getModpackBackgroundURL(String modpack) {
-		return getMirrorURL() + modpack + "/resources/background.png";
+		if (Settings.isPackCustom(modpack)) {
+			return getMirrorURL() + modpack + "/resources/background.jpg";
+		} else {
+			return getMirrorURL() + modpack + "/resources/background.png";
+		}
 	}
 
 	public String getModpackIconURL(String modpack) {
