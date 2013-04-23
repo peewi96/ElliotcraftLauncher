@@ -89,7 +89,7 @@ public class Mover {
 			} else {
 				commands.add("java");
 			}
-			commands.add("-Xmx256m");
+			commands.add("-Xmx512m");
 			commands.add("-cp");
 			commands.add(codeSource.getAbsolutePath());
 			commands.add(SpoutcraftLauncher.class.getName());

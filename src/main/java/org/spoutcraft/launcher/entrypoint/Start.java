@@ -128,7 +128,7 @@ public class Start {
 				} else {
 					commands.add("java");
 				}
-				commands.add("-Xmx256m");
+				commands.add("-Xmx512m");
 				commands.add("-cp");
 				commands.add(temp.getAbsolutePath());
 				commands.add(Mover.class.getName());
