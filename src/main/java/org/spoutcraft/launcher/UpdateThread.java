@@ -69,6 +69,8 @@ import org.spoutcraft.launcher.util.Utils;
 import org.spoutcraft.launcher.yml.YAMLFormat;
 import org.spoutcraft.launcher.yml.YAMLProcessor;
 
+import static org.spoutcraft.launcher.util.TextSource.lang;
+
 public class UpdateThread extends Thread {
 	/**
 	 * We only want to clean the old logs, temp folders once per startup
@@ -136,7 +138,7 @@ public class UpdateThread extends Thread {
 						updateModpack(build);
 					}
 					else {
-						int result = JOptionPane.showConfirmDialog(Launcher.getFrame(), "Would you like to update this pack?", "Update Found", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+						int result = JOptionPane.showConfirmDialog(Launcher.getFrame(), lang("modpack.updatefound.question"), lang("modpack.updatefound"), JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 						if (result == JOptionPane.YES_OPTION) {
 							updateModpack(build);
 						}
