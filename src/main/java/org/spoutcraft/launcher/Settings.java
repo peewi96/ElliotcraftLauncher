@@ -114,7 +114,7 @@ public class Settings {
 	}
 
 	public static synchronized boolean getPermGen() {
-		return yaml.getBoolean("launcher.permgen", true);
+		return yaml.getBoolean("launcher.permgen", false);
 	}
 
 	public static synchronized String getDeveloperCode() {

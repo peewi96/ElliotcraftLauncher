@@ -72,8 +72,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private JComboBox memory;
 	private JComboBox language;
 	private JCheckBox permgen;
-	private JRadioButton beta;
-	private JRadioButton stable;
+	private JCheckBox beta;
 	private JFileChooser fileChooser;
 	private int mouseX = 0, mouseY = 0;
 	private String installedDirectory;
@@ -132,24 +131,11 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		build = new JLabel(LAUNCHER_PREPEND + Settings.getLauncherBuild());
 		build.setBounds(15, title.getY() + title.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		build.setFont(fontregular);
+		build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
 		build.setForeground(Color.WHITE);
 		
-		ButtonGroup group = new ButtonGroup();
-		
-		stable = new JRadioButton(lang("options.stable"));
-		stable.setBounds(10, build.getY() + build.getHeight() + 5, FRAME_WIDTH - 20, 20);
-		stable.setFont(fontregular);
-		stable.setForeground(Color.WHITE);
-		stable.setContentAreaFilled(false);
-		stable.setFocusPainted(false);
-		stable.setBorderPainted(false);
-		stable.setSelected(true);
-		stable.setActionCommand(STABLE_ACTION);
-		stable.addActionListener(this);
-		group.add(stable);
-
-		beta = new JRadioButton(lang("options.beta"));
-		beta.setBounds(10, stable.getY() + stable.getHeight() + 5, FRAME_WIDTH - 20, 20);
+		beta = new JCheckBox(lang("options.beta"));
+		beta.setBounds(10, build.getY() + build.getHeight() + 5, FRAME_WIDTH - 20, 20);
 		beta.setFont(fontregular);
 		beta.setForeground(Color.WHITE);
 		beta.setContentAreaFilled(false);
@@ -157,11 +143,10 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		beta.setBorderPainted(false);
 		beta.setActionCommand(BETA_ACTION);
 		beta.addActionListener(this);
-		group.add(beta);
 		
 		buildStream = Settings.getBuildStream();
 		if (buildStream.equals("stable")) {
-			stable.setSelected(true);
+			beta.setSelected(false);
 		} else if (buildStream.equals("beta")) {
 			beta.setSelected(true);
 		}
@@ -237,7 +222,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		contentPane.add(permgen);
 		contentPane.add(build);
 		contentPane.add(beta);
-		contentPane.add(stable);
 		contentPane.add(changeFolder);
 		contentPane.add(packLocation);
 		contentPane.add(logs);
@@ -318,11 +302,11 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				installedDirectory = file.getAbsolutePath();
 				directoryChanged = true;
 			}
-		} else if (action.equals(BETA_ACTION)) {
+		} else if (action.equals(BETA_ACTION) && beta.isSelected()) {
 			buildStream = "beta";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
 			streamChanged = true;
-		} else if (action.equals(STABLE_ACTION)) {
+		} else if (action.equals(BETA_ACTION) && !beta.isSelected()) {
 			buildStream = "stable";
 			build.setText(LAUNCHER_PREPEND + getLatestLauncherBuild(buildStream));
 			streamChanged = true;
