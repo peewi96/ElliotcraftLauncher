@@ -39,6 +39,8 @@ import javax.swing.*;
 import org.spoutcraft.launcher.Memory;
 import org.spoutcraft.launcher.Language;
 import org.spoutcraft.launcher.Settings;
+import org.spoutcraft.launcher.UpdateThread;
+import org.spoutcraft.launcher.api.Launcher;
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
 import org.spoutcraft.launcher.skin.MetroLoginFrame;
@@ -63,7 +65,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private static final String CONSOLE_ACTION = "console";
 	private static final String CHANGEFOLDER_ACTION = "changefolder";
 	private static final String BETA_ACTION = "beta";
-	private static final String STABLE_ACTION = "stable";
 	private static final String ESCAPE_ACTION = "escape";
 
 	private JLabel background;
@@ -72,6 +73,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private JComboBox memory;
 	private JComboBox language;
 	private JCheckBox permgen;
+	private JCheckBox latestLWJGL;
 	private JCheckBox beta;
 	private JFileChooser fileChooser;
 	private int mouseX = 0, mouseY = 0;
@@ -181,6 +183,16 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		permgen.setForeground(Color.WHITE);
 		permgen.setIconTextGap(15);
 
+		latestLWJGL = new JCheckBox(lang("options.latestlwjgl"));
+		latestLWJGL.setFont(fontregular);
+		latestLWJGL.setBounds(10, permgen.getY() + permgen.getHeight() + 2, FRAME_WIDTH - 20, 25);
+		latestLWJGL.setSelected(Settings.getLatestLWJGL());
+		latestLWJGL.setBorderPainted(false);
+		latestLWJGL.setFocusPainted(false);
+		latestLWJGL.setContentAreaFilled(false);
+		latestLWJGL.setForeground(Color.WHITE);
+		latestLWJGL.setIconTextGap(15);
+
 		installedDirectory = Settings.getLauncherDir();
 
 		packLocation = new LiteTextBox(this, "");
@@ -220,6 +232,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		Container contentPane = getContentPane();
 		contentPane.add(permgen);
+		contentPane.add(latestLWJGL);
 		contentPane.add(build);
 		contentPane.add(beta);
 		contentPane.add(changeFolder);
@@ -277,6 +290,12 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				} else {
 					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 0);
 				}
+			}
+			if (latestLWJGL.isSelected() != Settings.getLatestLWJGL()) {
+				System.out.println("[LWJGL] Version changed! Clearing lwjgl from cache.");
+				Settings.setLatestLWJGL(latestLWJGL.isSelected());
+				Settings.getYAML().save();
+				UpdateThread.cleanupLWJGL();
 			}
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 			dispose();

@@ -88,6 +88,16 @@ public class UpdateThread extends Thread {
 	private static final String LINUX_NATIVES_URL = "http://s3.amazonaws.com/MinecraftDownload/linux_natives.jar";
 	private static final String LINUX_NATIVES_MD5 = "3b4435ec85e63faa041b4c080b815b22";
 
+	// Temporarily hardcoded for latest LWJGL
+	private static final String WINDOWS_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/windows_natives.jar";
+	private static final String WINDOWS_LATEST_NATIVES_MD5 = "b6de833edbc5518640c70ed6aa82f3ab";
+
+	private static final String OSX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/macosx_natives.jar";
+	private static final String OSX_LATEST_NATIVES_MD5 = "3623727e5c33c3f8b3626afe065d7726";
+
+	private static final String LINUX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/linux_natives.jar";
+	private static final String LINUX_LATEST_NATIVES_MD5 = "9a9fff02996015dfa3026cf065bb3a3c";
+
 	private final Logger logger = Logger.getLogger("launcher");
 	private final AtomicBoolean waiting = new AtomicBoolean(false);
 	private final AtomicBoolean valid = new AtomicBoolean(false);
@@ -269,6 +279,7 @@ public class UpdateThread extends Thread {
 	}
 
 	public boolean isMinecraftUpdateAvailable(Modpack build) {
+		System.out.println("isMinecraftUpdateAvailable?");
 		int steps = 7;
 		if (!pack.getBinDir().exists()) {
 			return true;
@@ -311,7 +322,6 @@ public class UpdateThread extends Thread {
 
 	public void updateMinecraft(Modpack build) throws IOException {
 		pack.getBinDir().mkdir();
-		pack.getCacheDir().mkdir();
 		pack.getTempDir().mkdir();
 
 		String minecraftMD5 = build.getMinecraftMd5();
@@ -366,6 +376,9 @@ public class UpdateThread extends Thread {
 	}
 
 	public String getNativesUrl() {
+		if (Settings.getLatestLWJGL()) {
+			return GameUpdater.latestLWJGLURL;
+		}
 		return GameUpdater.baseURL;
 	}
 
@@ -373,27 +386,43 @@ public class UpdateThread extends Thread {
 		String url, md5;
 
 		OperatingSystem os = OperatingSystem.getOS();
-		if (os.isUnix()) {
-			url = LINUX_NATIVES_URL;
-			md5 = LINUX_NATIVES_MD5;
-		} else if (os.isMac()) {
-			url = OSX_NATIVES_URL;
-			md5 = OSX_NATIVES_MD5;
-		} else if (os.isWindows()) {
-			url = WINDOWS_NATIVES_URL;
-			md5 = WINDOWS_NATIVES_MD5;
+
+		if (Settings.getLatestLWJGL()) {
+			if (os.isUnix()) {
+				url = LINUX_LATEST_NATIVES_URL;
+				md5 = LINUX_LATEST_NATIVES_MD5;
+			} else if (os.isMac()) {
+				url = OSX_LATEST_NATIVES_URL;
+				md5 = OSX_LATEST_NATIVES_MD5;
+			} else if (os.isWindows()) {
+				url = WINDOWS_LATEST_NATIVES_URL;
+				md5 = WINDOWS_LATEST_NATIVES_MD5;
+			} else {
+				throw new UnsupportedOperationException("Unknown OS: " + os);
+			}
 		} else {
-			throw new UnsupportedOperationException("Unknown OS: " + os);
+			if (os.isUnix()) {
+				url = LINUX_NATIVES_URL;
+				md5 = LINUX_NATIVES_MD5;
+			} else if (os.isMac()) {
+				url = OSX_NATIVES_URL;
+				md5 = OSX_NATIVES_MD5;
+			} else if (os.isWindows()) {
+				url = WINDOWS_NATIVES_URL;
+				md5 = WINDOWS_NATIVES_MD5;
+			} else {
+				throw new UnsupportedOperationException("Unknown OS: " + os);
+			}
 		}
 
 		// Download natives
-		File nativesJar = new File(pack.getTempDir(), "natives.jar");
+		File nativesJar = new File(Utils.getCacheDirectory(), "natives.jar");
 		DownloadUtils.downloadFile(url, nativesJar.getPath(), null, md5, listener);
 
 		// Extract natives
 		List<String> ignores = new ArrayList<String>();
 		ignores.add("META-INF");
-		File tempNatives = new File(pack.getTempDir(), "natives");
+		File tempNatives = new File(Utils.getCacheDirectory(), "natives");
 		Utils.extractJar(new JarFile(nativesJar), tempNatives, ignores);
 		FileUtils.moveDirectory(tempNatives, new File(pack.getBinDir(), "natives"));
 	}
@@ -404,12 +433,11 @@ public class UpdateThread extends Thread {
 		File workingDir = pack.getPackDirectory();
 
 		Utils.getCacheDirectory().mkdirs();
-		pack.getCacheDir().mkdirs();
 		pack.getConfigDir().mkdirs();
 
 		File temp = Utils.getCacheDirectory();
 
-		File mcCache = new File(pack.getCacheDir(), "minecraft_" + build.getMinecraftVersion() + ".jar");
+		File mcCache = new File(Utils.getCacheDirectory(), "minecraft_" + build.getMinecraftVersion() + ".jar");
 		File updateMC = new File(pack.getTempDir().getPath() + File.separator + "minecraft.jar");
 		if (mcCache.exists()) {
 			Utils.copy(mcCache, updateMC);
@@ -476,7 +504,8 @@ public class UpdateThread extends Thread {
 			keepFiles.add(mod.getName() + "-" + mod.getVersion() + ".zip");
 		}
 		keepFiles.add("minecraft.jar");
-		keepFiles.add("natives.jar");
+		// no need to keep this, its in /cache folder
+		// keepFiles.add("natives.jar");
 
 		for (File file : files) {
 			String fileName = file.getName();
@@ -531,6 +560,28 @@ public class UpdateThread extends Thread {
 			e.printStackTrace();
 		}
 	}
+
+	public static boolean cleanupLWJGL() {
+		try {
+			// delete them from cache
+			FileUtils.deleteQuietly(new File(Utils.getCacheDirectory(), "jinput.jar"));
+			FileUtils.deleteQuietly(new File(Utils.getCacheDirectory(), "lwjgl_util.jar"));
+			FileUtils.deleteQuietly(new File(Utils.getCacheDirectory(), "lwjgl.jar"));
+
+			// delete from all installed modpacks
+			for (String pack : Settings.getInstalledPacks()) {
+				FileUtils.deleteDirectory(new File(Utils.getLauncherDirectory() + File.separator + pack + File.separator + "bin" + File.separator + "natives"));
+				FileUtils.deleteQuietly(new File(Utils.getLauncherDirectory() + File.separator + pack + File.separator + "bin" + File.separator + "jinput.jar"));
+				FileUtils.deleteQuietly(new File(Utils.getLauncherDirectory() + File.separator + pack + File.separator + "bin" + File.separator + "lwjgl_util.jar"));
+				FileUtils.deleteQuietly(new File(Utils.getLauncherDirectory() + File.separator + pack + File.separator + "bin" + File.separator + "lwjgl.jar"));
+			}
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public DownloadListener getDownloadListener() {
 		return listener;
 	}
