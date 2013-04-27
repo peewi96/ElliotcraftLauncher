@@ -489,7 +489,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 				tracker.trackEvent("Login Frame", action);
 			}
 		} else if(action.equals(PACK_REMOVE_ACTION)) {
-			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question"), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			int result = JOptionPane.showConfirmDialog(this, lang("gui.custompack.delete.question") + " " + getSelector().getSelectedPack().getPackDirectory(), lang("gui.custompack.delete.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
 				getSelector().removePack();
 				tracker.trackEvent("Login Frame", action, getSelector().getSelectedPack().getDisplayName());
