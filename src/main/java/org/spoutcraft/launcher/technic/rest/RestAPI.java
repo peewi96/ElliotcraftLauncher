@@ -321,8 +321,7 @@ public class RestAPI {
 		if (minecraft == null || minecraft.shouldUsePatch()) {
 			version = PATCH_VERSION;
 		}
-		version = version.replace('.', '_');
-		return "http://assets.minecraft.net/" + version + "/minecraft.jar";
+		return "https://s3.amazonaws.com/Minecraft.Download/versions/" + version + "/" + version + ".jar";
 	}
 
 	public static String getMinecraftMD5(String version) {
