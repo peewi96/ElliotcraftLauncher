@@ -90,13 +90,13 @@ public class UpdateThread extends Thread {
 
 	// Temporarily hardcoded for latest LWJGL
 	private static final String WINDOWS_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/windows_natives.jar";
-	private static final String WINDOWS_LATEST_NATIVES_MD5 = "b6de833edbc5518640c70ed6aa82f3ab";
+	private static final String WINDOWS_LATEST_NATIVES_MD5 = "30e99b9386040f387fd94c26c1ac64d3";
 
 	private static final String OSX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/macosx_natives.jar";
-	private static final String OSX_LATEST_NATIVES_MD5 = "3623727e5c33c3f8b3626afe065d7726";
+	private static final String OSX_LATEST_NATIVES_MD5 = "722da64d6286a030e5e60d7678c27edc";
 
 	private static final String LINUX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/linux_natives.jar";
-	private static final String LINUX_LATEST_NATIVES_MD5 = "9a9fff02996015dfa3026cf065bb3a3c";
+	private static final String LINUX_LATEST_NATIVES_MD5 = "8bf181ad1340d45e3505f267a5d33cc7";
 
 	private final Logger logger = Logger.getLogger("launcher");
 	private final AtomicBoolean waiting = new AtomicBoolean(false);
