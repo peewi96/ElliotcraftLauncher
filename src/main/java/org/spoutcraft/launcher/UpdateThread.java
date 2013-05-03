@@ -89,13 +89,13 @@ public class UpdateThread extends Thread {
 	private static final String LINUX_NATIVES_MD5 = "3b4435ec85e63faa041b4c080b815b22";
 
 	// Temporarily hardcoded for latest LWJGL
-	private static final String WINDOWS_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/windows_natives.jar";
+	private static final String WINDOWS_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-windows.jar";
 	private static final String WINDOWS_LATEST_NATIVES_MD5 = "30e99b9386040f387fd94c26c1ac64d3";
 
-	private static final String OSX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/macosx_natives.jar";
+	private static final String OSX_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-osx.jar";
 	private static final String OSX_LATEST_NATIVES_MD5 = "722da64d6286a030e5e60d7678c27edc";
 
-	private static final String LINUX_LATEST_NATIVES_URL = "http://technicraft.cz/modpack/Libraries/lwjgl/linux_natives.jar";
+	private static final String LINUX_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-linux.jar";
 	private static final String LINUX_LATEST_NATIVES_MD5 = "8bf181ad1340d45e3505f267a5d33cc7";
 
 	private final Logger logger = Logger.getLogger("launcher");
