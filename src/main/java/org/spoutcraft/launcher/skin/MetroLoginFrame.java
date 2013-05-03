@@ -57,14 +57,12 @@ import org.spoutcraft.launcher.skin.components.LitePasswordBox;
 import org.spoutcraft.launcher.skin.components.LiteProgressBar;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.skin.components.LoginFrame;
+import org.spoutcraft.launcher.skin.components.NewsComponent;
 import org.spoutcraft.launcher.skin.components.TransparentJLabel;
 import org.spoutcraft.launcher.technic.AddPack;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.RestInfo;
-import org.spoutcraft.launcher.technic.skin.ImageButton;
-import org.spoutcraft.launcher.technic.skin.LauncherOptions;
-import org.spoutcraft.launcher.technic.skin.ModpackOptions;
-import org.spoutcraft.launcher.technic.skin.ModpackSelector;
+import org.spoutcraft.launcher.technic.skin.*;
 import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
 import org.spoutcraft.launcher.util.*;
 import org.spoutcraft.launcher.util.Download.Result;
@@ -91,6 +89,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private static final String LOGIN_ACTION = "login";
 	private static final String IMAGE_LOGIN_ACTION = "image_login";
 	private static final String REMOVE_USER = "remove";
+	public static final Color TRANSPARENT = new Color(45, 45, 45, 160);
+	private static final int SPACING = 7;
 	private final Map<JButton, DynamicButton> removeButtons = new HashMap<JButton, DynamicButton>();
 	private final Map<String, DynamicButton> userButtons = new HashMap<String, DynamicButton>();
 	private LiteTextBox name;
@@ -107,6 +107,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private ImageHyperlinkButton platform;
 	private JLabel packShadow;
 	private JLabel customName;
+	private NewsComponent news;
 	private long previous = 0L;
 	static AnalyticsConfigData config = new AnalyticsConfigData("UA-34064856-2");
 	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
@@ -115,8 +116,8 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	public MetroLoginFrame() {
 		tracker.setEnabled(true);
 		initComponents();
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		setLocationRelativeTo(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		setBounds((dim.width - FRAME_WIDTH) / 2, (dim.height - FRAME_HEIGHT) / 2, FRAME_WIDTH, FRAME_HEIGHT);
 		setResizable(false);
 		packBackground = new BackgroundImage(this, FRAME_WIDTH, FRAME_HEIGHT);
 		this.addMouseListener(packBackground);
@@ -217,6 +218,14 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		} else {
 			largerMinecraft = fontbold.deriveFont((float)20);
 		}
+
+		// News Items
+		news = new NewsComponent();
+		news.setBounds(50, loginStrip.getY() + 10, 500, 160);
+
+		// Link background box
+		RoundedBox linkArea = new RoundedBox(TRANSPARENT);
+		linkArea.setBounds(605, 250, 265, 120);
 
 		HyperlinkJLabel home = new HyperlinkJLabel(lang("gui.link.home"), "http://www.technicraft.cz");
 		home.setFont(largerMinecraft);
@@ -386,6 +395,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		//contentPane.add(issues);
 		//contentPane.add(logo);
 		contentPane.add(loginStrip);
+//		contentPane.add(news);
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);
@@ -406,7 +416,11 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	public ModpackSelector getSelector() {
 		return packSelector;
 	}
-	
+
+	public NewsComponent getNews() {
+		return news;
+	}
+
 	public BackgroundImage getBackgroundImage() {
 		return packBackground;
 	}

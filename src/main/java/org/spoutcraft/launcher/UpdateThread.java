@@ -321,8 +321,7 @@ public class UpdateThread extends Thread {
 	}
 
 	public void updateMinecraft(Modpack build) throws IOException {
-		pack.getBinDir().mkdir();
-		pack.getTempDir().mkdir();
+		pack.init();
 
 		String minecraftMD5 = build.getMinecraftMd5();
 		String jinputMD5 = FileType.JINPUT.getMD5();
