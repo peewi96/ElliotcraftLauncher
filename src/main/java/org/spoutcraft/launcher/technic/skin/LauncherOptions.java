@@ -221,7 +221,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		save.setActionCommand(SAVE_ACTION);
 		save.addActionListener(this);
 
-		console = new LiteButton(lang("options.console"), 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
+		console = new LiteButton(Settings.getLauncherShowConsole() ? lang("options.console.hide") : lang("options.console.show"), 10, logs.getY() + logs.getHeight() + 10, FRAME_WIDTH / 2 - 15, 25);
 		console.setFont(fontbold.deriveFont(14F));
 		console.setForeground(Color.WHITE);
 		console.setActionCommand(CONSOLE_ACTION);
@@ -305,8 +305,18 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 		} else if (action.equals(CONSOLE_ACTION)) {
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
-			SpoutcraftLauncher.setupConsole();
-			dispose();
+			if (Settings.getLauncherShowConsole())
+			{
+				Settings.setLauncherShowConsole(false);
+				SpoutcraftLauncher.destroyConsole();
+				console.setText(lang("options.console.show"));
+			} else
+			{
+				Settings.setLauncherShowConsole(true);
+				SpoutcraftLauncher.setupConsole();
+				console.setText(lang("options.console.hide"));
+			}
+			Settings.getYAML().save();
 		} else if (action.equals(CHANGEFOLDER_ACTION)) {
 			int result = fileChooser.showOpenDialog(this);
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);

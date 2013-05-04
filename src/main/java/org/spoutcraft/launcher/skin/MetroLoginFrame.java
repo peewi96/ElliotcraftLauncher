@@ -566,6 +566,16 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		} else if (action.equals(CONSOLE_ACTION)) {
 			SpoutcraftLauncher.setupConsole();
 			tracker.trackEvent("Login Frame", action);
+			if (Settings.getLauncherShowConsole())
+			{
+				Settings.setLauncherShowConsole(false);
+				SpoutcraftLauncher.destroyConsole();
+			} else
+			{
+				Settings.setLauncherShowConsole(true);
+				SpoutcraftLauncher.setupConsole();
+			}
+			Settings.getYAML().save();
 		}
 	}
 
