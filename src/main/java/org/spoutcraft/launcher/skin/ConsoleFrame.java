@@ -184,7 +184,7 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 
 		}
 		textComponent.addMouseListener(this);
-		textComponent.setFont(getMonospaceFont().deriveFont(14F));
+		textComponent.setFont(getMonospaceFont().deriveFont(12F));
 		textComponent.setEditable(false);
 		DefaultCaret caret = (DefaultCaret) textComponent.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
@@ -216,6 +216,7 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 	 * @param attributes attribute set, or null for none
 	 */
 	public void log(String line, AttributeSet attributes) {
+		line = line.replace("\n\n","\n");
 		if (colorEnabled) {
 			if (line.startsWith("(!!)")) {
 				attributes = highlightedAttributes;
@@ -410,7 +411,7 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 		}
 	}
 
-	private static String[] monospaceFontNames = {"Consolas", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console"};
+	private static String[] monospaceFontNames = {"Monaco", "Source Code Pro", "Consolas", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console"};
 
 	/**
 	 * Get a supported monospace font.
