@@ -216,7 +216,6 @@ public class ConsoleFrame extends JFrame implements MouseListener {
 	 * @param attributes attribute set, or null for none
 	 */
 	public void log(String line, AttributeSet attributes) {
-		line = line.replace("\n\n","\n");
 		if (colorEnabled) {
 			if (line.startsWith("(!!)")) {
 				attributes = highlightedAttributes;
