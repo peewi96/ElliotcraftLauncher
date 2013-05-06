@@ -37,6 +37,7 @@ import org.spoutcraft.launcher.technic.skin.ModpackSelector;
 import org.spoutcraft.launcher.util.Utils;
 
 public class PackManager {
+
 	public static void initPacks(ModpackSelector selector) {
 		PackMap packs = selector.getPackMap();
 		for (String pack : Settings.getInstalledPacks()) {
@@ -69,11 +70,11 @@ public class PackManager {
 		}
 	}
 
-	public static void initPack(PackMap packs, PackInfo pack) {
+	private static void initPack(PackMap packs, PackInfo pack) {
 		packs.put(pack.getName(), pack);
 	}
 
-	public static void initPack(PackMap packs, String pack) {
+	private static void initPack(PackMap packs, String pack) {
 		OfflineInfo info = new OfflineInfo(pack);
 		packs.put(pack, info);
 	}
