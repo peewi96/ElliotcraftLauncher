@@ -68,8 +68,8 @@ public class BackgroundImage extends JLabel implements MouseListener, MouseMotio
 		this.add(background);
 	}
 
-	public void changeBackground(String name, Icon icon) {
-		background.changeIcon(name, icon);
+	public synchronized void changeBackground(String name, Icon icon, boolean force) {
+		background.changeIcon(name, icon, force);
 		/* No flying creeper
 		if (name.equals("tekkitmain")) {
 			tekkit.setVisible(true);
