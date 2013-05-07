@@ -27,7 +27,14 @@
 
 package org.spoutcraft.launcher.skin;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FocusTraversalPolicy;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -56,14 +63,18 @@ import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LitePasswordBox;
 import org.spoutcraft.launcher.skin.components.LiteProgressBar;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
+import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
 import org.spoutcraft.launcher.skin.components.LoginFrame;
 import org.spoutcraft.launcher.skin.components.NewsComponent;
 import org.spoutcraft.launcher.skin.components.TransparentJLabel;
 import org.spoutcraft.launcher.technic.AddPack;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.RestInfo;
-import org.spoutcraft.launcher.technic.skin.*;
-import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
+import org.spoutcraft.launcher.technic.skin.ImageButton;
+import org.spoutcraft.launcher.technic.skin.LauncherOptions;
+import org.spoutcraft.launcher.technic.skin.ModpackOptions;
+import org.spoutcraft.launcher.technic.skin.ModpackSelector;
+import org.spoutcraft.launcher.technic.skin.RoundedBox;
 import org.spoutcraft.launcher.util.*;
 import org.spoutcraft.launcher.util.Download.Result;
 
@@ -354,10 +365,16 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			String accountName = savedUsers.get(i);
 			String userName = this.getUsername(accountName);
 
-			ImageIcon image = getIcon("face.png");
-			File face = new File(Utils.getAssetsDirectory(), userName + ".png");
+			BufferedImage image = getImage("face.png", 45, 45);
+			File assets = new File(Utils.getAssetsDirectory(), "avatars");
+			File face = new File(assets, userName + ".png");
 			if (face.exists()) {
-				image = new ImageIcon(face.getAbsolutePath());
+				try {
+					image = ImageIO.read(face);
+					System.out.println("Loaded face");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			DynamicButton userButton = new DynamicButton(this, image, 1, accountName, userName);
@@ -431,6 +448,15 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		return new ImageIcon(Launcher.class.getResource("/org/spoutcraft/launcher/resources/" + iconName));
 	}
 
+	public static BufferedImage getImage(String imageName, int w, int h) {
+		try {
+			return ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + imageName)), w, h);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public static ImageIcon getIcon(String iconName, int w, int h) {
 		try {
 			return new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h));
@@ -457,7 +483,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 
 	public static void setIcon(JLabel label, String iconName, int w, int h) {
 		try {
-			label.setIcon(new ImageIcon(ImageUtils.resizeImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
+			label.setIcon(new ImageIcon(ImageUtils.scaleImage(ImageIO.read(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/" + iconName)), w, h)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -467,7 +493,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		for (String user : userButtons.keySet()) {
 			BufferedImage image = getUserImage(user);
 			if (image != null) {
-				userButtons.get(user).updateIcon(new ImageIcon(image));
+				userButtons.get(user).updateIcon(image);
 			}
 		}
 	}
@@ -656,16 +682,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		login.setEnabled(unlock);
 		packRemoveBtn.setEnabled(unlock);
 		packOptionsBtn.setEnabled(unlock);
-	}
-
-	public Image newBackgroundImage(RestInfo modpack) {
-		try {
-			Image image = modpack.getBackground().getScaledInstance(FRAME_WIDTH, FRAME_HEIGHT, Image.SCALE_SMOOTH);
-			return image;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	// Emulates tab focus policy of name -> pass -> remember -> login
