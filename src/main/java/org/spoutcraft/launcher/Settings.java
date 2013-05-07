@@ -77,12 +77,12 @@ public class Settings {
 		yaml.setProperty("launcher.launcher.buildNumber", build);
 	}
 
-	public static synchronized boolean getLauncherShowConsole() {
-		return yaml.getBoolean("launcher.launcher.showConsole",false);
+	public static synchronized boolean getShowLauncherConsole() {
+		return yaml.getBoolean("launcher.showConsole",false);
 	}
 
-	public static synchronized void setLauncherShowConsole(boolean value) {
-		yaml.setProperty("launcher.launcher.showConsole", value);
+	public static synchronized void setShowLauncherConsole(boolean value) {
+		yaml.setProperty("launcher.showConsole", value);
 	}
 
 	public static synchronized Channel getLauncherChannel() {

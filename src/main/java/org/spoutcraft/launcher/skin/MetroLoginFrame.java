@@ -110,6 +110,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	private NewsComponent news;
 	private long previous = 0L;
 	static AnalyticsConfigData config = new AnalyticsConfigData("UA-34064856-2");
+	private boolean consoleToggle = false;
 	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
 
 
@@ -304,6 +305,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		options.addKeyListener(this);
 
 		// Console Button
+		consoleToggle = Settings.getShowLauncherConsole();
 		ImageButton console = new ImageButton(getIcon("console.png"), getIcon("console_hover.png"));
 		console.setBounds(options.getX()-30, FRAME_TOP_SPACING, 16, 16);
 		console.setActionCommand(CONSOLE_ACTION);
@@ -566,16 +568,13 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			writeUsernameList();
 			tracker.trackEvent("Login Frame", action);
 		} else if (action.equals(CONSOLE_ACTION)) {
-			SpoutcraftLauncher.setupConsole();
+			consoleToggle =! consoleToggle;
 			tracker.trackEvent("Login Frame", action);
-			if (Settings.getLauncherShowConsole())
-			{
-				Settings.setLauncherShowConsole(false);
-				SpoutcraftLauncher.destroyConsole();
-			} else
-			{
-				Settings.setLauncherShowConsole(true);
+			Settings.setShowLauncherConsole(consoleToggle);
+			if (consoleToggle) {
 				SpoutcraftLauncher.setupConsole();
+			} else {
+				SpoutcraftLauncher.destroyConsole();
 			}
 			Settings.getYAML().save();
 		}
