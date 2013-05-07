@@ -192,10 +192,10 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		login.addKeyListener(this);
 
 		// Technic logo
-		JLabel logo = new JLabel();
-		ImageIcon logoIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("header.png"), 275));
-		logo.setIcon(logoIcon);
-		logo.setBounds(600, 6, logoIcon.getIconWidth(), logoIcon.getIconHeight());
+//		JLabel logo = new JLabel();
+//		ImageIcon logoIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("header.png"), 275));
+//		logo.setIcon(logoIcon);
+//		logo.setBounds(600, 6, logoIcon.getIconWidth(), logoIcon.getIconHeight());
 
 		// Pack Selector Background
 		JLabel selectorBackground = new JLabel();
