@@ -61,6 +61,7 @@ import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.technic.CustomInfo;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.rest.RestAPI;
+import org.spoutcraft.launcher.util.FileUtils;
 import org.spoutcraft.launcher.util.Utils;
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
@@ -200,16 +201,22 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
-				file.exists();
-				installDir = file;
-				if (info.isForceDir() && installDir.getAbsolutePath().startsWith(Utils.getSettingsDirectory().getAbsolutePath())) {
-					install.setText(lang("platform.selectdir")+" " + Utils.getSettingsDirectory().getAbsolutePath());
-				} else {
-					install.setText(lang("platform.location")+" " + installDir.getPath());
-					folder.setText(lang("options.changefolder"));
-					folder.setLocation(FRAME_WIDTH - 290, FRAME_HEIGHT - 40);
-					enableComponent(save, true);
+
+				if (!FileUtils.checkEmpty(file)) {
+					install.setText(lang("options.selectemptydir.dialog"));
+					return;
 				}
+
+				if (info.isForceDir() && file.getAbsolutePath().startsWith(Utils.getSettingsDirectory().getAbsolutePath())) {
+					install.setText(lang("options.selectemptydir.outside") + " " + Utils.getSettingsDirectory().getAbsolutePath());
+					return;
+				}
+				installDir = file;
+
+				install.setText(lang("platform.location")+" " + installDir.getPath());
+				folder.setText(lang("options.changefolder"));
+				folder.setLocation(FRAME_WIDTH - 290, FRAME_HEIGHT - 40);
+				enableComponent(save, true);
 			}
 		} else if (action.equals(IMPORT_ACTION)) {
 			if (info != null || url.isEmpty()) {
@@ -285,7 +292,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 							enableComponent(folder, true);
 							enableComponent(install, true);
 							if (info.isForceDir()) {
-								install.setText(lang("platform.selectinstalldir"));
+								install.setText(lang("options.selectemptydir.outside") );
 								folder.setText(lang("platform.select"));
 								folder.setLocation(FRAME_WIDTH - 145, FRAME_HEIGHT - 40);
 								enableComponent(save, false);
