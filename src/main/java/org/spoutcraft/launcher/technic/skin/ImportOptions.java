@@ -324,7 +324,7 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 				};
 				worker.execute();
 			} else {
-				msgLabel.setText(lang("platform.invalidurl"));
+				msgLabel.setText(lang("platform.invalidplatformurl"));
 				enableComponent(save, false);
 				enableComponent(folder, false);
 				enableComponent(install, false);
