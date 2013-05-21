@@ -92,16 +92,16 @@ public class GameLauncher extends JFrame implements WindowListener {
 			Settings.getYAML().save();
 		} catch (RestfulAPIException e1) {
 			e1.printStackTrace();
+			Launcher.getFrame().enableForm();
+			return;
 		}
 		TrackerUtils.sendPageView("Launched "+pack.getDisplayName(), pack.getDisplayName()+" v"+pack.getBuild());
 		TrackerUtils.sendPageView("Launcher configuration", "RAM: "+Memory.getMemoryFromId(Memory.getMemoryIndexFromId(Settings.getMemory())).getDescription());
 
-		if (pack != null) {
-			this.setTitle(pack.getDisplayName());
-			File icon = new File(Utils.getAssetsDirectory(), pack.getName() + File.separator + "icon.png");
-			if (icon.exists()) {
-				this.setIconImage(Toolkit.getDefaultToolkit().createImage(icon.getAbsolutePath()));
-			}
+		this.setTitle(pack.getDisplayName());
+		File icon = new File(Utils.getAssetsDirectory(), pack.getName() + File.separator + "icon.png");
+		if (icon.exists()) {
+			this.setIconImage(Toolkit.getDefaultToolkit().createImage(icon.getAbsolutePath()));
 		}
 
 		if (OperatingSystem.getOS().isMac()) {
