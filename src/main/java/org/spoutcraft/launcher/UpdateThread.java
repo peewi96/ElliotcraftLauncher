@@ -298,7 +298,7 @@ public class UpdateThread extends Thread {
 		}
 		stateChanged("Checking for Minecraft update...", 400F / steps);
 		lib = new File(pack.getBinDir(), "lwjgl.jar");
-		if (!lib.exists() || !FileType.LWJGL.getMD5().equals(MD5Utils.getMD5(lib))) {
+		if (!lib.exists() || !FileType.LWJGL.getMD5().equalsIgnoreCase(MD5Utils.getMD5(lib))) {
 			return true;
 		}
 		stateChanged("Checking for Minecraft update...", 500F / steps);
@@ -324,7 +324,7 @@ public class UpdateThread extends Thread {
 		// Process minecraft.jar
 		logger.info("Mod pack Build: " + build.getBuild() + " Minecraft Version: " + build.getMinecraftVersion());
 		File mcCache = new File(Utils.getCacheDirectory(), "minecraft_" + build.getMinecraftVersion() + ".jar");
-		if (!mcCache.exists() || (minecraftMD5 == null || !minecraftMD5.equals(MD5Utils.getMD5(mcCache)))) {
+		if (!mcCache.exists() || (minecraftMD5 == null || !minecraftMD5.equalsIgnoreCase(MD5Utils.getMD5(mcCache)))) {
 			String output = pack.getTempDir() + File.separator + "minecraft.jar";
 			MinecraftDownloadUtils.downloadMinecraft(Launcher.getGameUpdater().getMinecraftUser(), output, pack, build, listener);
 		}
@@ -335,21 +335,21 @@ public class UpdateThread extends Thread {
 
 		// Process other downloads
 		mcCache = new File(Utils.getCacheDirectory(), "jinput.jar");
-		if (!mcCache.exists() || !jinputMD5.equals(MD5Utils.getMD5(mcCache))) {
+		if (!mcCache.exists() || !jinputMD5.equalsIgnoreCase(MD5Utils.getMD5(mcCache))) {
 			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "jinput.jar", pack.getBinDir().getPath() + File.separator + "jinput.jar", "jinput.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "jinput.jar"));
 		}
 
 		mcCache = new File(Utils.getCacheDirectory(), "lwjgl.jar");
-		if (!mcCache.exists() || !lwjglMD5.equals(MD5Utils.getMD5(mcCache))) {
+		if (!mcCache.exists() || !lwjglMD5.equalsIgnoreCase(MD5Utils.getMD5(mcCache))) {
 			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "lwjgl.jar", pack.getBinDir().getPath() + File.separator + "lwjgl.jar", "lwjgl.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "lwjgl.jar"));
 		}
 
 		mcCache = new File(Utils.getCacheDirectory(), "lwjgl_util.jar");
-		if (!mcCache.exists() || !lwjgl_utilMD5.equals(MD5Utils.getMD5(mcCache))) {
+		if (!mcCache.exists() || !lwjgl_utilMD5.equalsIgnoreCase(MD5Utils.getMD5(mcCache))) {
 			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "lwjgl_util.jar", pack.getBinDir().getPath() + File.separator + "lwjgl_util.jar", "lwjgl_util.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "lwjgl_util.jar"));
