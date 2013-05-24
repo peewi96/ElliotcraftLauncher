@@ -513,7 +513,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		assets.mkdirs();
 		File file = new File(assets, user + ".png");
 		try {
-			Download download = DownloadUtils.downloadFile("http://skins.majncraft.cz/helm/" + user + "/100", file.getAbsolutePath());
+			Download download = DownloadUtils.downloadFile("http://skins.majncraft.cz/helm/" + user + "/64", file.getAbsolutePath());
 			if (download.getResult().equals(Result.SUCCESS)) {
 				return ImageIO.read(download.getOutFile());
 			}
