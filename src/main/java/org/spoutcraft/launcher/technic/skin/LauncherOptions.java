@@ -73,7 +73,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private JComboBox memory;
 	private JComboBox language;
 	private JCheckBox permgen;
-	private JCheckBox latestLWJGL;
+	//private JCheckBox latestLWJGL;
 	private JCheckBox beta;
 	private JFileChooser fileChooser;
 	private int mouseX = 0, mouseY = 0;
@@ -184,7 +184,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		permgen.setForeground(Color.WHITE);
 		permgen.setIconTextGap(15);
 
-		latestLWJGL = new JCheckBox(lang("options.latestlwjgl"));
+		/*latestLWJGL = new JCheckBox(lang("options.latestlwjgl"));
 		latestLWJGL.setFont(fontregular);
 		latestLWJGL.setBounds(10, permgen.getY() + permgen.getHeight() + 2, FRAME_WIDTH - 20, 25);
 		latestLWJGL.setSelected(Settings.getLatestLWJGL());
@@ -193,6 +193,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		latestLWJGL.setContentAreaFilled(false);
 		latestLWJGL.setForeground(Color.WHITE);
 		latestLWJGL.setIconTextGap(15);
+		latestLWJGL.setEnabled(false);*/
 
 		installedDirectory = Settings.getLauncherDir();
 
@@ -234,7 +235,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		Container contentPane = getContentPane();
 		contentPane.add(permgen);
-		contentPane.add(latestLWJGL);
 		contentPane.add(build);
 		contentPane.add(beta);
 		contentPane.add(changeFolder);
@@ -293,12 +293,12 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 0);
 				}
 			}
-			if (latestLWJGL.isSelected() != Settings.getLatestLWJGL()) {
+			/*if (latestLWJGL.isSelected() != Settings.getLatestLWJGL()) {
 				System.out.println("[LWJGL] Version changed! Clearing lwjgl from cache.");
 				Settings.setLatestLWJGL(latestLWJGL.isSelected());
 				Settings.getYAML().save();
 				UpdateThread.cleanupLWJGL();
-			}
+			}*/
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 			dispose();
 		} else if (action.equals(LOGS_ACTION)) {

@@ -79,24 +79,14 @@ public class UpdateThread extends Thread {
 	private static final int PRELOAD_CLASSES = 100;
 
 	// Temporarily hardcoded
-	private static final String WINDOWS_NATIVES_URL = "http://s3.amazonaws.com/MinecraftDownload/windows_natives.jar";
-	private static final String WINDOWS_NATIVES_MD5 = "9406d7d376b131d20c5717ee9fd89a7f";
+	private static final String WINDOWS_NATIVES_URL = RestAPI.getNativesURL() + "windows_natives.jar";
+	private static final String WINDOWS_NATIVES_MD5 = "92431FBF5355862F9C16D0BA8193691D";
 
-	private static final String OSX_NATIVES_URL = "http://s3.amazonaws.com/MinecraftDownload/macosx_natives.jar";
-	private static final String OSX_NATIVES_MD5 = "2f60f009723553622af280c920bb7431";
+	private static final String OSX_NATIVES_URL = RestAPI.getNativesURL() + "macosx_natives.jar";
+	private static final String OSX_NATIVES_MD5 = "1BEC35FE0F76E93A46A26D56EDD952AB";
 
-	private static final String LINUX_NATIVES_URL = "http://s3.amazonaws.com/MinecraftDownload/linux_natives.jar";
-	private static final String LINUX_NATIVES_MD5 = "3b4435ec85e63faa041b4c080b815b22";
-
-	// Temporarily hardcoded for latest LWJGL
-	private static final String WINDOWS_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-windows.jar";
-	private static final String WINDOWS_LATEST_NATIVES_MD5 = "30e99b9386040f387fd94c26c1ac64d3";
-
-	private static final String OSX_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-osx.jar";
-	private static final String OSX_LATEST_NATIVES_MD5 = "722da64d6286a030e5e60d7678c27edc";
-
-	private static final String LINUX_LATEST_NATIVES_URL = "http://s3.amazonaws.com/Minecraft.Download/libraries/org/lwjgl/lwjgl/lwjgl-platform/2.9.0/lwjgl-platform-2.9.0-natives-linux.jar";
-	private static final String LINUX_LATEST_NATIVES_MD5 = "8bf181ad1340d45e3505f267a5d33cc7";
+	private static final String LINUX_NATIVES_URL = RestAPI.getNativesURL() + "linux_natives.jar";
+	private static final String LINUX_NATIVES_MD5 = "4F13012C0E84D8C5B50D2534B5D8E6DC";
 
 	private final Logger logger = Logger.getLogger("launcher");
 	private final AtomicBoolean waiting = new AtomicBoolean(false);
@@ -283,7 +273,6 @@ public class UpdateThread extends Thread {
 	}
 
 	public boolean isMinecraftUpdateAvailable(Modpack build) {
-		System.out.println("isMinecraftUpdateAvailable?");
 		int steps = 7;
 		if (!pack.getBinDir().exists()) {
 			return true;
@@ -309,7 +298,7 @@ public class UpdateThread extends Thread {
 		}
 		stateChanged("Checking for Minecraft update...", 400F / steps);
 		lib = new File(pack.getBinDir(), "lwjgl.jar");
-		if (!lib.exists()) {
+		if (!lib.exists() || !FileType.LWJGL.getMD5().equals(MD5Utils.getMD5(lib))) {
 			return true;
 		}
 		stateChanged("Checking for Minecraft update...", 500F / steps);
@@ -347,21 +336,21 @@ public class UpdateThread extends Thread {
 		// Process other downloads
 		mcCache = new File(Utils.getCacheDirectory(), "jinput.jar");
 		if (!mcCache.exists() || !jinputMD5.equals(MD5Utils.getMD5(mcCache))) {
-			DownloadUtils.downloadFile(getNativesUrl() + "jinput.jar", pack.getBinDir().getPath() + File.separator + "jinput.jar", "jinput.jar");
+			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "jinput.jar", pack.getBinDir().getPath() + File.separator + "jinput.jar", "jinput.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "jinput.jar"));
 		}
 
 		mcCache = new File(Utils.getCacheDirectory(), "lwjgl.jar");
 		if (!mcCache.exists() || !lwjglMD5.equals(MD5Utils.getMD5(mcCache))) {
-			DownloadUtils.downloadFile(getNativesUrl() + "lwjgl.jar", pack.getBinDir().getPath() + File.separator + "lwjgl.jar", "lwjgl.jar");
+			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "lwjgl.jar", pack.getBinDir().getPath() + File.separator + "lwjgl.jar", "lwjgl.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "lwjgl.jar"));
 		}
 
 		mcCache = new File(Utils.getCacheDirectory(), "lwjgl_util.jar");
 		if (!mcCache.exists() || !lwjgl_utilMD5.equals(MD5Utils.getMD5(mcCache))) {
-			DownloadUtils.downloadFile(getNativesUrl() + "lwjgl_util.jar", pack.getBinDir().getPath() + File.separator + "lwjgl_util.jar", "lwjgl_util.jar");
+			DownloadUtils.downloadFile(RestAPI.getNativesURL() + "lwjgl_util.jar", pack.getBinDir().getPath() + File.separator + "lwjgl_util.jar", "lwjgl_util.jar");
 		} else {
 			Utils.copy(mcCache, new File(pack.getBinDir(), "lwjgl_util.jar"));
 		}
@@ -378,44 +367,21 @@ public class UpdateThread extends Thread {
 		Settings.getYAML().save();
 	}
 
-	public String getNativesUrl() {
-		if (Settings.getLatestLWJGL()) {
-			return GameUpdater.latestLWJGLURL;
-		}
-		return GameUpdater.baseURL;
-	}
-
 	public void getNatives() throws IOException, UnsupportedOSException {
 		String url, md5;
 
 		OperatingSystem os = OperatingSystem.getOS();
-
-		if (Settings.getLatestLWJGL()) {
-			if (os.isUnix()) {
-				url = LINUX_LATEST_NATIVES_URL;
-				md5 = LINUX_LATEST_NATIVES_MD5;
-			} else if (os.isMac()) {
-				url = OSX_LATEST_NATIVES_URL;
-				md5 = OSX_LATEST_NATIVES_MD5;
-			} else if (os.isWindows()) {
-				url = WINDOWS_LATEST_NATIVES_URL;
-				md5 = WINDOWS_LATEST_NATIVES_MD5;
-			} else {
-				throw new UnsupportedOperationException("Unknown OS: " + os);
-			}
+		if (os.isUnix()) {
+			url = LINUX_NATIVES_URL;
+			md5 = LINUX_NATIVES_MD5;
+		} else if (os.isMac()) {
+			url = OSX_NATIVES_URL;
+			md5 = OSX_NATIVES_MD5;
+		} else if (os.isWindows()) {
+			url = WINDOWS_NATIVES_URL;
+			md5 = WINDOWS_NATIVES_MD5;
 		} else {
-			if (os.isUnix()) {
-				url = LINUX_NATIVES_URL;
-				md5 = LINUX_NATIVES_MD5;
-			} else if (os.isMac()) {
-				url = OSX_NATIVES_URL;
-				md5 = OSX_NATIVES_MD5;
-			} else if (os.isWindows()) {
-				url = WINDOWS_NATIVES_URL;
-				md5 = WINDOWS_NATIVES_MD5;
-			} else {
-				throw new UnsupportedOperationException("Unknown OS: " + os);
-			}
+			throw new UnsupportedOperationException("Unknown OS: " + os);
 		}
 
 		// Download natives

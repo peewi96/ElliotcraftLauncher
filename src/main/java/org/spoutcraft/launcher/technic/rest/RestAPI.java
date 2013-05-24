@@ -130,6 +130,10 @@ public class RestAPI {
 		return PLATFORM;
 	}
 
+	public static String getNativesURL() {
+		return "http://mirror.technicpack.net/Technic/lib/";
+	}
+
 	public String getRestURL() {
 		return restURL;
 	}

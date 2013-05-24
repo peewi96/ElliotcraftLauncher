@@ -125,13 +125,6 @@ public class Settings {
 		return yaml.getBoolean("launcher.permgen", false);
 	}
 
-	public static synchronized void setLatestLWJGL(boolean latestlwjgl) {
-		yaml.setProperty("launcher.latestlwjgl", latestlwjgl);
-	}
-
-	public static synchronized boolean getLatestLWJGL() {
-		return yaml.getBoolean("launcher.latestlwjgl", false);
-	}
 
 	public static synchronized String getDeveloperCode() {
 		return yaml.getString("launcher.devcode", "");

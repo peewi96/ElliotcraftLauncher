@@ -28,9 +28,9 @@
 package org.spoutcraft.launcher.util;
 
 public enum FileType {
-	JINPUT("a7835a73a130656aba23e34147a55367"),
-	LWJGL("7a07c4285fa9a6b204ba59f011f1cd77"),
-	LWJGL_UTIL("f00470751cfc093ba760ca3cf10a512c");
+	JINPUT("D62FF8CD9539A32DAC094C00E820E9E6"),
+	LWJGL("CE74486A7687AD7EA91DCC1FCD6977B8"),
+	LWJGL_UTIL("6A0EEAF3451ED9646B7D61A9DD8B86CC");
 
 	private final String md5;
 	private FileType(String md5) {
