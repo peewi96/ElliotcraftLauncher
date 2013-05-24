@@ -321,7 +321,7 @@ public class UpdateThread extends Thread {
 		String lwjglMD5 = FileType.LWJGL.getMD5();
 		String lwjgl_utilMD5 = FileType.LWJGL_UTIL.getMD5();
 
-		// Processs minecraft.jar
+		// Process minecraft.jar
 		logger.info("Mod pack Build: " + build.getBuild() + " Minecraft Version: " + build.getMinecraftVersion());
 		File mcCache = new File(Utils.getCacheDirectory(), "minecraft_" + build.getMinecraftVersion() + ".jar");
 		if (!mcCache.exists() || (minecraftMD5 == null || !minecraftMD5.equals(MD5Utils.getMD5(mcCache)))) {
@@ -389,6 +389,7 @@ public class UpdateThread extends Thread {
 		DownloadUtils.downloadFile(url, nativesJar.getPath(), null, md5, listener);
 
 		// Extract natives
+		FileUtils.deleteDirectory(new File(pack.getBinDir(), "natives"));
 		List<String> ignores = new ArrayList<String>();
 		ignores.add("META-INF");
 		File tempNatives = new File(Utils.getCacheDirectory(), "natives");
