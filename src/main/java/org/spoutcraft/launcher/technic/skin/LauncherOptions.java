@@ -377,7 +377,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		if (!bit64) {
 			maxMemory = Math.min(Memory.MAX_32_BIT_MEMORY, maxMemory);
 		}
-		System.out.println(lang("options.maxmem")+" " + maxMemory + " mb");
+		System.out.println("Maximum usable memory detected: " + maxMemory + " mb");
 
 		for (Memory mem : Memory.memoryOptions) {
 			if (maxMemory >= mem.getMemoryMB()) {
