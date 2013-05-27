@@ -119,6 +119,10 @@ public abstract class PackInfo extends RestObject {
 		return "";
 	}
 
+	public Boolean isHidden() {
+			return false;
+	}
+
 	public void init() {
 		String location = Settings.getPackDirectory(getName());
 		

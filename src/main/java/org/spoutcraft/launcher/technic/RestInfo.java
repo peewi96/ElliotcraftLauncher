@@ -56,6 +56,8 @@ public class RestInfo extends PackInfo {
 	private String iconMD5;
 	@JsonProperty("url")
 	private String url;
+	@JsonProperty("hidden")
+	private String hidden;
 
 	public String getWebURL() {
 		return url;
@@ -122,6 +124,11 @@ public class RestInfo extends PackInfo {
 	@Override
 	public boolean isLoading() {
 		return false;
+	}
+
+	@Override
+	public Boolean isHidden() {
+		return hidden.equals("1");
 	}
 
 	@Override
