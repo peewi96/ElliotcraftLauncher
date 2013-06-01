@@ -229,7 +229,7 @@ public class Settings {
 			Logger.getLogger("launcher").info("Unable to find optifine.zip, disabling optifine.");
 			return false;
 		} else {
-			return yaml.getBoolean("modpacks." + modpack + ".optifine", false);
+			return yaml.getBoolean("modpacks." + modpack + ".optifine", true);
 		}
 	}
 
