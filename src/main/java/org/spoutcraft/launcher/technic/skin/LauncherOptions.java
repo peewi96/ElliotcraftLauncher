@@ -73,6 +73,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private JComboBox memory;
 	private JComboBox language;
 	private JCheckBox permgen;
+	private JLabel warning32b;
 	//private JCheckBox latestLWJGL;
 	private JCheckBox beta;
 	private JFileChooser fileChooser;
@@ -161,7 +162,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		languageLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
 		language = new JComboBox();
-		language.setBounds(languageLabel.getX() + languageLabel.getWidth() + 10, languageLabel.getY(), 130, 20);
+		language.setBounds(languageLabel.getX() + languageLabel.getWidth() + 10, languageLabel.getY(), 115, 20);
 		populateLanguages(language);
 
 		JLabel memoryLabel = new JLabel(lang("options.mem")+" ");
@@ -171,18 +172,24 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		memoryLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
 		memory = new JComboBox();
-		memory.setBounds(memoryLabel.getX() + memoryLabel.getWidth() + 10, memoryLabel.getY(), 130, 20);
+		memory.setBounds(memoryLabel.getX() + memoryLabel.getWidth() + 10, memoryLabel.getY(), 115, 20);
 		populateMemory(memory);
 
 		permgen = new JCheckBox(lang("options.permgen"));
 		permgen.setFont(fontregular);
-		permgen.setBounds(10, memoryLabel.getY() + memoryLabel.getHeight() + 2, FRAME_WIDTH - 20, 25);
+		permgen.setBounds(10, memory.getY() + memory.getHeight() + 2, FRAME_WIDTH - 20, 25);
 		permgen.setSelected(Settings.getPermGen());
 		permgen.setBorderPainted(false);
 		permgen.setFocusPainted(false);
 		permgen.setContentAreaFilled(false);
 		permgen.setForeground(Color.WHITE);
 		permgen.setIconTextGap(15);
+
+		warning32b = new JLabel(lang("options.32warning1") + Memory.MAX_32_BIT_MEMORY + lang("options.32warning2"));
+		warning32b.setFont(fontregular);
+		warning32b.setBounds(15, permgen.getY() + permgen.getHeight() + 2, FRAME_WIDTH - 20, 50);
+		warning32b.setForeground(Color.RED);
+		warning32b.setVisible(!System.getProperty("sun.arch.data.model", "32").equals("64"));
 
 		/*latestLWJGL = new JCheckBox(lang("options.latestlwjgl"));
 		latestLWJGL.setFont(fontregular);
@@ -234,6 +241,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
 		Container contentPane = getContentPane();
+		contentPane.add(warning32b);
 		contentPane.add(permgen);
 		contentPane.add(build);
 		contentPane.add(beta);
@@ -275,7 +283,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				Settings.setMigrate(true);
 				Settings.setMigrateDir(installedDirectory);
 			}
-			String oldLang = Settings.getLanguage();
 			String lang = Language.languageOptions[language.getSelectedIndex()].getLanguage();
 			Settings.setLanguage(lang);
 			Settings.getYAML().save();
@@ -376,6 +383,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		if (!bit64) {
 			maxMemory = Math.min(Memory.MAX_32_BIT_MEMORY, maxMemory);
+
 		}
 		System.out.println("Maximum usable memory detected: " + maxMemory + " mb");
 

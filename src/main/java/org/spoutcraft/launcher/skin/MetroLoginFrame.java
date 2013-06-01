@@ -372,7 +372,6 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 			if (face.exists()) {
 				try {
 					image = ImageIO.read(face);
-					System.out.println("Loaded face");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

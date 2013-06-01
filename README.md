@@ -5,4 +5,4 @@ TechniCraft Launcher by Majncraft.cz team
 ==================================================================
 Used for Majncraft servers (Majncraft and TechniCraft) and for some friendly ModPacks
 
-- Latest builds: http://ci.technicraft.cz/job/TechniCraft/
+- Latest builds: http://ci.technicraft.cz/job/TechniCraft%20Launcher/
