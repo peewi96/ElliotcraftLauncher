@@ -79,7 +79,7 @@ public class CustomInfo extends PackInfo {
 	}
 
 	@Override
-	public String getRecommended() {
+	public String 	getRecommended() {
 		return version;
 	}
 

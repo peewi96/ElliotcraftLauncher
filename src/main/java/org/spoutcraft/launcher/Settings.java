@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import org.spoutcraft.launcher.util.Utils;
 import org.spoutcraft.launcher.yml.YAMLNode;
@@ -220,6 +221,20 @@ public class Settings {
 
 	public static synchronized void setLastModpack(String modpack) {
 		yaml.setProperty("launcher.lastmodpack", modpack);
+	}
+
+	public static synchronized Boolean getOptifine(String modpack) {
+		Boolean ofExists = new File(getPackDirectory(modpack) + File.separator + "bin" + File.separator + "optifine.zip").exists();
+		if (!ofExists) {
+			Logger.getLogger("launcher").info("Unable to find optifine.zip, disabling optifine.");
+			return false;
+		} else {
+			return yaml.getBoolean("modpacks." + modpack + ".optifine", false);
+		}
+	}
+
+	public static synchronized void setOptifine(String modpack, Boolean useOF) {
+		yaml.setProperty("modpacks." + modpack + ".optifine", useOF);
 	}
 
 	public static synchronized String getLastModpack() {

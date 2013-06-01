@@ -492,7 +492,7 @@ public class UpdateThread extends Thread {
 				return;
 			}
 
-			HashSet<String> neededBinFiles = new HashSet<String>(Arrays.asList(new String[]{"modpack.jar", "minecraft.jar", "lwjgl.jar", "lwjgl_util.jar", "jinput.jar"}));
+			HashSet<String> neededBinFiles = new HashSet<String>(Arrays.asList(new String[]{"modpack.jar", "optifine.zip", "minecraft.jar", "lwjgl.jar", "lwjgl_util.jar", "jinput.jar"}));
 			for (File file : pack.getBinDir().listFiles()) {
 				if (!file.isFile()) {
 					continue;

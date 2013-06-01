@@ -31,6 +31,8 @@ import java.applet.Applet;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+
+import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.exceptions.CorruptedMinecraftJarException;
 import org.spoutcraft.launcher.exceptions.MinecraftVerifyException;
 import org.spoutcraft.launcher.exceptions.UnknownMinecraftException;
@@ -41,14 +43,17 @@ public class MinecraftLauncher {
 	public static MinecraftClassLoader getClassLoader(PackInfo pack) {
 		if (loader == null) {
 			File mcBinFolder = pack.getBinDir();
+			File[] files;
+			Boolean useOptifine = Settings.getOptifine(pack.getName());
 
 			File modpackJar = new File(mcBinFolder, "modpack.jar");
+			File optifineZip = new File(mcBinFolder, "optifine.zip");
 			File minecraftJar = new File(mcBinFolder, "minecraft.jar");
 			File jinputJar = new File(mcBinFolder, "jinput.jar");
 			File lwglJar = new File(mcBinFolder, "lwjgl.jar");
 			File lwjgl_utilJar = new File(mcBinFolder, "lwjgl_util.jar");
 
-			File[] files = new File[5];
+			if (useOptifine) {files = new File[6];} else {files = new File[5];}
 
 			try {
 				files[0] = modpackJar;
@@ -56,6 +61,7 @@ public class MinecraftLauncher {
 				files[2] = jinputJar;
 				files[3] = lwglJar;
 				files[4] = lwjgl_utilJar;
+				if (useOptifine) {files[5] = optifineZip;}
 
 				loader = new MinecraftClassLoader(ClassLoader.getSystemClassLoader(), modpackJar, files, pack);
 			}

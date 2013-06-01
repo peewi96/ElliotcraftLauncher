@@ -70,6 +70,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	private JLabel background;
 	private PackInfo installedPack;
 	private JComboBox buildSelector;
+	private JCheckBox useOptifine;
 	private LiteTextBox packLocation;
 	private LiteButton openFolder;
 	private LiteButton cleanBin;
@@ -146,7 +147,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		ButtonGroup group = new ButtonGroup();
 		
 		JRadioButton versionRec = new JRadioButton(lang("modpackoptions.recommneded"));
-		versionRec.setBounds(10, buildLabel.getY() + buildLabel.getHeight() + 10, FRAME_WIDTH - 20, 30);
+		versionRec.setBounds(10, buildLabel.getY() + buildLabel.getHeight() + 10, FRAME_WIDTH - 20, 20);
 		versionRec.setFont(fontregular);
 		versionRec.setForeground(Color.white);
 		versionRec.setContentAreaFilled(false);
@@ -155,7 +156,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		group.add(versionRec);
 		
 		JRadioButton versionLatest = new JRadioButton(lang("modpackoptions.latest"));
-		versionLatest.setBounds(10, versionRec.getY() + versionRec.getHeight(), FRAME_WIDTH - 20, 30);
+		versionLatest.setBounds(10, versionRec.getY() + versionRec.getHeight(), FRAME_WIDTH - 20, 20);
 		versionLatest.setFont(fontregular);
 		versionLatest.setForeground(Color.white);
 		versionLatest.setContentAreaFilled(false);
@@ -164,14 +165,21 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		group.add(versionLatest);
 		
 		JRadioButton versionManual = new JRadioButton(lang("modpackoptions.manual"));
-		versionManual.setBounds(10, versionLatest.getY() + versionLatest.getHeight(), FRAME_WIDTH - 20, 30);
+		versionManual.setBounds(10, versionLatest.getY() + versionLatest.getHeight(), FRAME_WIDTH - 20, 20);
 		versionManual.setFont(fontregular);
 		versionManual.setForeground(Color.white);
 		versionManual.setContentAreaFilled(false);
 		versionManual.setActionCommand(MANUAL_ACTION);
 		versionManual.addActionListener(this);
 		group.add(versionManual);
-		
+
+		useOptifine = new JCheckBox(lang("modpackoptions.useoptifine"));
+		useOptifine.setFont(fontregular);
+		useOptifine.setBounds(10, versionManual.getY() + versionManual.getHeight() + 10, FRAME_WIDTH - 20, 20);
+		useOptifine.setSelected(Settings.getOptifine(installedPack.getName()));
+		useOptifine.setContentAreaFilled(false);
+		useOptifine.setForeground(Color.WHITE);
+
 		if (build.equals("latest")) {
 			buildSelector.setEnabled(false);
 			buildSelector.setSelectedItem(new BuildLabel(installedPack.getLatest()));
@@ -230,6 +238,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		contentPane.add(optionsQuit);
 		contentPane.add(buildLabel);
 		contentPane.add(buildSelector);
+		contentPane.add(useOptifine);
 		contentPane.add(versionRec);
 		contentPane.add(versionLatest);
 		contentPane.add(versionManual);
@@ -256,6 +265,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 			dispose();
 		} else if (action.equals(SAVE_ACTION)) {
 			Settings.setModpackBuild(installedPack.getName(), build);
+			Settings.setOptifine(installedPack.getName(), useOptifine.isSelected());
 			if (directoryChanged) {
 				directoryChanged = false;
 				installedPack.setPackDirectory(installedDirectory);
