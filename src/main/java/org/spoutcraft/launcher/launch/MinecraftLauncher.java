@@ -56,12 +56,20 @@ public class MinecraftLauncher {
 			if (useOptifine) {files = new File[6];} else {files = new File[5];}
 
 			try {
-				files[0] = modpackJar;
-				files[1] = minecraftJar;
-				files[2] = jinputJar;
-				files[3] = lwglJar;
-				files[4] = lwjgl_utilJar;
-				if (useOptifine) {files[5] = optifineZip;}
+				if (useOptifine) {
+					files[0] = optifineZip;
+					files[1] = modpackJar;
+					files[2] = minecraftJar;
+					files[3] = jinputJar;
+					files[4] = lwglJar;
+					files[5] = lwjgl_utilJar;
+				} else {
+					files[0] = modpackJar;
+					files[1] = minecraftJar;
+					files[2] = jinputJar;
+					files[3] = lwglJar;
+					files[4] = lwjgl_utilJar;
+				}
 
 				loader = new MinecraftClassLoader(ClassLoader.getSystemClassLoader(), modpackJar, files, pack);
 			}
