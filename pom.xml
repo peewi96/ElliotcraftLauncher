@@ -128,12 +128,6 @@
 			<version>1.1</version>
 			<scope>compile</scope>
 		</dependency>
-        <!-- Json depency from MinecraftDev launcher -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.2.2</version>
-        </dependency>
 		<!-- Testing only -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -209,6 +203,7 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
+                    <finalName>${project.name}</finalName>
 					<archive>
 						<manifest>
 							<mainClass>${mainClass}</mainClass>
@@ -321,8 +316,8 @@
 										<mutexName>${project.name}</mutexName>
 										<windowTitle>${project.name}</windowTitle>
 									</singleInstance>
-									<jar>${project.build.directory}/${project.artifactId}-${project.version}.jar</jar>
-									<outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
+									<jar>${project.build.directory}/${project.name}.jar</jar>
+									<outfile>${project.build.directory}/${project.name}.exe</outfile>
 									<classPath>
 										<mainClass>${mainClass}</mainClass>
 										<addDependencies>false</addDependencies>
@@ -378,7 +373,7 @@
 									<iconFile>${project.basedir}/src/main/resources/app/icon.icns</iconFile>
 									<dictionaryFile>${project.basedir}/src/main/resources/app/Info.plist.template</dictionaryFile>
 									<javaApplicationStub>${project.basedir}/src/main/resources/app/JavaApplicationStub</javaApplicationStub>
-									<zipFile>${project.build.directory}/${project.build.finalName}-app.zip</zipFile>
+									<zipFile>${project.build.directory}/${project.name}-app.zip</zipFile>
 									<internetEnable>true</internetEnable>
 									<jvmVersion>1.5+</jvmVersion>
 									<vmOptions>-Xms512M -Xmx1024M</vmOptions>
@@ -428,8 +423,8 @@
                                         <mutexName>${project.name}</mutexName>
                                         <windowTitle>${project.name}</windowTitle>
                                     </singleInstance>
-                                    <jar>${project.build.directory}/${project.artifactId}-${project.version}.jar</jar>
-                                    <outfile>${project.build.directory}/${project.artifactId}-${project.version}.exe</outfile>
+                                    <jar>${project.build.directory}/${project.name}.jar</jar>
+                                    <outfile>${project.build.directory}/${project.name}.exe</outfile>
                                     <classPath>
                                         <mainClass>${mainClass}</mainClass>
                                         <addDependencies>false</addDependencies>

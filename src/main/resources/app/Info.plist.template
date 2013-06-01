@@ -27,7 +27,7 @@
 			<key>MainClass</key>
 			<string>${mainClass}</string>
 			<key>ClassPath</key>
-			<array><string>$JAVAROOT/TechniCraft-${version}.jar</string></array>
+			<array><string>$JAVAROOT/TechniCraft Launcher.jar</string></array>
 			<key>JVMVersion</key>
 			<string>${jvmVersion}</string>
 			<key>VMOptions</key>
