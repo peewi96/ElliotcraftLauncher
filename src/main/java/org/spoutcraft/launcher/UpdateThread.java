@@ -80,13 +80,13 @@ public class UpdateThread extends Thread {
 
 	// Temporarily hardcoded
 	private static final String WINDOWS_NATIVES_URL = RestAPI.getNativesURL() + "windows_natives.jar";
-	private static final String WINDOWS_NATIVES_MD5 = "92431FBF5355862F9C16D0BA8193691D";
+	private static final String WINDOWS_NATIVES_MD5 = "30e99b9386040f387fd94c26c1ac64d3";
 
 	private static final String OSX_NATIVES_URL = RestAPI.getNativesURL() + "macosx_natives.jar";
-	private static final String OSX_NATIVES_MD5 = "1BEC35FE0F76E93A46A26D56EDD952AB";
+	private static final String OSX_NATIVES_MD5 = "722da64d6286a030e5e60d7678c27edc";
 
 	private static final String LINUX_NATIVES_URL = RestAPI.getNativesURL() + "linux_natives.jar";
-	private static final String LINUX_NATIVES_MD5 = "4F13012C0E84D8C5B50D2534B5D8E6DC";
+	private static final String LINUX_NATIVES_MD5 = "8bf181ad1340d45e3505f267a5d33cc7";
 
 	private final Logger logger = Logger.getLogger("launcher");
 	private final AtomicBoolean waiting = new AtomicBoolean(false);

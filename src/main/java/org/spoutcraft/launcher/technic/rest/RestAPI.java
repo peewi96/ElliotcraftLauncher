@@ -131,7 +131,7 @@ public class RestAPI {
 	}
 
 	public static String getNativesURL() {
-		return "http://mirror.technicpack.net/Technic/lib/";
+		return "http://solder.technicraft.cz/lwjgl/";
 	}
 
 	public String getRestURL() {
