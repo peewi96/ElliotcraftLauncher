@@ -36,7 +36,7 @@ import org.spoutcraft.launcher.skin.MetroLoginFrame;
 public class AddPack extends PackInfo {
 	private final static BufferedImage icon = MetroLoginFrame.getImage("icon.png", 32, 32);
 	private final static BufferedImage logo = MetroLoginFrame.getImage("addNewPack.png", 180, 110);
-	private final static BufferedImage background = MetroLoginFrame.getImage("background.png", 880, 520);
+	private final static BufferedImage background = MetroLoginFrame.getImage("background.jpg", 880, 520);
 
 	@Override
 	public String getName() {

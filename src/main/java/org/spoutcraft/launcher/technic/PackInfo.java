@@ -231,14 +231,14 @@ public abstract class PackInfo extends RestObject {
 		if (background.get() != null) {
 			return background.get();
 		} else {
-			if (buildImage(background, "background.png", getBackgroundURL(), getBackgroundMD5(), 880, 520)) {
+			if (buildImage(background, "background.jpg", getBackgroundURL(), getBackgroundMD5(), 880, 520)) {
 				Launcher.getFrame().getBackgroundImage().checkEnableTekkit(getName());
 				return background.get();
 			}
 		}
 
 		if (BACKUP_BACKGROUND == null) {
-			BACKUP_BACKGROUND = ImageUtils.scaleImage(loadBackup("/org/spoutcraft/launcher/resources/background.png"), 880, 520);
+			BACKUP_BACKGROUND = ImageUtils.scaleImage(loadBackup("/org/spoutcraft/launcher/resources/background.jpg"), 880, 520);
 		}
 		return BACKUP_BACKGROUND;
 	}
