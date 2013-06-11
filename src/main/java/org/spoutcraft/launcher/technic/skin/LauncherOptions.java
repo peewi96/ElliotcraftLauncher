@@ -39,15 +39,13 @@ import javax.swing.*;
 import org.spoutcraft.launcher.Memory;
 import org.spoutcraft.launcher.Language;
 import org.spoutcraft.launcher.Settings;
-import org.spoutcraft.launcher.UpdateThread;
-import org.spoutcraft.launcher.api.Launcher;
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
+import org.spoutcraft.launcher.rest.RestAPI;
 import org.spoutcraft.launcher.skin.MetroLoginFrame;
 import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
-import org.spoutcraft.launcher.technic.rest.RestAPI;
-import org.spoutcraft.launcher.util.Compatibility;
+import org.spoutcraft.launcher.util.DesktopUtils;
 import org.spoutcraft.launcher.util.FileUtils;
 import org.spoutcraft.launcher.util.Utils;
 
@@ -310,8 +308,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			dispose();
 		} else if (action.equals(LOGS_ACTION)) {
 			File logDirectory = new File(Utils.getLauncherDirectory(), "logs");
-			Compatibility.open(logDirectory);
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
+			DesktopUtils.open(logDirectory);
 		} else if (action.equals(CONSOLE_ACTION)) {
 			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
 			consoleToggle =! consoleToggle;

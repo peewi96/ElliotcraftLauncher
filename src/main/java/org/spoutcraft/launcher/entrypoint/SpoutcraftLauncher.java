@@ -56,6 +56,7 @@ import org.spoutcraft.launcher.StartupParameters;
 import org.spoutcraft.launcher.api.Launcher;
 import org.spoutcraft.launcher.skin.ConsoleFrame;
 import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.SplashScreen;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
 import org.spoutcraft.launcher.util.OperatingSystem;
 import org.spoutcraft.launcher.util.Utils;
@@ -69,6 +70,7 @@ public class SpoutcraftLauncher {
 	protected static RotatingFileHandler handler = null;
 	protected static ConsoleFrame console;
 	private static StartupParameters params;
+
 	public SpoutcraftLauncher() {
 		main(new String[0]);
 	}
@@ -78,7 +80,10 @@ public class SpoutcraftLauncher {
 		final long startupTime = start;
 
 		// Prefer IPv4
-		System.setProperty("java.net.preferIPv4Stack" , "true");
+		System.setProperty("java.net.preferIPv4Stack", "true");
+
+		// Tell forge to download from our mirror instead
+		System.setProperty("fml.core.libraries.mirror", "http://mirror.technicpack.net/Technic/lib/fml/%s");
 
 		params = setupParameters(args);
 
@@ -153,7 +158,7 @@ public class SpoutcraftLauncher {
 			lastPack = ModpackSelector.DEFAULT_PACK;
 		}
 		selector.selectPack(lastPack);
-		
+		frame.getNews().loadArticles();
 		
 		frame.updateFaces();
 

@@ -63,10 +63,9 @@ import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LitePasswordBox;
 import org.spoutcraft.launcher.skin.components.LiteProgressBar;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
-import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
-import org.spoutcraft.launcher.skin.components.LoginFrame;
-import org.spoutcraft.launcher.skin.components.NewsComponent;
 import org.spoutcraft.launcher.skin.components.TransparentJLabel;
+import org.spoutcraft.launcher.skin.components.LoginFrame;
+import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
 import org.spoutcraft.launcher.technic.AddPack;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.RestInfo;
@@ -74,9 +73,9 @@ import org.spoutcraft.launcher.technic.skin.ImageButton;
 import org.spoutcraft.launcher.technic.skin.LauncherOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
+import org.spoutcraft.launcher.technic.skin.NewsComponent;
 import org.spoutcraft.launcher.technic.skin.RoundedBox;
 import org.spoutcraft.launcher.util.*;
-import org.spoutcraft.launcher.util.Download.Result;
 
 import org.spoutcraft.launcher.tracking.AnalyticsConfigData;
 import org.spoutcraft.launcher.tracking.JGoogleAnalyticsTracker;
@@ -414,7 +413,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		//contentPane.add(issues);
 		//contentPane.add(logo);
 		contentPane.add(loginStrip);
-//		contentPane.add(news);
+		contentPane.add(news);
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);
@@ -513,7 +512,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		File file = new File(assets, user + ".png");
 		try {
 			Download download = DownloadUtils.downloadFile("http://skins.majncraft.cz/helm/" + user + "/64", file.getAbsolutePath());
-			if (download.getResult().equals(Result.SUCCESS)) {
+			if (download.getResult().equals(Download.Result.SUCCESS)) {
 				return ImageIO.read(download.getOutFile());
 			}
 		} catch (IOException e) {
