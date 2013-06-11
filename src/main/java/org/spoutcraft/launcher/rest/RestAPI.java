@@ -249,11 +249,11 @@ public class RestAPI {
 	}
 
 	public static String getLwjglNativeURL(String version, String os) {
-		return DEFAULT_MIRROR + "lib/lwjgl/lwjgl-natives-" + os + "-" + version + ".zip";
+		return /*DEFAULT_MIRROR + */"http://solder.technicraft.cz/lwjgl/lwjgl-natives-" + os + "-" + version + ".zip";
 	}
 
 	public static String getLwjglURL(String version) {
-		return DEFAULT_MIRROR + "lib/lwjgl/lwjgl-jar-" + version + ".zip";
+		return /*DEFAULT_MIRROR + */"http://solder.technicraft.cz/lwjgl/lwjgl-jar-" + version + ".zip";
 	}
 
 	public static String getMinecraftMD5(String version) {
