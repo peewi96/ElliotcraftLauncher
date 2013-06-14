@@ -94,6 +94,12 @@ public final class StartupParameters {
 	@Parameter(names = {"-custompack", "-cp"}, description = "Enables Custom Packs")
 	private static boolean custompack = false;
 
+	@Parameter(names = {"-solderpack"}, description = "URL pointing towards the solder pack you want to force add to the launcher.")
+	private String solderPack = null;
+
+	@Parameter(names = {"-solderrest"}, description = "URL point towards the rest api for a solder pack you want to force add to the launcher.")
+	private String solderRest = null;
+
 	public List<String> getParameters() {
 		return parameters;
 	}
@@ -131,7 +137,7 @@ public final class StartupParameters {
 			log.info("Relaunched with correct memory");
 		}
 		if (console) {
-			log.info("Debug console enabled");
+			log.info("Console frame enabled");
 		}
 		if (custompack) {
 			log.info("Custom packs enabled");
@@ -141,6 +147,12 @@ public final class StartupParameters {
 		}
 		if (height != -1) {
 			log.info("Minecraft frame height: " + height);
+		}
+		if (solderPack != null) {
+			log.info("Forced solder pack: " + solderPack);
+		}
+		if (solderRest != null) {
+			log.info("Forced solder pack rest: " + solderRest);
 		}
 		log.info("--------- End of Startup Parameters ---------");
 	}
@@ -273,6 +285,14 @@ public final class StartupParameters {
 		if (custompack) {
 			params.add("-custompack");
 		}
+		if (solderPack != null) {
+			params.add("-solderpack");
+			params.add(solderPack);
+		}
+		if (solderRest != null) {
+			params.add("-solderrest");
+			params.add(solderRest);
+		}
 		return params;
 	}
 
@@ -351,5 +371,13 @@ public final class StartupParameters {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public String getSolderPack() {
+		return solderPack;
+	}
+
+	public String getSolderRest() {
+		return solderRest;
 	}
 }
