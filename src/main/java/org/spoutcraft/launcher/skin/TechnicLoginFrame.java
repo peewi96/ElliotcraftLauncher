@@ -567,7 +567,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		} else if (action.equals(LOGIN_ACTION)) {
 			tracker.trackEvent("Login Frame", action);
 			PackInfo pack = getSelector().getSelectedPack();
-			if (pack.usePermGen()) {
+			if (pack.usePermGen() && !Settings.getPermGen()) {
 				int result = JOptionPane.showConfirmDialog(this, lang("modpack.permgen.message"), lang("modpack.permgen.title"), JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					TechnicLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
