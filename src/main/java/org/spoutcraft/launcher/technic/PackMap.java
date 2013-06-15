@@ -186,7 +186,9 @@ public class PackMap extends HashMap<String, PackInfo> {
 				continue;
 			}
 			OfflineInfo offline = new OfflineInfo(pack);
-			add(offline);
+			if (!offline.isHidden()) {
+				add(offline);
+			}
 		}
 
 		Thread thread = new Thread("Default Pack Thread") {
@@ -195,6 +197,11 @@ public class PackMap extends HashMap<String, PackInfo> {
 				int index = 0;
 				for (PackInfo pack : RestAPI.getDefaults()) {
 					pack.setRest(RestAPI.getDefault());
+					if (pack.isHidden()) {
+						// Do not add pack when hidden from solder
+						System.out.println("Pack "+pack.getDisplayName()+" is hidden. Hiding from Launcher");
+						continue;
+					}
 					add(pack);
 					reorder(index, pack.getName());
 					index++;
