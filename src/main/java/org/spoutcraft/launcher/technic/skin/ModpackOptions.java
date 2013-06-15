@@ -133,10 +133,9 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		buildLabel.setFont(fontregular.deriveFont(14F));
 		
 		buildSelector = new JComboBox();
-		buildSelector.setBounds((FRAME_WIDTH/2)-50, 50, 195, 25);
+		buildSelector.setBounds((FRAME_WIDTH/2)-50, 50, 185, 25);
 		buildSelector.setActionCommand(BUILD_ACTION);
 		buildSelector.addActionListener(this);
-		UIManager.put("ComboBox.disabledForeground", Color.DARK_GRAY);
 		populateBuilds(buildSelector);
 		
 		build = Settings.getModpackBuild(installedPack.getName());
@@ -207,13 +206,13 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
 		LiteButton changeFolder = new LiteButton(lang("options.changefolder"), FRAME_WIDTH / 2 + 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		changeFolder.setFont(fontbold);
+		changeFolder.setFont(fontregular);
 		changeFolder.setForeground(Color.WHITE);
 		changeFolder.setActionCommand(CHANGEFOLDER_ACTION);
 		changeFolder.addActionListener(this);
 		
 		openFolder = new LiteButton(lang("modpackoptions.openfolder"), 10, packLocation.getY() + packLocation.getHeight() + 10, FRAME_WIDTH / 2 - 20, 25);
-		openFolder.setFont(fontbold);
+		openFolder.setFont(fontregular);
 		openFolder.setForeground(Color.WHITE);
 		openFolder.setActionCommand(OPENFOLDER_ACTION);
 		openFolder.addActionListener(this);

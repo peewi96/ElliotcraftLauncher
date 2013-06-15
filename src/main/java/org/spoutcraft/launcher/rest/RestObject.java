@@ -34,7 +34,7 @@ public class RestObject {
 	@JsonProperty("error")
 	private String error;
 
-	private RestAPI rest;
+	private static RestAPI rest;
 
 	public String getError() {
 		return error;
@@ -48,7 +48,7 @@ public class RestObject {
 		this.rest = rest;
 	}
 
-	public RestAPI getRest() {
+	public static RestAPI getRest() {
 		return rest;
 	}
 }

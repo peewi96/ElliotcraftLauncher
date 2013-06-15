@@ -290,7 +290,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				dispose();
 			}
 			if (mem != oldMem || oldperm != perm) {
-				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question", lang), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question"), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
 					TechnicLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
 					SpoutcraftLauncher.relaunch(true);

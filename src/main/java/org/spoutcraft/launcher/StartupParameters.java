@@ -92,7 +92,7 @@ public final class StartupParameters {
 	private int height = -1;
 
 	@Parameter(names = {"-custompack", "-cp"}, description = "Enables Custom Packs")
-	private boolean custompack = false;
+	private static boolean custompack = false;
 
 	public List<String> getParameters() {
 		return parameters;
@@ -341,7 +341,7 @@ public final class StartupParameters {
 		return proxyPassword;
 	}
 
-	public boolean isCustomPack() {
+	public static boolean isCustomPack() {
 		return custompack;
 	}
 

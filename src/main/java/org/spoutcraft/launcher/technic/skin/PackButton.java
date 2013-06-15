@@ -45,7 +45,7 @@ public class PackButton extends ImageButton {
 	public PackButton() {
 		super();
 		label = new JLabel(lang("modpackbuttton.loading"));
-		label.setFont(TechnicLoginFrame.getClassicBoldFont(12));
+		label.setFont(TechnicLoginFrame.getMinecraftFont(12));
 		label.setForeground(Color.WHITE);
 		label.setBackground(new Color(35, 35, 35));
 		label.setOpaque(true);
