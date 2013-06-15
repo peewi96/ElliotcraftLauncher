@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.spoutcraft.launcher.Settings;
+import org.spoutcraft.launcher.StartupParameters;
 import org.spoutcraft.launcher.api.Launcher;
 import org.spoutcraft.launcher.rest.RestAPI;
 import org.spoutcraft.launcher.technic.skin.ModpackSelector;
@@ -174,9 +175,10 @@ public class PackMap extends HashMap<String, PackInfo> {
 				select(pack);
 			}
 		}
-
-		// Add in the add pack button
-		put("addpack", new AddPack());
+		// Add in the add pack button when -custompack parameter or when offline first launch
+		if (StartupParameters.isCustomPack() || RestAPI.getDefaults().isEmpty()) {
+			put("addpack", new AddPack());
+		}
 	}
 
 	private void loadDefaults(final String lastPack) {
