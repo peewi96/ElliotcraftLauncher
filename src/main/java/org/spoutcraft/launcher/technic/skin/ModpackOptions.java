@@ -37,7 +37,7 @@ import javax.swing.*;
 
 import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.UpdateThread;
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.technic.PackInfo;
@@ -91,9 +91,9 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	}
 	
 	private void initComponents() {
-		Font fontregular = MetroLoginFrame.getClassicFont(13);
-		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
-		
+		Font fontregular = TechnicLoginFrame.getClassicFont(13);
+		Font fontbold = TechnicLoginFrame.getClassicBoldFont(13);
+
 		KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
 		Action escapeAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -109,7 +109,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
-		MetroLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
+		TechnicLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
 		
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
@@ -120,8 +120,8 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 		optionsTitle.setForeground(Color.white);
 		optionsTitle.setFont(fontbold.deriveFont(16F));
 		
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
+		ImageButton optionsQuit = new ImageButton(TechnicLoginFrame.getIcon("exit.png", 16, 16), TechnicLoginFrame.getIcon("exit.png", 16, 16));
+		optionsQuit.setRolloverIcon(TechnicLoginFrame.getIcon("exit_hover.png", 16, 16));
 		optionsQuit.setBounds(FRAME_WIDTH - 10 - 16, 10, 16, 16);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
@@ -261,7 +261,7 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 	
 	private void action(String action, JComponent c) {
 		if (action.equals(QUIT_ACTION)) {
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 			dispose();
 		} else if (action.equals(SAVE_ACTION)) {
 			Settings.setModpackBuild(installedPack.getName(), build);
@@ -271,25 +271,25 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 				installedPack.setPackDirectory(installedDirectory);
 			}
 			Settings.getYAML().save();
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 			dispose();
 		} else if (action.equals(BUILD_ACTION)) {
 			build = ((BuildLabel) buildSelector.getSelectedItem()).getBuild();
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 		} else if (action.equals(REC_ACTION)) {
 			buildSelector.setEnabled(false);
 			buildSelector.setSelectedItem(new BuildLabel(installedPack.getRecommended()));
 			build = RECOMMENDED;
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 		} else if (action.equals(LATEST_ACTION)) {
 			buildSelector.setEnabled(false);
 			buildSelector.setSelectedItem(new BuildLabel(installedPack.getLatest()));
 			build = LATEST;
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 		} else if (action.equals(MANUAL_ACTION)) {
 			buildSelector.setEnabled(true);
 			build = ((BuildLabel) buildSelector.getSelectedItem()).getBuild();
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action, build);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action, build);
 		} else if (action.equals(OPENFOLDER_ACTION)) {
 			if (installedDirectory.exists()) {
 				DesktopUtils.open(installedDirectory);
@@ -310,11 +310,11 @@ public class ModpackOptions extends JDialog implements ActionListener, MouseList
 					openFolder.setVisible(true);
 				}
 			}
-			MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+			TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 		} else if (action.equals(CLEAN_BIN_ACTION)) {
 			int result = JOptionPane.showConfirmDialog(c, lang("modpackoptions.reset.question"), lang("modpackoptions.reset.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if (result == JOptionPane.YES_OPTION) {
-				MetroLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
+				TechnicLoginFrame.tracker.trackEvent(installedPack.getDisplayName()+" Options", action);
 				cleanBin();
 				dispose();
 			}

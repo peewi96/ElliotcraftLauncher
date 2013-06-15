@@ -56,7 +56,7 @@ import javax.swing.text.SimpleAttributeSet;
 import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.api.Launcher;
 import org.spoutcraft.launcher.rest.RestAPI;
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.technic.CustomInfo;
@@ -101,9 +101,9 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 	}
 
 	public void initComponents() {
-		Font fontregular = MetroLoginFrame.getClassicFont(13);
-		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
-		
+		Font fontregular = TechnicLoginFrame.getClassicFont(13);
+		Font fontbold = TechnicLoginFrame.getClassicBoldFont(13);
+
 		KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
 		Action escapeAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -119,13 +119,13 @@ public class ImportOptions extends JDialog implements ActionListener, MouseListe
 
 		background = new JLabel();
 		background.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-		MetroLoginFrame.setIcon(background, "platformBackground.png", background.getWidth(), background.getHeight());
+		TechnicLoginFrame.setIcon(background, "platformBackground.png", background.getWidth(), background.getHeight());
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
-		
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
+
+		ImageButton optionsQuit = new ImageButton(TechnicLoginFrame.getIcon("exit.png", 16, 16), TechnicLoginFrame.getIcon("exit.png", 16, 16));
+		optionsQuit.setRolloverIcon(TechnicLoginFrame.getIcon("exit_hover.png", 16, 16));
 		optionsQuit.setBounds(FRAME_WIDTH - 10 - 16, 10, 16, 16);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);

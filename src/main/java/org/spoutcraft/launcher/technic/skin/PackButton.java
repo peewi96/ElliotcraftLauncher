@@ -33,7 +33,7 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
 
@@ -45,7 +45,7 @@ public class PackButton extends ImageButton {
 	public PackButton() {
 		super();
 		label = new JLabel(lang("modpackbuttton.loading"));
-		label.setFont(MetroLoginFrame.getClassicBoldFont(12));
+		label.setFont(TechnicLoginFrame.getClassicBoldFont(12));
 		label.setForeground(Color.WHITE);
 		label.setBackground(new Color(35, 35, 35));
 		label.setOpaque(true);

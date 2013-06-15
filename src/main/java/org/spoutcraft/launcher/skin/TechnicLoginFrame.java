@@ -64,11 +64,9 @@ import org.spoutcraft.launcher.skin.components.LitePasswordBox;
 import org.spoutcraft.launcher.skin.components.LiteProgressBar;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.skin.components.TransparentJLabel;
-import org.spoutcraft.launcher.skin.components.LoginFrame;
 import org.spoutcraft.launcher.tracking.system.AWTSystemPopulator;
 import org.spoutcraft.launcher.technic.AddPack;
 import org.spoutcraft.launcher.technic.PackInfo;
-import org.spoutcraft.launcher.technic.RestInfo;
 import org.spoutcraft.launcher.technic.skin.ImageButton;
 import org.spoutcraft.launcher.technic.skin.LauncherOptions;
 import org.spoutcraft.launcher.technic.skin.ModpackOptions;
@@ -83,7 +81,7 @@ import org.spoutcraft.launcher.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsV
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
 
-public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyListener, MouseWheelListener {
+public class TechnicLoginFrame extends LoginFrame implements ActionListener, KeyListener, MouseWheelListener {
 	private static final long serialVersionUID = 1L;
 	private static final int FRAME_WIDTH = 880;
 	private static final int FRAME_HEIGHT = 520;
@@ -124,8 +122,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
 
 
-	public MetroLoginFrame() {
-		tracker.setEnabled(true);
+	public TechnicLoginFrame() {
 		initComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((dim.width - FRAME_WIDTH) / 2, (dim.height - FRAME_HEIGHT) / 2, FRAME_WIDTH, FRAME_HEIGHT);
@@ -135,14 +132,14 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		this.addMouseMotionListener(packBackground);
 		this.addMouseWheelListener(this);
 		getContentPane().add(packBackground);
-		TrackerUtils.sendPageView("skin/MetroLoginFrame.java", "Launcher Start v" + Settings.getLauncherBuild());
+		TrackerUtils.sendPageView("skin/TechnicLoginFrame.java", "Launcher Start v" + Settings.getLauncherBuild());
 		AWTSystemPopulator.populateConfigData(config);
 		this.setUndecorated(true);
 	}
 
 	private void initComponents() {
-		Font minecraft = MetroLoginFrame.getMinecraftFont(12);
-		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
+		Font minecraft = TechnicLoginFrame.getMinecraftFont(12);
+		Font fontbold = TechnicLoginFrame.getClassicBoldFont(13);
 
 		// Login Strip
 		TransparentJLabel loginStrip = new TransparentJLabel();
@@ -195,6 +192,12 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 //		ImageIcon logoIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("header.png"), 275));
 //		logo.setIcon(logoIcon);
 //		logo.setBounds(600, 6, logoIcon.getIconWidth(), logoIcon.getIconHeight());
+
+		// Tear
+		HyperlinkJLabel tear = new HyperlinkJLabel("", "http://www.technicpack.net");
+		ImageIcon tearIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("tear1.png"), 100));
+		tear.setIcon(tearIcon);
+		tear.setBounds(520, 0, 140, 361);
 
 		// Pack Selector Background
 		JLabel selectorBackground = new JLabel();
@@ -414,6 +417,7 @@ public class MetroLoginFrame extends LoginFrame implements ActionListener, KeyLi
 		//contentPane.add(logo);
 		contentPane.add(loginStrip);
 		//contentPane.add(news);
+		//contentPane.add(tear);
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);

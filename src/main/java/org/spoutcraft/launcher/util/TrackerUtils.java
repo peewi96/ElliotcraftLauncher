@@ -16,12 +16,12 @@
  */
 package org.spoutcraft.launcher.util;
 
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 
 public class TrackerUtils {
 	public TrackerUtils() { }
 
 	public static void sendPageView(String pageUrl, String pageTitle) {
-			MetroLoginFrame.tracker.trackPageViewFromReferrer(pageUrl, pageTitle, "TechniCraft", "http://technicraft.cz", "/");
+		TechnicLoginFrame.tracker.trackPageViewFromReferrer(pageUrl, pageTitle, "TechniCraft", "http://technicraft.cz", "/");
 	}
 }

@@ -27,7 +27,7 @@
 
 package org.spoutcraft.launcher.skin.components;
 
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 import org.spoutcraft.launcher.util.ImageUtils;
 
 import java.awt.Color;
@@ -55,8 +55,8 @@ public class LiteButton extends JButton{
 		this.setText(label);
 		this.setBounds(x, y, w, h);
 		this.setHorizontalTextPosition(SwingConstants.CENTER);
-		this.setIcon(MetroLoginFrame.getResizedIcon("button.png", w, h));
-		this.setRolloverIcon(MetroLoginFrame.getResizedIcon("button_hover.png", w, h));
+		this.setIcon(TechnicLoginFrame.getResizedIcon("button.png", w, h));
+		this.setRolloverIcon(TechnicLoginFrame.getResizedIcon("button_hover.png", w, h));
 	}
 
 }

@@ -42,7 +42,7 @@ import javax.swing.JLabel;
 import org.apache.commons.io.FileUtils;
 
 import org.spoutcraft.launcher.Settings;
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 import org.spoutcraft.launcher.technic.AddPack;
 import org.spoutcraft.launcher.technic.PackInfo;
 import org.spoutcraft.launcher.technic.PackMap;
@@ -55,12 +55,12 @@ public class ModpackSelector extends JComponent implements ActionListener {
 	public static final String DEFAULT_PACK = "technicraft";
 	private ImportOptions importOptions = null;
 
-	private final MetroLoginFrame frame;
+	private final TechnicLoginFrame frame;
 	private final PackMap packs = new PackMap();
 	private final List<PackButton> buttons = new ArrayList<PackButton>(7);
 
 	private final int height = 145;
-	private final int width = 880 - (2* MetroLoginFrame.FRAME_SIDE_SPACING);
+	private final int width = 880 - (2* TechnicLoginFrame.FRAME_SIDE_SPACING);
 	public static final int bigWidth = 250;
 	public static final int bigHeight = 145;
 	private final float smallScale = 1.0F;
@@ -71,7 +71,7 @@ public class ModpackSelector extends JComponent implements ActionListener {
 	private final int bigY = (height / 2) - (bigHeight / 2);
 	private final int smallY = (height / 2) - (smallHeight / 2);
 
-	public ModpackSelector(MetroLoginFrame frame) {
+	public ModpackSelector(TechnicLoginFrame frame) {
 		this.frame = frame;
 
 		for (int i = 0; i < 7; i++) {

@@ -32,6 +32,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JProgressBar;
 
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
+
 public class LiteProgressBar extends JProgressBar implements Transparent{
 	private static final long serialVersionUID = 1L;
 	private final TransparentComponent transparency = new TransparentComponent(this, false);

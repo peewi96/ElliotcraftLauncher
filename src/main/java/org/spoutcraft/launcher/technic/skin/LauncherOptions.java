@@ -42,7 +42,7 @@ import org.spoutcraft.launcher.Settings;
 import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.exceptions.RestfulAPIException;
 import org.spoutcraft.launcher.rest.RestAPI;
-import org.spoutcraft.launcher.skin.MetroLoginFrame;
+import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 import org.spoutcraft.launcher.skin.components.LiteButton;
 import org.spoutcraft.launcher.skin.components.LiteTextBox;
 import org.spoutcraft.launcher.util.DesktopUtils;
@@ -98,8 +98,8 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	}
 
 	private void initComponents() {
-		Font fontregular = MetroLoginFrame.getClassicFont(13);
-		Font fontbold = MetroLoginFrame.getClassicBoldFont(13);
+		Font fontregular = TechnicLoginFrame.getClassicFont(13);
+		Font fontbold = TechnicLoginFrame.getClassicBoldFont(13);
 
 		KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
 		Action escapeAction = new AbstractAction() {
@@ -116,10 +116,10 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 
 		background = new JLabel();
 		background.setBounds(0,0, FRAME_WIDTH, FRAME_HEIGHT);
-		MetroLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
+		TechnicLoginFrame.setIcon(background, "optionsBackground.png", background.getWidth(), background.getHeight());
 
-		ImageButton optionsQuit = new ImageButton(MetroLoginFrame.getIcon("exit.png", 16, 16), MetroLoginFrame.getIcon("exit.png", 16, 16));
-		optionsQuit.setRolloverIcon(MetroLoginFrame.getIcon("exit_hover.png", 16, 16));
+		ImageButton optionsQuit = new ImageButton(TechnicLoginFrame.getIcon("exit.png", 16, 16), TechnicLoginFrame.getIcon("exit.png", 16, 16));
+		optionsQuit.setRolloverIcon(TechnicLoginFrame.getIcon("exit_hover.png", 16, 16));
 		optionsQuit.setBounds(FRAME_WIDTH - 10 - 16, 10, 16, 16);
 		optionsQuit.setActionCommand(QUIT_ACTION);
 		optionsQuit.addActionListener(this);
@@ -292,10 +292,10 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			if (mem != oldMem || oldperm != perm) {
 				int result = JOptionPane.showConfirmDialog(c, lang("options.restart.question", lang), lang("options.restart.title"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (result == JOptionPane.YES_OPTION) {
-					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
+					TechnicLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 1);
 					SpoutcraftLauncher.relaunch(true);
 				} else {
-					MetroLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 0);
+					TechnicLoginFrame.tracker.trackEvent("Launcher Options", action, "RESTART_LAUNCHER", 0);
 				}
 			}
 			/*if (latestLWJGL.isSelected() != Settings.getLatestLWJGL()) {
@@ -304,13 +304,13 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 				Settings.getYAML().save();
 				UpdateThread.cleanupLWJGL();
 			}*/
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
+			TechnicLoginFrame.tracker.trackEvent("Launcher Options", action);
 			dispose();
 		} else if (action.equals(LOGS_ACTION)) {
 			File logDirectory = new File(Utils.getLauncherDirectory(), "logs");
 			DesktopUtils.open(logDirectory);
 		} else if (action.equals(CONSOLE_ACTION)) {
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
+			TechnicLoginFrame.tracker.trackEvent("Launcher Options", action);
 			consoleToggle =! consoleToggle;
 			Settings.setShowLauncherConsole(consoleToggle);
 			if (consoleToggle) {
@@ -321,7 +321,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 			console.setText(consoleToggle ? lang("options.console.hide") : lang("options.console.show"));
 		} else if (action.equals(CHANGEFOLDER_ACTION)) {
 			int result = fileChooser.showOpenDialog(this);
-			MetroLoginFrame.tracker.trackEvent("Launcher Options", action);
+			TechnicLoginFrame.tracker.trackEvent("Launcher Options", action);
 
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File file = fileChooser.getSelectedFile();
