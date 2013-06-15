@@ -243,7 +243,7 @@ public class RestAPI {
 			ext = "exe";
 		}
 		
-		String url = getPlatformAPI() + "launcher/url/" + version + "/" + ext;
+		String url = "http://solder.technicraft.cz/launcher/url/" + version + "/" + ext;
 		LauncherURL result = getRestObject(LauncherURL.class, url);
 		return result.getLauncherURL();
 	}
