@@ -56,6 +56,8 @@ public class RestInfo extends PackInfo {
 	private String iconMD5;
 	@JsonProperty("url")
 	private String url;
+	@JsonProperty("permgen")
+	private String permgen;
 	@JsonProperty("hidden")
 	private String hidden;
 
@@ -129,6 +131,11 @@ public class RestInfo extends PackInfo {
 	@Override
 	public Boolean isHidden() {
 		return hidden.equals("1");
+	}
+
+	@Override
+	public Boolean usePermGen() {
+		return permgen.equals("1");
 	}
 
 	@Override

@@ -119,7 +119,11 @@ public abstract class PackInfo extends RestObject {
 	}
 
 	public Boolean isHidden() {
-			return false;
+		return false;
+	}
+
+	public Boolean usePermGen() {
+		return false;
 	}
 
 	public void init() {
