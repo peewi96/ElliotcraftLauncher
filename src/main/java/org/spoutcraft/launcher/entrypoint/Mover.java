@@ -82,8 +82,6 @@ public class Mover {
 		if (!exe) {
 			if (OperatingSystem.getOS().isWindows()) {
 				commands.add("javaw");
-			} else if (OperatingSystem.getOS().isMac() && System.getProperty("java.version").startsWith("1.7")) {
-				commands.add("/Library/Java/Home/bin/java");
 			} else {
 				commands.add("java");
 			}
