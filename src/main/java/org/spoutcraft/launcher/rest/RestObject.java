@@ -45,7 +45,7 @@ public class RestObject {
 	}
 
 	public void setRest(RestAPI rest) {
-		this.rest = rest;
+		RestObject.rest = rest;
 	}
 
 	public static RestAPI getRest() {

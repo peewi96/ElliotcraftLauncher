@@ -213,7 +213,7 @@ public class GameLauncher extends JFrame implements WindowListener {
 			minecraft.start();
 			Launcher.getFrame().onEvent(Event.GAME_LAUNCH);
 		} catch (Throwable t) {
-			Launcher.getLogger().log(Level.SEVERE, "Unable to launch TechniCraft", t);
+			Launcher.getLogger().log(Level.SEVERE, "Unable to launch Elliotcraft", t);
 			SpoutcraftLauncher.flush();
 		}
 		return;

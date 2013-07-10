@@ -324,7 +324,7 @@ public class UpdateThread extends Thread {
 		}
 
 		// Process lwjgl downloads
-		String lwjgl = "2.9.0"; // TODO: Get this from the API/Settings
+		String lwjgl = "2.4.2"; // TODO: Get this from the API/Settings
 
 		File lwjglCache = new File(Utils.getCacheDirectory(), "lwjgl-jar-" + lwjgl + ".zip");
 		if (!lwjglCache.exists()) {

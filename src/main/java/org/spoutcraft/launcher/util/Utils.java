@@ -79,7 +79,7 @@ public class Utils {
 
 	public static File getLauncherDirectory() {
 		if (workDir == null) {
-			workDir = getWorkingDirectory("technicraft");
+			workDir = getWorkingDirectory("elliotcraft");
 			boolean exists = workDir.exists();
 			if (!exists && !workDir.mkdirs()) {
 				throw new RuntimeException(lang("utils.cantcreateworkdir")+" " + workDir);
@@ -101,17 +101,17 @@ public class Utils {
 			}
 
 			if (!exists) {
-				int result = JOptionPane.showConfirmDialog(splash, lang("utils.install.firstrun")+" " + workDir.getAbsolutePath() + " "+lang("utils.install.question"), lang("utils.install.title"), JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-				if (result == JOptionPane.YES_OPTION) {
-					JFileChooser fileChooser = new JFileChooser(workDir);
-					fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-					int changeInst = fileChooser.showOpenDialog(splash);
+				//int result = JOptionPane.showConfirmDialog(splash, lang("utils.install.firstrun")+" " + workDir.getAbsolutePath() + " "+lang("utils.install.question"), lang("utils.install.title"), JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				//if (result == JOptionPane.YES_OPTION) {
+				//	JFileChooser fileChooser = new JFileChooser(workDir);
+				//	fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				//	int changeInst = fileChooser.showOpenDialog(splash);
 
-					if (changeInst == JFileChooser.APPROVE_OPTION) {
-						workDir = fileChooser.getSelectedFile();
-					}
-					workDir.mkdirs();
-				}
+				//	if (changeInst == JFileChooser.APPROVE_OPTION) {
+				//		workDir = fileChooser.getSelectedFile();
+				//	}
+				//	workDir.mkdirs();
+				//}
 			} else if (Settings.getMigrate() && Settings.getMigrateDir() != null) {
 				File migrate = new File(Settings.getMigrateDir());
 				try {
@@ -135,7 +135,7 @@ public class Utils {
 	}
 
 	public static File selectInstallDir(File workDir) {
-		int result = JOptionPane.showConfirmDialog(splash, "No installation of technic found. \n\nTechnic Launcher will install at: \n" + workDir.getAbsolutePath() + " \n\nWould you like to change the install directory?", "Install Technic Launcher", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(splash, "No installation of Elliotcraft found. \n\nElliotcraft Launcher will install at: \n" + workDir.getAbsolutePath() + " \n\nWould you like to change the install directory?", "Install Elliotcraft Launcher", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		if (result == JOptionPane.YES_OPTION) {
 			JFileChooser fileChooser = new JFileChooser(workDir);
 			fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

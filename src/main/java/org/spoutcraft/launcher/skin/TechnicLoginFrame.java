@@ -33,7 +33,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,7 +97,6 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 	private static final String IMAGE_LOGIN_ACTION = "image_login";
 	private static final String REMOVE_USER = "remove";
 	public static final Color TRANSPARENT = new Color(45, 45, 45, 160);
-	private static final int SPACING = 7;
 	private final Map<JButton, DynamicButton> removeButtons = new HashMap<JButton, DynamicButton>();
 	private final Map<String, DynamicButton> userButtons = new HashMap<String, DynamicButton>();
 	private LiteTextBox name;
@@ -117,7 +115,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 	private JLabel customName;
 	private NewsComponent news;
 	private long previous = 0L;
-	static AnalyticsConfigData config = new AnalyticsConfigData("UA-34064856-2");
+	static AnalyticsConfigData config = new AnalyticsConfigData("UA-42381910-1");
 	private boolean consoleToggle = false;
 	public static JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
 
@@ -144,11 +142,10 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		// Login Strip
 		TransparentJLabel loginStrip = new TransparentJLabel();
 		// 379 is the center of the bottom
-		loginStrip.setBounds(FRAME_WIDTH-260, FRAME_HEIGHT-190, 260-FRAME_SIDE_SPACING, 170);
+		loginStrip.setBounds(FRAME_WIDTH-260, FRAME_HEIGHT-170, 260-FRAME_SIDE_SPACING, 170);
 		loginStrip.setTransparency(0.95F);
 		loginStrip.setHoverTransparency(0.95F);
 		loginStrip.setBackground(new Color(181, 225, 17));
-		//setIcon(loginStrip, "xx.png", loginStrip.getWidth(), loginStrip.getHeight());
 
 		// Setup username box
 		name = new LiteTextBox(this, lang("gui.username"));
@@ -158,14 +155,13 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 
 		// Setup password box
 		pass = new LitePasswordBox(this, lang("gui.password"));
-		//orig- pass.setBounds(620, loginStrip.getY() + loginStrip.getHeight() / 2 - 12, 115, 24);
 		pass.setBounds(name.getX() + 120, loginStrip.getY() + 24, 115, 24);
 		pass.setFont(minecraft);
 		pass.addKeyListener(this);
 
 		// Setup remember checkbox
 		remember = new JCheckBox(lang("gui.remember"));
-		remember.setBounds(pass.getX(), loginStrip.getY(), 117, 24);
+		remember.setBounds(pass.getX() - 2, loginStrip.getY(), 117, 24);
 		remember.setFont(fontbold);
 		remember.setOpaque(false);
 		remember.setBorderPainted(false);
@@ -187,38 +183,25 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		login.addActionListener(this);
 		login.addKeyListener(this);
 
-		// Technic logo
-//		JLabel logo = new JLabel();
-//		ImageIcon logoIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("header.png"), 275));
-//		logo.setIcon(logoIcon);
-//		logo.setBounds(600, 6, logoIcon.getIconWidth(), logoIcon.getIconHeight());
-
-		// Tear
-		HyperlinkJLabel tear = new HyperlinkJLabel("", "http://www.technicpack.net");
-		ImageIcon tearIcon = new ImageIcon(ImageUtils.scaleWithAspectWidth(getImage("tear1.png"), 100));
-		tear.setIcon(tearIcon);
-		tear.setBounds(520, 0, 140, 361);
-
 		// Pack Selector Background
 		JLabel selectorBackground = new JLabel();
-		selectorBackground.setBounds(FRAME_SIDE_SPACING, FRAME_HEIGHT / 2 - 100, FRAME_WIDTH - (2*FRAME_SIDE_SPACING), 1);
-		setIcon(selectorBackground, "colored_strip.png", selectorBackground.getWidth(), selectorBackground.getHeight());
+		selectorBackground.setBounds(FRAME_SIDE_SPACING, FRAME_HEIGHT / 2 - 107, FRAME_WIDTH - (2*FRAME_SIDE_SPACING), 0);
 
 		// Pack Select Left
 		ImageButton switchLeft = new ImageButton(getIcon("arrow_left.png"), getIcon("arrow_left_hover.png"));
-		switchLeft.setBounds(FRAME_SIDE_SPACING, selectorBackground.getY(), 26, 146);
+		switchLeft.setBounds(FRAME_SIDE_SPACING, selectorBackground.getY(), 52, 162);
 		switchLeft.setActionCommand(PACK_LEFT_ACTION);
 		switchLeft.addActionListener(this);
 
 		// Pack Select Right
 		ImageButton switchRight = new ImageButton(getIcon("arrow_right.png"), getIcon("arrow_right_hover.png"));
-		switchRight.setBounds(FRAME_WIDTH - (26+FRAME_SIDE_SPACING), selectorBackground.getY(), 26, 146);
+		switchRight.setBounds(FRAME_WIDTH - (52+FRAME_SIDE_SPACING), selectorBackground.getY(), 52, 162);
 		switchRight.setActionCommand(PACK_RIGHT_ACTION);
 		switchRight.addActionListener(this);
 
 		// Progress Bar
 		progressBar = new LiteProgressBar();
-		progressBar.setBounds((FRAME_WIDTH / 2) - (395 / 2), 130, 395, 23);
+		progressBar.setBounds((FRAME_WIDTH / 2) - (395 / 2), 115, 395, 23);
 		progressBar.setVisible(false);
 		progressBar.setStringPainted(true);
 		progressBar.setOpaque(true);
@@ -242,7 +225,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		RoundedBox linkArea = new RoundedBox(TRANSPARENT);
 		linkArea.setBounds(605, 250, 265, 120);
 
-		HyperlinkJLabel home = new HyperlinkJLabel(lang("gui.link.home"), "http://www.technicraft.cz");
+		HyperlinkJLabel home = new HyperlinkJLabel(lang("gui.link.home"), "http://elliotcraft.net");
 		home.setFont(largerMinecraft);
 		home.setBounds(545, 35, 65, 20);
 		home.setForeground(Color.WHITE);
@@ -251,25 +234,27 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		home.setHoverTransparency(1F);
 
 		// Forums link
-		JButton forums = new ImageHyperlinkButton("http://forum.majncraft.cz/");
+		JButton forums = new ImageHyperlinkButton("http://elliotcraft.net/forum/");
 		forums.setToolTipText(lang("gui.tooltip.forum"));
-		forums.setBounds(9, loginStrip.getY() + 9, 90, 90);
+		forums.setBounds(18, loginStrip.getY() - 1, 90, 90);
 		forums.setBorderPainted(false);
 		ImageIcon forumIcon = getIcon("forums.png");
+		ImageIcon forumIconHover = getIcon("forums_hover.png");
 		forums.setIcon(forumIcon);
-		forums.setRolloverIcon(forumIcon);
+		forums.setRolloverIcon(forumIconHover);
 		forums.setPressedIcon(forumIcon);
 		forums.setSelectedIcon(forumIcon);
 		forums.setRolloverSelectedIcon(forumIcon);
 
 		// Donate link
-		JButton donate = new ImageHyperlinkButton("http://www.technicpack.net/donate/");
+		JButton donate = new ImageHyperlinkButton("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=peewi96%40gmail%2ecom&lc=US&no_note=0&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest");
 		donate.setToolTipText(lang("gui.tooltip.donate"));
-		donate.setBounds(9 + forums.getWidth() + 9, loginStrip.getY() + 9, 90, 90);
+		donate.setBounds(18 + forums.getWidth() + 18, loginStrip.getY() + 3, 90, 90);
 		donate.setBorderPainted(false);
 		ImageIcon donateIcon = getIcon("donate.png");
+		ImageIcon donateIconHover = getIcon("donate_hover.png");
 		donate.setIcon(donateIcon);
-		donate.setRolloverIcon(donateIcon);
+		donate.setRolloverIcon(donateIconHover);
 		donate.setPressedIcon(donateIcon);
 		donate.setSelectedIcon(donateIcon);
 		donate.setRolloverSelectedIcon(donateIcon);
@@ -285,21 +270,21 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 
 		// Pack Options Button
 		packOptionsBtn = new ImageButton(getIcon("settings.png"), getIcon("settings_hover.png"));
-		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 5, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 35, 16, 16);
+		packOptionsBtn.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 10, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 51, 16, 16);
 		packOptionsBtn.setActionCommand(PACK_OPTIONS_ACTION);
 		packOptionsBtn.addActionListener(this);
 
 
-		// Platform website button
-		platform = new ImageHyperlinkButton("http://www.technicpack.net/");
+		// Elliotcraft website button
+		platform = new ImageHyperlinkButton("http://elliotcraft.net/");
 		platform.setIcon(getIcon("openPlatformPage.png", 20, 20));
 		platform.setRolloverIcon(getIcon("openPlatformPageInverted.png"));
 		platform.setBounds(FRAME_WIDTH / 2 - (ModpackSelector.bigWidth / 2) + 25, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 35, 20, 20);
 		platform.setVisible(false); // hide it by default
 
 		// Pack Remove Button
-		packRemoveBtn = new ImageButton(getIcon("delete.png", 26, 26), getIcon("delete_hover.png", 26, 26));
-		packRemoveBtn.setBounds(FRAME_WIDTH / 2 + 94, FRAME_HEIGHT / 2 + 56, 26, 26);
+		packRemoveBtn = new ImageButton(getIcon("delete.png"), getIcon("delete_hover.png"));
+		packRemoveBtn.setBounds(FRAME_WIDTH / 2 + (ModpackSelector.bigWidth / 2) - 27, FRAME_HEIGHT / 2 + (ModpackSelector.bigHeight / 2) - 52, 16, 16);
 		packRemoveBtn.setActionCommand(PACK_REMOVE_ACTION);
 		packRemoveBtn.addActionListener(this);
 
@@ -326,21 +311,21 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		console.addActionListener(this);
 
 		// Facebook button
-		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/TechniCraftcz");
+		JButton facebook = new ImageHyperlinkButton("https://www.facebook.com/elliotcraft.net");
 		facebook.setRolloverIcon(getIcon("social_face_hover.png"));
 		facebook.setToolTipText(lang("gui.social.facebook.tooltip"));
 		facebook.setBounds(FRAME_SIDE_SPACING, FRAME_TOP_SPACING, 32, 32);
 		setIcon(facebook, "social_face.png", 32);
 
 		// Twitter button
-		JButton twitter = new ImageHyperlinkButton("https://twitter.com/TechniCraftCZ");
+		JButton twitter = new ImageHyperlinkButton("https://twitter.com/elliotcraftnet");
 		twitter.setRolloverIcon(getIcon("social_twitter_hover.png"));
 		twitter.setToolTipText(lang("gui.social.twitter.tooltip"));
 		twitter.setBounds(FRAME_SIDE_SPACING, facebook.getY() + 42, 32, 32);
 		setIcon(twitter, "social_twitter.png", 32);
 
 		// Google+ button
-		JButton gplus = new ImageHyperlinkButton("http://gplus.to/majncraft");
+		JButton gplus = new ImageHyperlinkButton("http://gplus.to/elliotcraft");
 		gplus.setRolloverIcon(getIcon("social_gplus_hover.png"));
 		gplus.setToolTipText(lang("gui.social.gplus.tooltip"));
 		gplus.setBounds(FRAME_SIDE_SPACING, twitter.getY() + 42, 32, 32);
@@ -351,7 +336,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 
 		// Pack Selector
 		packSelector = new ModpackSelector(this);
-		packSelector.setBounds(FRAME_SIDE_SPACING, selectorBackground.getY()+1, FRAME_WIDTH - (2*FRAME_SIDE_SPACING), 145);
+		packSelector.setBounds((47+FRAME_SIDE_SPACING), selectorBackground.getY()+1, FRAME_WIDTH - (2*(47+FRAME_SIDE_SPACING)), 162);
 		
 		// Custom Pack Name Label
 		customName = new JLabel("", JLabel.CENTER);
@@ -382,7 +367,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 			DynamicButton userButton = new DynamicButton(this, image, 1, accountName, userName);
 			userButton.setFont(fontbold.deriveFont(13F));
 
-			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 87, 45, 45);
+			userButton.setBounds(FRAME_WIDTH - ((i + 1) * 70), FRAME_HEIGHT - 67, 45, 45);
 			contentPane.add(userButton);
 			userButton.setActionCommand(IMAGE_LOGIN_ACTION);
 			userButton.addActionListener(this);
@@ -402,7 +387,6 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		contentPane.add(packRemoveBtn);
 		contentPane.add(platform);
 		contentPane.add(packSelector);
-		contentPane.add(selectorBackground);
 		contentPane.add(name);
 		contentPane.add(pass);
 		contentPane.add(remember);
@@ -412,12 +396,10 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		contentPane.add(facebook);
 		//contentPane.add(home);
 		contentPane.add(forums);
-		//contentPane.add(donate);
+		contentPane.add(donate);
 		//contentPane.add(issues);
-		//contentPane.add(logo);
 		contentPane.add(loginStrip);
 		//contentPane.add(news);
-		//contentPane.add(tear);
 		contentPane.add(options);
 		contentPane.add(console);
 		contentPane.add(exit);
@@ -515,7 +497,7 @@ public class TechnicLoginFrame extends LoginFrame implements ActionListener, Key
 		assets.mkdirs();
 		File file = new File(assets, user + ".png");
 		try {
-			Download download = DownloadUtils.downloadFile("http://skins.majncraft.cz/helm/" + user + "/64", file.getAbsolutePath());
+			Download download = DownloadUtils.downloadFile("http://skins.elliotcraft.net/helm/" + user + "/64", file.getAbsolutePath());
 			if (download.getResult().equals(Download.Result.SUCCESS)) {
 				return ImageIO.read(download.getOutFile());
 			}

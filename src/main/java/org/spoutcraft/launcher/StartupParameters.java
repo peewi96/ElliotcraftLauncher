@@ -195,7 +195,7 @@ public final class StartupParameters {
 				commands.add("javaw");
 			} else if (OperatingSystem.getOS().isMac()) {
 				commands.add("/Library/Java/Home/bin/java");
-				commands.add("-Xdock:name=TechniCraft Launcher");
+				commands.add("-Xdock:name=Elliotcraft Launcher");
 				try {
 					File icon = new File(Utils.getLauncherDirectory(), "icon.icns");
 					Utils.copy(ResourceUtils.getResourceAsStream("/org/spoutcraft/launcher/resources/app/icon.icns"), new FileOutputStream(icon));

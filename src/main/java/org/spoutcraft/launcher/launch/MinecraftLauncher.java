@@ -29,6 +29,7 @@ package org.spoutcraft.launcher.launch;
 
 import java.applet.Applet;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -43,35 +44,40 @@ public class MinecraftLauncher {
 	public static MinecraftClassLoader getClassLoader(PackInfo pack) {
 		if (loader == null) {
 			File mcBinFolder = pack.getBinDir();
+			File mcInstModFolder = pack.getInstModsDir();
+			
 			File[] files;
 			Boolean useOptifine = Settings.getOptifine(pack.getName());
-
-			File modpackJar = new File(mcBinFolder, "modpack.jar");
+		
+			File[] instmods = mcInstModFolder.listFiles(new FilenameFilter() {
+			    public boolean accept(File dir, String name) {
+			        return name.toLowerCase().endsWith(".jar");
+			    }
+			});
+			
 			File optifineZip = new File(mcBinFolder, "optifine.zip");
 			File minecraftJar = new File(mcBinFolder, "minecraft.jar");
 			File jinputJar = new File(mcBinFolder, "jinput.jar");
 			File lwglJar = new File(mcBinFolder, "lwjgl.jar");
 			File lwjgl_utilJar = new File(mcBinFolder, "lwjgl_util.jar");
 
-			if (useOptifine) {files = new File[6];} else {files = new File[5];}
+			if (useOptifine) {files = new File[5];} else {files = new File[4];}
 
 			try {
 				if (useOptifine) {
 					files[0] = optifineZip;
-					files[1] = modpackJar;
-					files[2] = minecraftJar;
-					files[3] = jinputJar;
-					files[4] = lwglJar;
-					files[5] = lwjgl_utilJar;
-				} else {
-					files[0] = modpackJar;
 					files[1] = minecraftJar;
 					files[2] = jinputJar;
 					files[3] = lwglJar;
 					files[4] = lwjgl_utilJar;
+				} else {
+					files[0] = minecraftJar;
+					files[1] = jinputJar;
+					files[2] = lwglJar;
+					files[3] = lwjgl_utilJar;
 				}
 
-				loader = new MinecraftClassLoader(ClassLoader.getSystemClassLoader(), modpackJar, files, pack);
+				loader = new MinecraftClassLoader(ClassLoader.getSystemClassLoader(), instmods, files, pack);
 			}
 			catch (Exception e) {
 				e.printStackTrace();

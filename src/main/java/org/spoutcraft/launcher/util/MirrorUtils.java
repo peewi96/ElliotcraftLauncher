@@ -116,7 +116,7 @@ public class MirrorUtils {
 			HttpURLConnection.setFollowRedirects(true);
 			HttpURLConnection urlConnect = (HttpURLConnection) test.openConnection();
 			System.setProperty("http.agent", "");
-			urlConnect.setRequestProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+			urlConnect.setRequestProperty("User-Agent", "Elliotcraft/1.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 			urlConnect.setRequestMethod("HEAD");
 			urlConnect.setConnectTimeout(timeout);
 			int response = urlConnect.getResponseCode();
@@ -146,7 +146,7 @@ public class MirrorUtils {
 				URL url = new URL("http://mirror.technicpack.net/Technic/mirrors.yml");
 				HttpURLConnection con = (HttpURLConnection) (url.openConnection());
 				System.setProperty("http.agent", "");
-				con.setRequestProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+				con.setRequestProperty("User-Agent", "Elliotcraft/1.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 				Utils.copy(con.getInputStream(), new FileOutputStream(mirrorsYML));
 			} catch (IOException e) {
 				e.printStackTrace();

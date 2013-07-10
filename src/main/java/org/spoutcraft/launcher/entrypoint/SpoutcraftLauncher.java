@@ -101,7 +101,7 @@ public class SpoutcraftLauncher {
 
 		int launcherBuild = parseInt(getLauncherBuild(), -1);
 		logger.info("------------------------------------------");
-		logger.info("TechniCraft Launcher is starting....");
+		logger.info("Elliotcraft Launcher is starting....");
 		logger.info("Operating System: " + System.getProperty("os.name") + " " + System.getProperty("os.version") + " " + System.getProperty("os.arch"));
 		logger.info("Java Version: " + System.getProperty("java.vendor") + " " + System.getProperty("java.version") + " <" + System.getProperty("java.vendor.url") + ">");;
 		logger.info("Launcher Build: " + launcherBuild);
@@ -238,7 +238,7 @@ public class SpoutcraftLauncher {
 		OperatingSystem os = OperatingSystem.getOS();
 		if (os.isMac()) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
-			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TechniCraft Launcher");
+			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Elliotcraft Launcher");
 			System.setProperty("apple.awt.antialiasing","on");
 			System.setProperty("apple.awt.graphics.EnableQ2DX","true");
 			System.setProperty("apple.awt.textantialiasing","on");

@@ -58,7 +58,7 @@ public class MinecraftClassLoader extends URLClassLoader {
 	private HashSet<String> preloaded = new HashSet<String>();
 	private HashMap<String, File> classLocations = new HashMap<String, File>(10000);
 
-	public MinecraftClassLoader(ClassLoader parent, File modpackJar, File[] libraries, PackInfo pack) {
+	public MinecraftClassLoader(ClassLoader parent, File[] instmods, File[] libraries, PackInfo pack) {
 		super(new URL[0], parent);
 
 		// Move all of the jars we want to use to a temp folder (so we don't create file hooks on them)
@@ -73,15 +73,18 @@ public class MinecraftClassLoader extends URLClassLoader {
 				e.printStackTrace();
 			}
 		}
-		try {
-			this.addURL(modpackJar.toURI().toURL());
-			index(modpackJar);
-		} catch (ClosedByInterruptException e) {
-			// Ignore, assume we interrupted for a reason
-			return;
-		} catch (IOException e) {
-			e.printStackTrace();
+		for (File m : instmods) {
+			try {
+				this.addURL(m.toURI().toURL());
+				index(m);
+			} catch (ClosedByInterruptException e) {
+				// Ignore, assume we interrupted for a reason
+				return;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		
 	}
 
 	private void index(File file) throws IOException {

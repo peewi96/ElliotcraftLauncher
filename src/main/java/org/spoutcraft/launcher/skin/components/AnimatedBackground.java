@@ -35,7 +35,6 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 import org.jdesktop.swingworker.SwingWorker;
-import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 
 public class AnimatedBackground extends JLabel {
 	private static final long serialVersionUID = 1L;

@@ -22,6 +22,6 @@ public class TrackerUtils {
 	public TrackerUtils() { }
 
 	public static void sendPageView(String pageUrl, String pageTitle) {
-		TechnicLoginFrame.tracker.trackPageViewFromReferrer(pageUrl, pageTitle, "TechniCraft", "http://technicraft.cz", "/");
+		TechnicLoginFrame.tracker.trackPageViewFromReferrer(pageUrl, pageTitle, "Elliotcraft", "http://elliotcraft.net", "/");
 	}
 }

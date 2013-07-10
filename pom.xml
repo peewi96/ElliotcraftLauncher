@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Project information -->
-	<name>TechniCraft Launcher</name>
+	<name>Elliotcraft</name>
 	<groupId>org.spoutcraft</groupId>
-	<artifactId>TechniCraft</artifactId>
-	<version>2.0-${buildNumber}</version>
-	<url>http://technicraft.cz</url>
-	<description>Custom launcher for installing and updating Majncraft and Technicraft related modpacks.</description>
+	<artifactId>Elliotcraft</artifactId>
+	<version>1.0</version>
+	<url>http://get.elliotcraft.net</url>
+	<description>Custom launcher for playing on the Elliotcraft network.</description>
 
 	<!-- Build properties -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<currentYear>2013</currentYear>
 		<mainClass>${project.groupId}.launcher.entrypoint.Start</mainClass>
-		<buildNumber>0</buildNumber>
+		<buildNumber>1</buildNumber>
 		<keystore.path>${project.basedir}/src/main/resources/keystore.jks</keystore.path>
 		<keystore.alias>spoutdev</keystore.alias>
 		<keystore.keypass>unleashtheflow</keystore.keypass>
@@ -24,8 +24,8 @@
 
 	<!-- Company information -->
 	<organization>
-		<url>http://www.technicraft.cz</url>
-		<name>TechniCraft.cz</name>
+		<url>http://www.elliotcraft.net</url>
+		<name>Elliotcraft</name>
 	</organization>
 
 	<!-- License information -->
@@ -40,15 +40,15 @@
 
 	<!-- Source code access -->
 	<scm>
-		<developerConnection>scm:git:git@github.com:/dewick/TechniCraft.git</developerConnection>
-		<connection>scm:git:git://github.com//dewick/TechniCraft.git</connection>
-		<url>https://github.com/dewick/TechniCraft/tree/master</url>
+		<developerConnection>scm:git:git@github.com:/peewi96/ElliotcraftLauncher.git</developerConnection>
+		<connection>scm:git:git://github.com//peewi96/ElliotcraftLauncher.git</connection>
+		<url>https://github.com/peewi96/ElliotcraftLauncher/tree/master</url>
 	</scm>
 
 	<!-- Build server -->
 	<ciManagement>
 		<system>jenkins</system>
-		<url>http://ci.technicraft.cz/job/TechnicLauncher/</url>
+		<url>http://build.elliotcraft.net/job/ElliotcraftLauncher/</url>
 	</ciManagement>
 
 	<!-- Dependency repositories -->
@@ -128,6 +128,11 @@
 			<version>1.1</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>swingx</artifactId>
+			<version>1.6.1</version>
+		</dependency>    
 		<!-- Testing only -->
 		<dependency>
 			<groupId>junit</groupId>

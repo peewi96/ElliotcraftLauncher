@@ -66,6 +66,7 @@ public abstract class PackInfo extends RestObject {
 	private File savesDir;
 	private File cacheDir;
 	private File resourceDir;
+	private File instmodsDir;
 	private File coremodsDir;
 
 	public PackInfo() {
@@ -164,6 +165,7 @@ public abstract class PackInfo extends RestObject {
 		savesDir = new File(installedDirectory, "saves");
 		cacheDir = new File(installedDirectory, "cache");
 		resourceDir = new File(installedDirectory, "resources");
+		instmodsDir = new File(installedDirectory, "instmods");
 		coremodsDir = new File(installedDirectory, "coremods");
 
 		binDir.mkdirs();
@@ -171,6 +173,7 @@ public abstract class PackInfo extends RestObject {
 		savesDir.mkdirs();
 		cacheDir.mkdirs();
 		resourceDir.mkdirs();
+		instmodsDir.mkdirs();
 		coremodsDir.mkdirs();
 	}
 
@@ -216,6 +219,10 @@ public abstract class PackInfo extends RestObject {
 		return resourceDir;
 	}
 
+	public File getInstModsDir() {
+		return instmodsDir;
+	}
+	
 	public synchronized BufferedImage getLogo() {
 		if (logo.get() != null) {
 			return logo.get();

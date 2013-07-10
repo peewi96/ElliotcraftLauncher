@@ -78,8 +78,8 @@ public class BaseYAMLResource implements YAMLResource {
 				//Setup url
 				URL url = new URL(this.url);
 				HttpURLConnection conn = (HttpURLConnection) (url.openConnection());
-				System.setProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
-				conn.setRequestProperty("User-Agent", "TechniCraft/2.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+				System.setProperty("User-Agent", "Elliotcraft/1.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
+				conn.setRequestProperty("User-Agent", "Elliotcraft/1.0." + Settings.getLauncherBuild() + " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 
 				//Copy file
 				stream = conn.getInputStream();

@@ -25,7 +25,6 @@
  */
 package org.spoutcraft.launcher.tracking;
 
-import org.spoutcraft.launcher.entrypoint.SpoutcraftLauncher;
 import org.spoutcraft.launcher.util.Utils;
 
 import java.net.HttpURLConnection;
@@ -462,7 +461,6 @@ public class JGoogleAnalyticsTracker {
             connection.setRequestMethod("GET");
             connection.setInstanceFollowRedirects(true);
             connection.connect();
-            int responseCode = connection.getResponseCode();
             /*
             if (Utils.getStartupParameters().isDebugMode() && responseCode != HttpURLConnection.HTTP_OK) {
 				org.spoutcraft.launcher.api.Launcher.getLogger().log(Level.SEVERE, "JGoogleAnalyticsTracker: Error requesting url "+argURL+", received response code "+responseCode);

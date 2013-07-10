@@ -52,18 +52,18 @@ import org.spoutcraft.launcher.util.Utils;
 public class ModpackSelector extends JComponent implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private static final String PACK_SELECT_ACTION = "packselect";
-	public static final String DEFAULT_PACK = "technicraft";
+	public static final String DEFAULT_PACK = "elliotcraft";
 	private ImportOptions importOptions = null;
 
 	private final TechnicLoginFrame frame;
 	private final PackMap packs = new PackMap();
 	private final List<PackButton> buttons = new ArrayList<PackButton>(7);
 
-	private final int height = 145;
-	private final int width = 880 - (2* TechnicLoginFrame.FRAME_SIDE_SPACING);
-	public static final int bigWidth = 250;
-	public static final int bigHeight = 145;
-	private final float smallScale = 1.0F;
+	private final int height = 162;
+	private final int width = 783 - (2* (TechnicLoginFrame.FRAME_SIDE_SPACING - 1));
+	public static final int bigWidth = 285;
+	public static final int bigHeight = 165;
+	private final float smallScale = 0.8F;
 	private final int spacing = 0;
 	private final int smallWidth = (int) (bigWidth * smallScale);
 	private final int smallHeight = (int) (bigHeight * smallScale);
@@ -82,18 +82,18 @@ public class ModpackSelector extends JComponent implements ActionListener {
 			button.addActionListener(this);
 			if (i == 3) {
 				button.setBounds(bigX, bigY, bigWidth, bigHeight);
-				label.setBounds(bigX, bigY + bigHeight - 24, bigWidth, 24);
+				label.setBounds(bigX + 7, bigY + bigHeight - 31, bigWidth - 14, 24);
 				label.setFont(label.getFont().deriveFont(14F));
 				button.setIndex(0);
 			} else if (i < 3) {
 				int smallX = bigX - ((i + 1) * (smallWidth + spacing));
 				button.setBounds(smallX, smallY, smallWidth, smallHeight);
-				label.setBounds(smallX, smallY + smallHeight - 20, smallWidth, 20);
+				label.setBounds(smallX + 7, smallY + smallHeight - 27, smallWidth - 14, 20);
 				button.setIndex((i + 1) * -1);
 			} else if (i > 3) {
 				int smallX = bigX + bigWidth + spacing + ((i - 4) * (smallWidth + spacing));
 				button.setBounds(smallX, smallY, smallWidth, smallHeight);
-				label.setBounds(smallX, smallY + smallHeight - 20, smallWidth, 20);
+				label.setBounds(smallX + 7, smallY + smallHeight - 27, smallWidth - 14, 20);
 				button.setIndex(i - 3);
 			}
 
@@ -168,7 +168,7 @@ public class ModpackSelector extends JComponent implements ActionListener {
 		frame.setTitle(selected.getDisplayName());
 		
 		// Set the big button image in the middle
-		buttons.get(3).setIcon(new ImageIcon(selected.getLogo().getScaledInstance(bigWidth, bigHeight, Image.SCALE_SMOOTH)));
+		buttons.get(3).setIcon(new ImageIcon(selected.getLogo().getScaledInstance(bigWidth-14, bigHeight-14, Image.SCALE_SMOOTH)));
 		buttons.get(3).getJLabel().setVisible(selected.isLoading());
 
 		// Set the URL for the platform button
@@ -187,14 +187,14 @@ public class ModpackSelector extends JComponent implements ActionListener {
 		// Add the first 3 buttons to the left
 		for (int i = 0; i < 3; i++) {
 			PackInfo pack = packs.getPrevious(i + 1);
-			buttons.get(i).setIcon(new ImageIcon(pack.getLogo().getScaledInstance(smallWidth, smallHeight, Image.SCALE_SMOOTH)));
+			buttons.get(i).setIcon(new ImageIcon(pack.getLogo().getScaledInstance(smallWidth-14, smallHeight-14, Image.SCALE_SMOOTH)));
 			buttons.get(i).getJLabel().setVisible(pack.isLoading());
 		}
 
 		// Add the last 3 buttons to the right
 		for (int i = 4; i < 7; i++) {
 			PackInfo pack = packs.getNext(i - 3);
-			buttons.get(i).setIcon(new ImageIcon(pack.getLogo().getScaledInstance(smallWidth, smallHeight, Image.SCALE_SMOOTH)));
+			buttons.get(i).setIcon(new ImageIcon(pack.getLogo().getScaledInstance(smallWidth-14, smallHeight-14, Image.SCALE_SMOOTH)));
 			buttons.get(i).getJLabel().setVisible(pack.isLoading());
 		}
 

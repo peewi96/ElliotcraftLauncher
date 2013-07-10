@@ -33,11 +33,13 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import org.jdesktop.swingx.JXButton;
+import org.jdesktop.swingx.border.DropShadowBorder;
 import org.spoutcraft.launcher.skin.TechnicLoginFrame;
 
 import static org.spoutcraft.launcher.util.TextSource.lang;
 
-public class PackButton extends ImageButton {
+public class PackButton extends JXButton {
 	private static final long serialVersionUID = 1L;
 	private int index;
 	private JLabel label;
@@ -50,6 +52,18 @@ public class PackButton extends ImageButton {
 		label.setBackground(new Color(35, 35, 35));
 		label.setOpaque(true);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
+		DropShadowBorder shadow = new DropShadowBorder();
+		shadow.setShadowColor(Color.BLACK);
+        shadow.setShowTopShadow(true);
+        shadow.setShowRightShadow(true);
+        shadow.setShowBottomShadow(true);
+        shadow.setShowLeftShadow(true);
+        shadow.setShadowOpacity(0.6F);
+        shadow.setShadowSize(7);
+		this.setBorder(shadow);
+        this.setOpaque(false);
+        this.setContentAreaFilled(false);
+        this.setFocusable(false);
 	}
 
 	@Override

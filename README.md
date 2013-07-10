@@ -1,8 +1,8 @@
 <p align="center">
-<img src="http://i.imgur.com/02zBfbJ.png" />
+<img src="http://cdn.elliotcraft.net/styles/minecraft/xenforo/logo.png" />
 </p>
-TechniCraft Launcher by Majncraft.cz team
+Elliotcraft Launcher by Elliotcraft team
 ==================================================================
-Used for Majncraft servers (Majncraft and TechniCraft) and for some friendly ModPacks
+Used for Elliotcraft servers and for some friendly ModPacks
 
-- Latest builds: http://ci.technicraft.cz/job/TechniCraft%20Launcher/
+- Latest builds: http://build.elliotcraft.net/job/ElliotcraftLauncher/

@@ -22,14 +22,8 @@ import java.net.URI;
 import java.util.logging.Level;
 
 public abstract class AnalyticsDispatcher {
-	private String userAgent;
-	private String host;
-	private int port;
 
-	public AnalyticsDispatcher(String userAgent, String host, int port) {
-		this.userAgent = userAgent;
-		this.host = host;
-		this.port = port;
+	public AnalyticsDispatcher() {
 	}
 
 	public void dispatch(String analyticsString) {

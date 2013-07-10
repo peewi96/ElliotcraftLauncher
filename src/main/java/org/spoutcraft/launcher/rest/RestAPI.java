@@ -54,7 +54,7 @@ import org.spoutcraft.launcher.technic.RestInfo;
 public class RestAPI {
 	private static final String DEFAULT_MIRROR = "http://mirror.technicpack.net/Technic/";
 	private static final ObjectMapper mapper = new ObjectMapper();
-	private static final String PLATFORM = "http://www.technicpack.net/";
+	private static final String PLATFORM = "http://elliotcraft.net/";
 
 	private static FullModpacks DEFAULT;
 	private static RestAPI TECHNIC;
@@ -193,7 +193,7 @@ public class RestAPI {
 
 	public static RestAPI getDefault() {
 		if (TECHNIC == null) {
-			TECHNIC = new RestAPI("http://solder.technicraft.cz/api/");
+			TECHNIC = new RestAPI("http://solder.elliotcraft.net/api/");
 			setupDefault();
 		}
 
@@ -231,7 +231,7 @@ public class RestAPI {
 	}
 
 	public static int getLatestLauncherBuild(String stream) throws RestfulAPIException {
-		LauncherBuild result = getRestObject(LauncherBuild.class, "http://solder.technicraft.cz/launcher/version/" + stream);
+		LauncherBuild result = getRestObject(LauncherBuild.class, "http://solder.elliotcraft.net/launcher/version/" + stream);
 		return result.getLatestBuild();
 	}
 
@@ -243,17 +243,17 @@ public class RestAPI {
 			ext = "exe";
 		}
 		
-		String url = "http://solder.technicraft.cz/launcher/url/" + version + "/" + ext;
+		String url = "http://solder.elliotcraft.net/launcher/url/" + version + "/" + ext;
 		LauncherURL result = getRestObject(LauncherURL.class, url);
 		return result.getLauncherURL();
 	}
 
 	public static String getLwjglNativeURL(String version, String os) {
-		return /*DEFAULT_MIRROR + */"http://solder.technicraft.cz/lwjgl/lwjgl-natives-" + os + "-" + version + ".zip";
+		return /*DEFAULT_MIRROR + */"http://solder.elliotcraft.net/lwjgl/lwjgl-natives-" + os + "-" + version + ".zip";
 	}
 
 	public static String getLwjglURL(String version) {
-		return /*DEFAULT_MIRROR + */"http://solder.technicraft.cz/lwjgl/lwjgl-jar-" + version + ".zip";
+		return /*DEFAULT_MIRROR + */"http://solder.elliotcraft.net/lwjgl/lwjgl-jar-" + version + ".zip";
 	}
 
 	public static String getMinecraftMD5(String version) {
@@ -283,6 +283,7 @@ public class RestAPI {
 		return "https://s3.amazonaws.com/Minecraft.Download/versions/" + version + "/" + version + ".jar";
 	}
 
+	@SuppressWarnings("resource")
 	public static HashMap<String, Minecraft> getMinecraftVersions() throws RestfulAPIException {
 		InputStream stream = null;
 		try {
@@ -315,6 +316,7 @@ public class RestAPI {
 		return getPlatformAPI() + "minecraft";
 	}
 
+	@SuppressWarnings("resource")
 	public static List<Article> getNews() throws RestfulAPIException {
 		InputStream stream = null;
 		try {

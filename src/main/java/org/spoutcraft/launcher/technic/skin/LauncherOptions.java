@@ -55,7 +55,7 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 	private static final long serialVersionUID = 1L;
 
 	private static final int FRAME_WIDTH = 300;
-	private static final int FRAME_HEIGHT = 350;
+	private static final int FRAME_HEIGHT = 290;
 	private static final String LAUNCHER_PREPEND = lang("options.build")+" ";
 	private static final String QUIT_ACTION = "quit";
 	private static final String SAVE_ACTION = "save";
@@ -402,7 +402,6 @@ public class LauncherOptions extends JDialog implements ActionListener, MouseLis
 		}
 	}
 
-	@SuppressWarnings("restriction")
 	private void populateLanguages(JComboBox language) {
 		for (Language lang : Language.languageOptions) {
 				language.addItem(lang.getDescription());

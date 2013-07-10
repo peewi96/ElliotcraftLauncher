@@ -28,22 +28,14 @@
 package org.spoutcraft.launcher.skin.components;
 
 import org.spoutcraft.launcher.skin.TechnicLoginFrame;
-import org.spoutcraft.launcher.util.ImageUtils;
 
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import static org.spoutcraft.launcher.util.ResourceUtils.getResourceAsStream;
-
 public class LiteButton extends JButton{
 	private static final long serialVersionUID = 1L;
-	private boolean clicked = false;
 
 	public LiteButton(String label) {
 		this.setText(label);

@@ -117,8 +117,8 @@ public class ErrorDialog extends JDialog implements ActionListener{
 	}
 
 	private String generateExceptionReport() {
-		StringBuilder builder = new StringBuilder("TechniCraft Launcher Error Report:\n");
-		builder.append("( Please submit this report to http://forum.majncraft.cz/forums/bugy.179/ )\n");
+		StringBuilder builder = new StringBuilder("Elliotcraft Launcher Error Report:\n");
+		builder.append("( Please submit this report to http://elliotcraft.net/forums/ )\n");
 		builder.append("    Launcher Build: ").append(Settings.getLauncherBuild()).append("\n").append("\n");
 		builder.append("    Selected Pack: ").append(selected).append("\n");
 		builder.append("Stack Trace:").append("\n");

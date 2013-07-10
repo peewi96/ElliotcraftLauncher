@@ -176,7 +176,7 @@ public class PackMap extends HashMap<String, PackInfo> {
 			}
 		}
 		// Add in the add pack button when -custompack parameter or when offline first launch
-		if (StartupParameters.isCustomPack() || RestAPI.getDefaults().isEmpty()) {
+		if (StartupParameters.isCustomPack() || (RestAPI.getDefaults().isEmpty() && Settings.getInstalledPacks().isEmpty())) {
 			put("addpack", new AddPack());
 		}
 	}
